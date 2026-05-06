@@ -208,7 +208,7 @@ export default function App() {
                 <div className="max-w-2xl">
                   <header className="mb-10 md:mb-16 pb-8 border-b border-black/10">
                     <h3 className="font-serif text-xl md:text-2xl italic text-[#D4AF37]">Tabela de Valores</h3>
-                    <p className="text-[9px] md:text-[10px] uppercase font-black tracking-widest opacity-30 mt-2">Studio Privé 2026</p>
+                    <p className="text-[9px] md:text-[10px] uppercase font-black tracking-widest opacity-30 mt-2">Catálogo 2026</p>
                   </header>
 
                   <div className="space-y-6 md:space-y-12">
@@ -227,13 +227,13 @@ export default function App() {
                         >
                           <div className="flex-1">
                             <div className="flex justify-between items-end gap-4 md:gap-6">
-                              <span className="text-xs md:text-lg font-black tracking-tighter flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-all uppercase">
+                              <span className="text-sm md:text-xl font-black tracking-tighter flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-all uppercase">
                                 {svc.name.split(/(\([^)]+\))/g).map((part: string, i: number) => {
                                   const isParen = part.startsWith('(') && part.endsWith(')');
                                   return (
                                     <span 
                                       key={i} 
-                                      className={isParen ? "font-serif italic opacity-40 text-[10px] md:text-sm lowercase block md:inline md:ml-2 font-normal" : ""}
+                                      className={isParen ? "font-serif italic opacity-40 text-xs md:text-base lowercase block md:inline md:ml-2 font-normal" : ""}
                                     >
                                       {part}
                                     </span>
@@ -241,7 +241,7 @@ export default function App() {
                                 })}
                               </span>
                               <div className="flex-1 border-b border-dotted border-black/10 mb-2 h-px"></div>
-                              <span className="text-[#D4AF37] font-black text-sm md:text-2xl ml-2 md:ml-4">
+                              <span className="text-[#D4AF37] font-black text-base md:text-3xl ml-2 md:ml-4">
                                 R${svc.price}
                               </span>
                             </div>
@@ -266,9 +266,9 @@ export default function App() {
 
       <footer className="h-auto md:h-24 px-6 md:px-12 py-10 md:py-0 flex flex-col md:flex-row items-center justify-between border-t border-[#D4AF37]/10 bg-white/50 backdrop-blur-sm relative z-40 gap-8">
         <div className="flex space-x-12 text-[9px] uppercase tracking-[0.2em] font-black opacity-30">
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Instagram</span>
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Facebook</span>
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Studio Privé</span>
+          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Tabela</span>
+          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Serviços</span>
+          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Contato</span>
         </div>
         
         <div className="flex items-center gap-8">

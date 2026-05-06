@@ -100,7 +100,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
             >
               <img src={IMAGES.truss_hero} alt="Truss Hero" className="w-full h-auto drop-shadow-2xl grayscale" />
               <div className="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-black text-white p-4 md:p-10 min-w-[200px]">
-                <span className="text-[8px] md:text-[12px] uppercase font-black tracking-[0.3em] block mb-1 md:mb-2 text-[#D4AF37]">Studio Privé</span>
+                <span className="text-[8px] md:text-[12px] uppercase font-black tracking-[0.3em] block mb-1 md:mb-2 text-[#D4AF37]">Elaine Valerio</span>
                 <span className="text-xl md:text-4xl font-serif italic">The Art of Care</span>
               </div>
             </motion.div>
@@ -319,7 +319,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-4xl md:text-8xl font-serif italic mb-8 md:mb-12">Experiência Studio Privé.</h4>
+            <h4 className="text-4xl md:text-8xl font-serif italic mb-8 md:mb-12">Experiência Elaine Valerio.</h4>
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                <motion.a
                 href="https://wa.me/5500000000000"
@@ -343,8 +343,8 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
         <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-30">© 2026 Elaine Valerios</span>
         <div className="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] opacity-40">
            <span>Instagram</span>
-           <span>Studio</span>
-           <span>Privé</span>
+           <span>Serviços</span>
+           <span>Cronograma</span>
         </div>
       </footer>
     </motion.div>
