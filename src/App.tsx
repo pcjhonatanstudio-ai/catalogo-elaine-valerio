@@ -97,11 +97,11 @@ const CATEGORIES = [
 ];
 
 export default function App() {
-  const [selectedCategory, setSelectedCategory] = useState<typeof CATEGORIES[number]>(CATEGORIES[0]);
+  const [selectedCategory, setSelectedCategory] = useState<typeof CATEGORIES[number] | null>(null);
   const [view, setView] = useState<'catalogue' | 'cronograma'>('catalogue');
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#2D1B14] font-sans flex flex-col md:h-screen md:overflow-hidden selection:bg-[#D4AF37]/20">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#2D1B14] font-sans flex flex-col selection:bg-[#D4AF37]/20">
       <AnimatePresence>
         {view === 'cronograma' && (
           <ScheduleCatalog onClose={() => setView('catalogue')} />
@@ -109,14 +109,14 @@ export default function App() {
       </AnimatePresence>
 
       <nav className="h-24 px-6 md:px-12 flex items-center justify-between border-b border-[#D4AF37]/10 flex-shrink-0 bg-white/50 backdrop-blur-sm sticky top-0 z-40">
-        <div className="flex flex-col cursor-pointer" onClick={() => setView('catalogue')}>
+        <div className="flex flex-col cursor-pointer" onClick={() => { setView('catalogue'); setSelectedCategory(null); }}>
           <span className="font-script text-4xl md:text-5xl leading-none text-[#D4AF37]">Elaine Valerio</span>
           <span className="font-sans text-[9px] md:text-[10px] tracking-[0.3em] uppercase opacity-60 mt-1 font-bold">Studio de Beleza</span>
         </div>
         <div className="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-black">
           <span 
             className={`cursor-pointer transition-colors hover:text-[#D4AF37] ${view === 'catalogue' ? 'text-[#D4AF37]' : 'opacity-40'}`}
-            onClick={() => setView('catalogue')}
+            onClick={() => { setView('catalogue'); setSelectedCategory(null); }}
           >
             Serviços
           </span>
@@ -131,137 +131,152 @@ export default function App() {
         </div>
       </nav>
 
-      <main className="flex-1 flex flex-col md:flex-row overflow-hidden overflow-y-auto md:overflow-y-hidden">
-        <aside className="w-full md:w-80 lg:w-96 p-6 md:p-12 border-b md:border-b-0 md:border-r border-[#D4AF37]/10 flex-shrink-0 overflow-y-visible md:overflow-y-auto bg-stone-50/30">
-          <div className="space-y-2 md:space-y-3">
-            <h4 className="text-[10px] uppercase tracking-[0.3em] font-black text-[#D4AF37] mb-6 opacity-80 pl-2">Categorias</h4>
-            {CATEGORIES.map((cat) => (
-              <motion.div
-                key={cat.id}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  if (cat.id === 'cronograma') {
-                    setView('cronograma');
-                    setSelectedCategory(cat);
-                  } else {
-                    setSelectedCategory(cat);
-                  }
-                }}
-                className={`group cursor-pointer flex items-center justify-between p-4 transition-all duration-500 rounded-lg ${selectedCategory.id === cat.id ? 'bg-white shadow-[0_10px_30px_rgba(212,175,55,0.08)] border border-[#D4AF37]/20' : 'hover:bg-white/50 border border-transparent opacity-60 hover:opacity-100'}`}
-              >
-                <span className={`text-[11px] uppercase tracking-widest font-black ${selectedCategory.id === cat.id ? 'text-[#2D1B14]' : 'text-[#2D1B14]/70'}`}>{cat.title}</span>
-                {selectedCategory.id === cat.id && (
-                  <motion.div 
-                    layoutId="activeDot"
-                    className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full" 
-                  />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </aside>
-
-        <section className="flex-1 flex flex-col md:flex-row bg-white overflow-y-auto">
-          <div className="w-full md:w-[45%] h-[300px] md:h-full flex-shrink-0 sticky md:relative top-0 z-10 md:z-auto">
-            <div className="h-full w-full relative overflow-hidden group">
-              <motion.img 
-                key={selectedCategory.id}
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1 }}
-                src={selectedCategory.image} 
-                alt={selectedCategory.title} 
-                className="w-full h-full object-cover grayscale-[10%]" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B14]/40 via-transparent to-transparent"></div>
-              <div className="absolute bottom-8 left-8 right-8 text-white">
-                <motion.h2 
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  key={selectedCategory.id + 'title'}
-                  className="font-serif text-3xl md:text-5xl leading-tight"
-                >
-                  {selectedCategory.title}
-                </motion.h2>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1 p-6 md:p-16 lg:p-20">
-            <header className="mb-10 flex items-baseline justify-between border-b border-[#D4AF37]/10 pb-6">
-              <h3 className="font-serif text-xl md:text-2xl italic text-[#D4AF37]">Menu de Serviços</h3>
-              <span className="text-[9px] uppercase tracking-[0.3em] font-bold opacity-30">Studio Elaine Valerio</span>
-            </header>
-
-            <div className="space-y-6 md:space-y-8">
-              {selectedCategory.services.map((svc: any, i) => (
-                svc.isTitle ? (
-                  <div key={i} className="pt-8 pb-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#D4AF37] opacity-80 border-b border-[#D4AF37]/20 block pb-2">{svc.name}</span>
-                  </div>
-                ) : (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center group cursor-default"
+      <main className="flex-1 overflow-x-hidden">
+        <AnimatePresence mode="wait">
+          {!selectedCategory ? (
+            <motion.section 
+              key="list"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto"
+            >
+              <h1 className="text-[8vw] md:text-[5vw] font-black tracking-tighter leading-none mb-12 border-b border-black/5 pb-8 uppercase">
+                Menu de <br/> <span className="text-[#D4AF37] italic font-serif">Serviços.</span>
+              </h1>
+              
+              <div className="flex flex-col">
+                {CATEGORIES.map((cat) => (
+                  <motion.button
+                    key={cat.id}
+                    whileHover={{ x: 20 }}
+                    onClick={() => {
+                      if (cat.id === 'cronograma') {
+                         setView('cronograma');
+                      } else {
+                         setSelectedCategory(cat);
+                         window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className="group border-b border-black/10 py-8 md:py-10 flex items-center justify-between transition-colors hover:border-[#D4AF37]"
                   >
-                    <div className="flex-1">
-                      <div className="flex justify-between items-end gap-4">
-                        <span className="text-xs md:text-sm font-bold tracking-wide flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-colors">
-                          {svc.name.split(/(\([^)]+\))/g).map((part: string, i: number) => {
-                            const isParen = part.startsWith('(') && part.endsWith(')');
-                            return (
-                              <span 
-                                key={i} 
-                                className={isParen ? "font-medium opacity-50 text-[11px] md:text-xs block md:inline md:ml-1" : "uppercase"}
-                              >
-                                {part}
-                              </span>
-                            );
-                          })}
-                        </span>
-                        <div className="flex-1 border-b border-dotted border-[#D4AF37]/20 mb-1 h-px"></div>
-                        <span className="text-[#D4AF37] font-bold text-sm md:text-base ml-2">
-                          R${svc.price}
-                        </span>
-                      </div>
+                    <div className="flex items-baseline gap-6">
+                      <span className="text-2xl md:text-7xl font-black tracking-tighter group-hover:italic transition-all uppercase">
+                        {cat.title}
+                      </span>
                     </div>
-                  </motion.div>
-                )
-              ))}
-            </div>
+                    <ArrowRight className="w-8 h-8 md:w-12 md:h-12 opacity-0 group-hover:opacity-100 transition-opacity text-[#D4AF37]" />
+                  </motion.button>
+                ))}
+              </div>
+            </motion.section>
+          ) : (
+            <motion.section 
+              key="detail"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="min-h-screen flex flex-col md:flex-row bg-white overflow-hidden"
+            >
+              <div className="w-full md:w-[40%] h-[400px] md:h-screen sticky top-0">
+                <div className="h-full w-full relative overflow-hidden group">
+                  <motion.img 
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 1 }}
+                    src={selectedCategory.image} 
+                    alt={selectedCategory.title} 
+                    className="w-full h-full object-cover grayscale-[20%]" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-12 left-12 right-12 text-white">
+                    <button 
+                      onClick={() => setSelectedCategory(null)}
+                      className="flex items-center gap-2 text-[10px] uppercase font-black tracking-widest mb-6 border border-white/30 rounded-full px-4 py-2 hover:bg-white hover:text-black transition-colors"
+                    >
+                      <X className="w-3 h-3" />
+                      Voltar ao Menu
+                    </button>
+                    <h2 className="font-serif text-3xl md:text-7xl italic leading-tight">
+                      {selectedCategory.title}
+                    </h2>
+                  </div>
+                </div>
+              </div>
 
-            {selectedCategory.id === 'cronograma' && (
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setView('cronograma')}
-                className="mt-16 w-full py-5 bg-[#D4AF37] text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-lg shadow-xl shadow-[#D4AF37]/10 flex items-center justify-center gap-3 transition-all hover:bg-[#B8962E]"
-              >
-                Abrir Apresentação Completa
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            )}
-          </div>
-        </section>
+              <div className="flex-1 p-6 md:p-20 overflow-y-auto bg-[#FDFBF7]">
+                <div className="max-w-2xl">
+                  <header className="mb-10 md:mb-16 pb-8 border-b border-black/10">
+                    <h3 className="font-serif text-xl md:text-2xl italic text-[#D4AF37]">Tabela de Valores</h3>
+                    <p className="text-[9px] md:text-[10px] uppercase font-black tracking-widest opacity-30 mt-2">Studio Privé 2026</p>
+                  </header>
+
+                  <div className="space-y-6 md:space-y-12">
+                    {selectedCategory.services.map((svc: any, i) => (
+                      svc.isTitle ? (
+                        <div key={i} className="pt-6 border-b border-black/5 pb-2">
+                          <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-[#D4AF37]">{svc.name}</span>
+                        </div>
+                      ) : (
+                        <motion.div 
+                          key={i}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.05 }}
+                          className="flex items-center group cursor-default"
+                        >
+                          <div className="flex-1">
+                            <div className="flex justify-between items-end gap-4 md:gap-6">
+                              <span className="text-xs md:text-lg font-black tracking-tighter flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-all uppercase">
+                                {svc.name.split(/(\([^)]+\))/g).map((part: string, i: number) => {
+                                  const isParen = part.startsWith('(') && part.endsWith(')');
+                                  return (
+                                    <span 
+                                      key={i} 
+                                      className={isParen ? "font-serif italic opacity-40 text-[10px] md:text-sm lowercase block md:inline md:ml-2 font-normal" : ""}
+                                    >
+                                      {part}
+                                    </span>
+                                  );
+                                })}
+                              </span>
+                              <div className="flex-1 border-b border-dotted border-black/10 mb-2 h-px"></div>
+                              <span className="text-[#D4AF37] font-black text-sm md:text-2xl ml-2 md:ml-4">
+                                R${svc.price}
+                              </span>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )
+                    ))}
+                  </div>
+
+                  <div className="mt-24 pt-12 border-t border-black/10 flex flex-col gap-8">
+                    <p className="text-xs italic text-black/40">Valores sujeitos a alteração conforme avaliação técnica presencial.</p>
+                    <a href="https://wa.me/5500000000000" className="w-full py-6 bg-black text-white text-center rounded-full text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#D4AF37] transition-all shadow-2xl">
+                      Agendar Horário
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
       </main>
 
-      <footer className="h-auto md:h-20 px-6 md:px-12 py-8 md:py-0 flex flex-col md:flex-row items-center justify-between bg-white border-t border-[#D4AF37]/10 flex-shrink-0 gap-6 z-40">
-        <div className="flex space-x-8 text-[9px] uppercase tracking-[0.2em] font-bold opacity-50">
+      <footer className="h-auto md:h-24 px-6 md:px-12 py-10 md:py-0 flex flex-col md:flex-row items-center justify-between border-t border-[#D4AF37]/10 bg-white/50 backdrop-blur-sm relative z-40 gap-8">
+        <div className="flex space-x-12 text-[9px] uppercase tracking-[0.2em] font-black opacity-30">
           <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Instagram</span>
           <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Facebook</span>
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Pinterest</span>
+          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Studio Privé</span>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-6">
-          <span className="text-[9px] uppercase tracking-[0.3em] font-black opacity-30 hidden lg:block">Anamnese Capilar • LED Ponce • Ozônio</span>
-          <a href="https://wa.me/5500000000000" className="px-8 py-3 bg-[#2D1B14] text-white rounded-full shadow-xl cursor-pointer hover:bg-[#D4AF37] transition-all text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-2">
-            <MessageCircle className="w-3.5 h-3.5" />
-            Agendar Agora
-          </a>
+        
+        <div className="flex items-center gap-8">
+           <span className="text-[10px] font-black uppercase tracking-widest opacity-20 hidden lg:block italic">Elegância em cada detalhe.</span>
+           <div className="flex flex-col items-end">
+              <span className="text-[10px] font-serif italic text-[#D4AF37]">Studio Elaine Valerio</span>
+              <span className="text-[8px] uppercase tracking-tighter opacity-40">2026 All Rights Reserved</span>
+           </div>
         </div>
       </footer>
     </div>
