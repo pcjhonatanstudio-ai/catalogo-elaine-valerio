@@ -60,13 +60,17 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
           {/* Left Text */}
           <div className="flex-1 text-center md:text-left z-10 w-full">
-            <h1 className="flex flex-col leading-none tracking-tighter">
-              <span className="text-[14vw] md:text-[8vw] font-black text-black">CRONO</span>
-              <span className="text-[14vw] md:text-[8vw] font-black text-black">GRA</span>
-              <span className="text-[14vw] md:text-[8vw] font-black text-black ml-[2vw] md:ml-[4vw]">MA</span>
+            <h1 className="flex flex-col leading-[0.8] uppercase w-full">
+              <div className="flex justify-between w-full text-[14vw] md:text-[8vw] font-black text-black tracking-[-0.02em]">
+                {"CRONO".split('').map((char, i) => <span key={i}>{char}</span>)}
+              </div>
+              <div className="flex justify-between w-full text-[14vw] md:text-[8vw] font-black text-black tracking-[-0.02em]">
+                {"GRAMA".split('').map((char, i) => <span key={i}>{char}</span>)}
+              </div>
             </h1>
-            <div className="mt-2 md:mt-4">
-              <span className="text-[10vw] md:text-[5vw] font-serif italic text-black/20 leading-none">2026.</span>
+            <div className="mt-4 md:mt-6 flex justify-between items-center border-t border-black/10 pt-4">
+              <span className="text-[8vw] md:text-[4vw] font-serif italic text-black/20 leading-none">2026 Edition</span>
+              <span className="text-[3vw] md:text-sm font-black tracking-[0.5em] text-black/40 uppercase">Exclusive</span>
             </div>
             
             <motion.div 
@@ -182,7 +186,9 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
             
             <div className="md:col-span-8 flex flex-col md:pl-20 text-center md:text-left">
                <h2 className="text-lg md:text-4xl font-serif italic mb-1 md:mb-2 text-black/30">Cronograma</h2>
-               <h3 className="text-4xl md:text-[6vw] font-black tracking-tighter text-black leading-none mb-6 md:mb-10 uppercase">TRUSS</h3>
+               <h3 className="flex justify-between w-full text-4xl md:text-[6vw] font-black tracking-[0.1em] text-black leading-none mb-6 md:mb-10 uppercase border-b border-black/5 pb-4">
+                 {"TRUSS".split('').map((c, i) => <span key={i}>{c}</span>)}
+               </h3>
                
                <div className="flex flex-col sm:flex-row gap-6 md:gap-12 items-center md:items-end justify-center md:justify-start">
                   <div className="flex flex-col">
@@ -213,7 +219,9 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
             <div className="md:col-span-8 flex flex-col items-center md:items-end text-center md:text-right order-2 md:order-1">
                <h2 className="text-lg md:text-4xl font-serif italic mb-1 md:mb-2 text-black/30">Cronograma</h2>
-               <h3 className="text-4xl md:text-[6vw] font-black tracking-tighter text-black leading-none mb-6 md:mb-10 uppercase">WELLA</h3>
+               <h3 className="flex justify-between w-full text-4xl md:text-[6vw] font-black tracking-[0.1em] text-black leading-none mb-6 md:mb-10 uppercase border-b border-black/5 pb-4">
+                 {"WELLA".split('').map((c, i) => <span key={i}>{c}</span>)}
+               </h3>
                
                <div className="flex flex-col sm:flex-row-reverse gap-6 md:gap-12 items-center md:items-end justify-center md:justify-end">
                   <div className="flex flex-col items-center md:items-end">
@@ -259,7 +267,10 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
             
             <div className="md:col-span-7 flex flex-col text-center md:text-left">
                <h2 className="text-base md:text-3xl font-serif italic text-black/40 mb-1 md:mb-2 font-bold lowercase">alfaparf milano</h2>
-               <h3 className="text-4xl md:text-[5vw] font-black tracking-tighter text-black leading-[0.8] mb-6 md:mb-10 uppercase">CRONO<br/>GRAMA</h3>
+               <h3 className="flex flex-col w-full text-4xl md:text-[5vw] font-black text-black leading-[0.8] mb-6 md:mb-10 uppercase">
+                 <div className="flex justify-between w-full">{"CRONO".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
+                 <div className="flex justify-between w-full opacity-30 mt-[-0.1em]">{"GRAMA".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
+               </h3>
                
                <div className="flex flex-col sm:flex-row gap-6 md:gap-12 items-center md:items-start mt-4 md:mt-6 justify-center md:justify-start">
                   <div className="flex flex-col">
@@ -287,7 +298,10 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
              <div className="flex flex-col items-center md:items-end text-center md:text-right order-2 md:order-1">
                <span className="text-black/30 text-[9px] md:text-xs font-black uppercase tracking-[0.5em] mb-2 md:mb-4">Aneethun Profissional</span>
-               <h3 className="text-4xl md:text-8xl font-black text-black mb-4 md:mb-6 tracking-tighter leading-none italic uppercase">CRONO<br/>GRAMA</h3>
+               <h3 className="flex flex-col w-full text-4xl md:text-8xl font-black text-black mb-4 md:mb-6 leading-none italic uppercase">
+                 <div className="flex justify-between w-full">{"CRONO".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
+                 <div className="flex justify-between w-full mt-[-0.1em]">{"GRAMA".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
+               </h3>
                
                <div className="space-y-4 md:space-y-6 mt-6 md:mt-10 w-full flex flex-col items-center md:items-end">
                   <div className="flex flex-col md:flex-row-reverse items-center gap-4 md:gap-6 border-b border-black/10 pb-6 md:pb-8 w-full justify-center md:justify-start">
