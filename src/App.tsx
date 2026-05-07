@@ -145,7 +145,7 @@ export default function App() {
                 Menu de <span className="text-[#D4AF37] italic font-serif">Serviços.</span>
               </h1>
               
-              <div className="flex flex-col">
+              <div className="flex flex-col relative">
                 {CATEGORIES.map((cat) => (
                   <motion.button
                     key={cat.id}
@@ -158,14 +158,18 @@ export default function App() {
                          window.scrollTo({ top: 0, behavior: 'smooth' });
                       }
                     }}
-                    className="group border-b border-black/10 py-8 md:py-10 flex items-center justify-between transition-colors hover:border-[#D4AF37]"
+                    className="group border-b border-black/10 py-10 md:py-12 flex items-center justify-between transition-all relative overflow-hidden px-4 hover:bg-[#D4AF37]/5 backdrop-blur-[2px]"
                   >
-                    <div className="flex items-baseline gap-6">
-                      <span className="text-2xl md:text-7xl font-black tracking-tighter group-hover:italic transition-all uppercase">
+                    <div className="flex items-baseline gap-6 relative z-10">
+                      <span className="text-3xl md:text-8xl font-black tracking-tighter group-hover:italic transition-all uppercase group-hover:text-[#D4AF37]">
                         {cat.title}
                       </span>
                     </div>
-                    <ArrowRight className="w-8 h-8 md:w-12 md:h-12 opacity-0 group-hover:opacity-100 transition-opacity text-[#D4AF37]" />
+                    <div className="flex items-center gap-4 relative z-10">
+                      <span className="text-[10px] font-black tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-all text-[#D4AF37] translate-x-4 group-hover:translate-x-0 hidden md:block">Descobrir</span>
+                      <ArrowRight className="w-8 h-8 md:w-16 md:h-16 opacity-0 group-hover:opacity-100 transition-all text-[#D4AF37] scale-75 group-hover:scale-100" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/5 to-[#D4AF37]/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </motion.button>
                 ))}
               </div>
@@ -189,15 +193,16 @@ export default function App() {
                     className="w-full h-full object-cover grayscale-[20%]" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-12 left-12 right-12 text-white">
+                  <div className="absolute bottom-12 left-6 right-6 md:left-12 md:right-12 text-white">
                     <button 
                       onClick={() => setSelectedCategory(null)}
-                      className="flex items-center gap-2 text-[10px] uppercase font-black tracking-widest mb-6 border border-white/30 rounded-full px-4 py-2 hover:bg-white hover:text-black transition-colors"
+                      className="flex items-center gap-2 text-[10px] uppercase font-black tracking-[0.3em] mb-6 border border-white/20 rounded-full px-6 py-3 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all group overflow-hidden relative"
                     >
-                      <X className="w-3 h-3" />
-                      Voltar ao Menu
+                      <X className="w-3 h-3 relative z-10 transition-transform group-hover:rotate-90" />
+                      <span className="relative z-10">Voltar ao Menu</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                     </button>
-                    <h2 className="font-serif text-3xl md:text-7xl italic leading-tight">
+                    <h2 className="font-serif text-4xl md:text-8xl italic leading-[0.9] tracking-tighter">
                       {selectedCategory.title}
                     </h2>
                   </div>
@@ -253,8 +258,10 @@ export default function App() {
 
                   <div className="mt-24 pt-12 border-t border-black/10 flex flex-col gap-8">
                     <p className="text-xs italic text-black/40">Valores sujeitos a alteração conforme avaliação técnica presencial.</p>
-                    <a href="https://wa.me/5500000000000" className="w-full py-6 bg-black text-white text-center rounded-full text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#D4AF37] transition-all shadow-2xl">
-                      Agendar Horário
+                    <a href="https://wa.me/5500000000000" className="group relative w-full py-8 bg-black text-white text-center rounded-full text-[10px] font-black uppercase tracking-[0.5em] hover:bg-[#D4AF37] transition-all shadow-2xl overflow-hidden">
+                      <span className="relative z-10">Agendar Horário</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </a>
                   </div>
                 </div>
