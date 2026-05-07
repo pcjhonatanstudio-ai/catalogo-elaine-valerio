@@ -5,14 +5,43 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, Clock, Scissors, Sparkles, User, Calendar, CircleUserRound } from 'lucide-react';
+import { X, ArrowRight, Calendar, CircleUserRound } from 'lucide-react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 
+const ClockIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 6v6l4 2" />
+  </svg>
+);
+
 const NailPolishIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M8 8h8v4H8z" />
-    <path d="M10 2h4v6h-4z" />
-    <path d="M7 12h10v10H7z" />
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M9 4h6v4H9z" />
+    <path d="M11 2h2v2h-2z" />
+    <path d="M7 8h10v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z" />
+  </svg>
+);
+
+const ScissorsIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="6" cy="6" r="3" />
+    <circle cx="6" cy="18" r="3" />
+    <path d="M20 4L8.12 15.88M14.47 14.48L20 20" />
+  </svg>
+);
+
+const SparklesIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 2l2.4 4.8L20 8l-4.8 2.4L12 15l-2.4-4.8L4 8l4.8-1.2L12 2z" />
+    <path d="M18 15l1.5 3L21 21l-3-1.5-3-1.5 3-1.5z" />
+  </svg>
+);
+
+const UserSilhouetteIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+    <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
   </svg>
 );
 
@@ -56,7 +85,7 @@ const CATEGORIES = [
   {
     id: 'cronograma',
     title: 'Cronograma 2026',
-    icon: Clock,
+    icon: ClockIcon,
     image: 'https://lh3.googleusercontent.com/d/1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku',
     services: [
       { name: 'Crono (Alinhamento)', price: 350 },
@@ -91,7 +120,7 @@ const CATEGORIES = [
   {
     id: 'cortes',
     title: 'Cortes e Escovas',
-    icon: Scissors,
+    icon: ScissorsIcon,
     image: 'https://images.unsplash.com/photo-1560066984-138dadb4c0d5?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Corte', isTitle: true },
@@ -124,7 +153,7 @@ const CATEGORIES = [
   {
     id: 'tratamentos',
     title: 'Tratamentos',
-    icon: Sparkles,
+    icon: SparklesIcon,
     image: 'https://images.unsplash.com/photo-1522335789103-8017255a7070?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Cronograma Truss (4 sessões)', price: 720 },
@@ -135,7 +164,7 @@ const CATEGORIES = [
   {
     id: 'cor',
     title: 'Alinhamento e Cor',
-    icon: User,
+    icon: UserSilhouetteIcon,
     image: 'https://images.unsplash.com/photo-1595476108169-2533ae56612d?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Aplicação Coloração', price: 68 },
