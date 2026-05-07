@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowRight, Calendar, CircleUserRound } from 'lucide-react';
 import ScheduleCatalog from './components/ScheduleCatalog';
@@ -85,7 +85,7 @@ const CATEGORIES = [
   {
     id: 'cronograma',
     title: 'Cronograma 2026',
-    icon: ClockIcon,
+    icon: 'https://lh3.googleusercontent.com/d/1AaXoINaO4LShCuoESEJbAxcVrM3WyoOp',
     image: 'https://lh3.googleusercontent.com/d/1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku',
     services: [
       { name: 'Crono (Alinhamento)', price: 350 },
@@ -98,7 +98,7 @@ const CATEGORIES = [
   {
     id: 'esmalteria',
     title: 'Esmalteria',
-    icon: NailPolishIcon,
+    icon: 'https://lh3.googleusercontent.com/d/1r7r7-ZPTym7Bq6pd_XI3vAc-JMO4G9Wr',
     image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Acrigel', price: 145 },
@@ -120,7 +120,7 @@ const CATEGORIES = [
   {
     id: 'cortes',
     title: 'Cortes e Escovas',
-    icon: ScissorsIcon,
+    icon: 'https://lh3.googleusercontent.com/d/1UxIS8fOztbkRpz7MQnXajw-mnTrysj9f',
     image: 'https://images.unsplash.com/photo-1560066984-138dadb4c0d5?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Corte', isTitle: true },
@@ -153,7 +153,7 @@ const CATEGORIES = [
   {
     id: 'tratamentos',
     title: 'Tratamentos',
-    icon: SparklesIcon,
+    icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U',
     image: 'https://images.unsplash.com/photo-1522335789103-8017255a7070?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Cronograma Truss (4 sessões)', price: 720 },
@@ -164,7 +164,7 @@ const CATEGORIES = [
   {
     id: 'cor',
     title: 'Alinhamento e Cor',
-    icon: UserSilhouetteIcon,
+    icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV',
     image: 'https://images.unsplash.com/photo-1595476108169-2533ae56612d?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Aplicação Coloração', price: 68 },
@@ -197,22 +197,29 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="w-full"
             >
-              <div className="flex flex-col items-center justify-center pt-16 pb-12 md:pt-24 text-center w-full max-w-sm mx-auto px-4">
-                <span className="font-script text-6xl md:text-8xl leading-none text-[#D4AF37] relative -left-2">Elaine Valerio</span>
-                <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-black/60 mt-1 font-semibold">Studio de Beleza</span>
+              <div className="flex flex-col items-center justify-center pt-16 pb-8 text-center w-full max-w-sm mx-auto px-4">
+                <span className="font-script text-5xl md:text-7xl leading-none text-[#3E2723]">Elaine Valerio</span>
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase text-black/60 mt-2 font-medium">STUDIO DE BELEZA</span>
                 
-                <DecorationDivider />
+                <div className="flex items-center gap-2 my-6 opacity-60">
+                   <div className="w-12 h-px bg-[#D4AF37]"></div>
+                   <span className="text-[#D4AF37] text-lg">o-o</span>
+                   <div className="w-12 h-px bg-[#D4AF37]"></div>
+                </div>
                 
-                <h1 className="flex flex-col items-center mt-6 md:mt-10">
-                   <span className="font-serif text-[42px] md:text-[56px] leading-[0.9] text-[#3E2723]">MENU DE</span>
-                   <span className="font-serif text-[42px] md:text-[56px] leading-[0.9] text-[#D4AF37]">SERVIÇOS.</span>
-                   <div className="mt-4 opacity-50 text-[#D4AF37]">
-                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                   </div>
+                <h1 className="flex flex-col items-center">
+                   <span className="font-serif text-[42px] leading-[0.9] text-[#3E2723]">MENU DE</span>
+                   <span className="font-serif text-[42px] leading-[0.9] text-[#3E2723]">SERVIÇOS.</span>
                 </h1>
+
+                <div className="flex items-center gap-2 mt-6 opacity-60">
+                   <div className="w-12 h-px bg-[#D4AF37]"></div>
+                   <span className="text-[#D4AF37] text-lg">o-o</span>
+                   <div className="w-12 h-px bg-[#D4AF37]"></div>
+                </div>
               </div>
               
-              <div className="flex flex-col gap-4 w-full max-w-md mx-auto px-5 relative z-10 pb-12">
+              <div className="flex flex-col gap-4 w-full max-w-md mx-auto px-6 relative z-10 pb-12">
                 {CATEGORIES.map((cat) => (
                   <motion.button
                     key={cat.id}
@@ -225,15 +232,22 @@ export default function App() {
                          window.scrollTo({ top: 0, behavior: 'smooth' });
                       }
                     }}
-                    className="group bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_24px_rgba(0,0,0,0.03)] rounded-2xl py-6 px-6 flex items-center transition-all hover:shadow-[0_8px_32px_rgba(212,175,55,0.08)]"
+                    className="group bg-white/90 shadow-[0_4px_16px_rgba(0,0,0,0.05)] border border-[#E5E0D8]/50 rounded-2xl p-5 flex items-center transition-all hover:shadow-[0_8px_24px_rgba(212,175,55,0.1)]"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center text-[#D4AF37]">
-                      {cat.icon && <cat.icon className="w-8 h-8" strokeWidth={1.5} />}
+                    <div className="w-12 h-12 flex items-center justify-center text-[#D4AF37]/90 bg-[#FDFBF7] rounded-full border border-[#E5E0D8] overflow-hidden">
+                      {typeof cat.icon === 'string' ? (
+                        <img src={cat.icon} alt={cat.title} className="w-8 h-8 object-contain" />
+                      ) : (
+                        (() => {
+                          const Icon = cat.icon as React.ComponentType<{ className?: string, strokeWidth?: number }>;
+                          return Icon ? <Icon className="w-6 h-6" strokeWidth={1.5} /> : null;
+                        })()
+                      )}
                     </div>
-                    <span className="flex-1 text-left text-sm md:text-base font-serif font-bold uppercase tracking-widest text-[#3E2723] ml-4 group-hover:text-[#D4AF37] transition-colors leading-tight">
+                    <span className="flex-1 text-left text-sm font-serif font-bold uppercase tracking-widest text-[#3E2723] ml-5 leading-tight">
                       {cat.title}
                     </span>
-                    <ArrowRight className="w-5 h-5 text-[#D4AF37] opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-5 h-5 text-[#D4AF37] opacity-60" />
                   </motion.button>
                 ))}
               </div>
