@@ -27,7 +27,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-[#FDFBF7] overflow-y-auto scroll-smooth grain"
+      className="fixed inset-0 z-50 bg-[#C29E7D] overflow-y-auto scroll-smooth grain"
       ref={containerRef}
     >
       {/* Background Texture Layer */}
@@ -51,70 +51,49 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       </nav>
 
       {/* PAGE 1: HERO */}
-      <Page className="bg-[#FDFBF7] !justify-start !pt-24 relative">
-        {/* Ghost Text */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 opacity-[0.03] pointer-events-none select-none z-0">
-          <span className="text-[30vw] font-black text-[#D4AF37]">EV</span>
-        </div>
-
-        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
-          {/* Left Text */}
-          <div className="flex-1 text-center md:text-left z-10 w-full">
-            <h1 className="flex flex-col leading-[0.8] uppercase w-full">
-              <div className="flex justify-between w-full text-[14vw] md:text-[8vw] font-black text-black tracking-[-0.02em]">
+      <Page className="bg-[#EDEDED] !justify-center !pt-0 relative overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto flex flex-col items-center justify-center relative z-10">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="relative flex flex-col items-center"
+          >
+            {/* The Text Layout */}
+            <h1 className="flex flex-col items-center leading-[0.75] uppercase w-full select-none">
+              <div className="flex justify-between w-[85vw] md:w-[60vw] text-[20vw] md:text-[14vw] font-black text-[#B4B296] tracking-[-0.05em]">
                 {"CRONO".split('').map((char, i) => <span key={i}>{char}</span>)}
               </div>
-              <div className="flex justify-between w-full text-[14vw] md:text-[8vw] font-black text-black tracking-[-0.02em]">
+              <div className="flex justify-between w-[85vw] md:w-[60vw] text-[20vw] md:text-[14vw] font-black text-[#B4B296] tracking-[-0.05em]">
                 {"GRAMA".split('').map((char, i) => <span key={i}>{char}</span>)}
               </div>
             </h1>
-            <div className="mt-4 md:mt-6 flex justify-between items-center border-t border-black/10 pt-4">
-              <span className="text-[8vw] md:text-[4vw] font-serif italic text-black/20 leading-none">2026 Edition</span>
-              <span className="text-[3vw] md:text-sm font-black tracking-[0.5em] text-black/40 uppercase">Exclusive</span>
-            </div>
-            
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 md:mt-16 flex flex-col md:flex-row items-center md:items-start gap-8"
-            >
-              <div className="flex flex-col gap-2">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30">Select Brands</span>
-                <div className="flex items-center gap-4 grayscale opacity-40">
-                   <img src={IMAGES.truss_logo} className="h-4 md:h-6 object-contain" alt="Truss" />
-                   <img src={IMAGES.wella_logo} className="h-4 md:h-6 object-contain" alt="Wella" />
-                   <img src={IMAGES.alfaparf_logo} className="h-4 md:h-6 object-contain" alt="Alfaparf" />
-                </div>
-              </div>
-              <div className="w-px h-12 bg-black/10 hidden md:block"></div>
-              <p className="text-xs md:text-sm text-black/40 font-medium tracking-tight max-w-[200px]">
-                Uma curadoria exclusiva dos protocolos mais sofisticados do mundo.
-              </p>
-            </motion.div>
-          </div>
 
-          {/* Right Image */}
-          <div className="flex-1 relative flex justify-center items-center w-full">
+            {/* The Floating Product (Tilted) */}
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[320px] md:max-w-[450px]"
+              initial={{ scale: 0.8, rotate: 0, opacity: 0 }}
+              animate={{ scale: 1, rotate: -15, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] md:w-[25vw] z-20 pointer-events-none"
             >
-              <img src={IMAGES.truss_hero} alt="Truss Hero" className="w-full h-auto drop-shadow-2xl grayscale" />
-              <div className="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-black text-white p-4 md:p-10 min-w-[200px]">
-                <span className="text-[8px] md:text-[12px] uppercase font-black tracking-[0.3em] block mb-1 md:mb-2 text-[#D4AF37]">Elaine Valerio</span>
-                <span className="text-xl md:text-4xl font-serif italic">The Art of Care</span>
-              </div>
+              <img 
+                src={IMAGES.truss_hero} 
+                alt="Truss No Metal" 
+                className="w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)]"
+              />
             </motion.div>
+          </motion.div>
+
+          {/* Bottom Left 2026. */}
+          <div className="absolute bottom-10 left-6 md:left-12 flex flex-col">
+            <span className="text-[12vw] md:text-[6vw] font-light text-black tracking-tight leading-none">2026.</span>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-20">
-          <span className="text-[10px] font-black uppercase tracking-[0.5em] rotate-90 origin-center mb-6">Scroll</span>
-          <div className="w-px h-12 bg-black animate-pulse"></div>
+        <div className="absolute bottom-10 right-6 md:right-12 flex flex-col items-center gap-4 opacity-10">
+          <div className="w-px h-16 bg-black"></div>
         </div>
       </Page>
 
@@ -130,33 +109,33 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
             >
               <h2 className="text-3xl md:text-[7vw] font-black tracking-tighter italic mb-6 md:mb-8 text-[#D4AF37]">TECNOLOGIA</h2>
               <div className="space-y-4 md:space-y-6">
-                <p className="text-sm md:text-2xl text-white/70 font-light leading-relaxed">
-                  Utilizamos o poder do <span className="text-white font-bold italic">O-ZÔNIO + LED</span> para potencializar cada tratamento. O Ozônio bactericida limpa profundamente o couro cabeludo, enquanto o LED de alta intensidade acelera a absorção dos ativos na fibra capilar.
+                <p className="text-lg md:text-3xl text-white/90 font-light leading-relaxed">
+                  Utilizamos o poder do <span className="text-[#D4AF37] font-bold italic underline decoration-white/20 underline-offset-8 font-serif">O-ZÔNIO + LED</span> para potencializar cada tratamento.
                 </p>
-                <div className="grid grid-cols-2 gap-4 md:gap-6 pt-6 md:pt-10">
-                  <div className="border border-white/10 p-4 md:p-6 hover:bg-white/5 transition-colors group cursor-default">
-                    <CheckCircle2 className="text-[#D4AF37] mb-2 md:mb-4 group-hover:scale-110 transition-transform" size={20} />
-                    <h3 className="text-[10px] md:text-sm font-bold uppercase mb-1 md:mb-2">Ozonioterapia</h3>
-                    <p className="text-[9px] md:text-xs text-white/40">Recuperação celular profunda.</p>
+                <div className="grid grid-cols-2 gap-3 md:gap-6 pt-4 md:pt-10">
+                  <div className="border border-white/20 p-4 md:p-8 hover:bg-white/5 transition-colors group cursor-default">
+                    <CheckCircle2 className="text-[#D4AF37] mb-2 md:mb-6 group-hover:scale-110 transition-transform" size={24} />
+                    <h3 className="text-xs md:text-lg font-bold uppercase mb-1 md:mb-4">Ozonioterapia</h3>
+                    <p className="text-[10px] md:text-sm text-white/50">Recuperação celular profunda.</p>
                   </div>
-                  <div className="border border-white/10 p-4 md:p-6 hover:bg-white/5 transition-colors group cursor-default">
-                    <CheckCircle2 className="text-[#D4AF37] mb-2 md:mb-4 group-hover:scale-110 transition-transform" size={20} />
-                    <h3 className="text-[10px] md:text-sm font-bold uppercase mb-1 md:mb-2">Fotoestimulação</h3>
-                    <p className="text-[9px] md:text-xs text-white/40">Crescimento e brilho extremo.</p>
+                  <div className="border border-white/20 p-4 md:p-8 hover:bg-white/5 transition-colors group cursor-default">
+                    <CheckCircle2 className="text-[#D4AF37] mb-2 md:mb-6 group-hover:scale-110 transition-transform" size={24} />
+                    <h3 className="text-xs md:text-lg font-bold uppercase mb-1 md:mb-4">Fotoestimulação</h3>
+                    <p className="text-[10px] md:text-sm text-white/50">Crescimento e brilho extremo.</p>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
           
-          <div className="order-1 md:order-2 flex justify-center">
+          <div className="order-1 md:order-2 flex justify-center mt-[-20px] md:mt-0">
             <motion.img 
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               src={IMAGES.device} 
               alt="Technology Device" 
-              className="w-full max-w-[280px] md:max-w-[500px] h-auto grayscale brightness-125 select-none pointer-events-none" 
+              className="w-full max-w-[300px] md:max-w-[550px] h-auto brightness-110 select-none pointer-events-none" 
             />
           </div>
         </div>
@@ -172,82 +151,81 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       </Page>
 
 
-      {/* PAGE 3: TRUSS & WELLA */}
-      <Page className="bg-[#FCF9F2]">
-        <div className="w-full max-w-7xl mx-auto flex flex-col gap-24 md:gap-32">
+      <Page className="bg-[#C29E7D]">
+        <div className="w-full max-w-7xl mx-auto flex flex-col gap-16 md:gap-24">
           {/* TRUSS SECTION */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
             <div className="md:col-span-4 relative group max-w-[280px] mx-auto md:max-w-none">
-              <img src={IMAGES.truss_products} className="w-full h-auto drop-shadow-xl group-hover:scale-105 transition-transform duration-700" alt="Truss Products" />
-              <div className="absolute -top-4 -left-4 bg-black text-white w-14 h-14 md:w-20 md:h-20 flex items-center justify-center rounded-full scale-0 group-hover:scale-100 transition-transform duration-500">
+              <img src={IMAGES.truss_products} className="w-full h-auto drop-shadow-2xl group-hover:scale-110 transition-transform duration-700" alt="Truss Products" />
+              <div className="absolute -top-4 -left-4 bg-black text-white w-14 h-14 md:w-20 md:h-20 flex items-center justify-center rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 z-10">
                 <span className="text-[10px] md:text-xs font-black">TOP 1</span>
               </div>
             </div>
             
-            <div className="md:col-span-8 flex flex-col md:pl-20 text-center md:text-left">
-               <h2 className="text-lg md:text-4xl font-serif italic mb-1 md:mb-2 text-black/30">Cronograma</h2>
-               <h3 className="flex justify-between w-full text-4xl md:text-[6vw] font-black tracking-[0.1em] text-black leading-none mb-6 md:mb-10 uppercase border-b border-black/5 pb-4">
+            <div className="md:col-span-8 flex flex-col md:pl-16 text-center md:text-left mt-[-20px] md:mt-0">
+               <h2 className="text-xl md:text-4xl font-serif italic mb-1 md:mb-2 text-white/40">Cronograma</h2>
+               <h3 className="flex justify-between w-full text-5xl md:text-[7vw] font-black tracking-[0.15em] text-white leading-none mb-4 md:mb-10 uppercase border-b border-white/10 pb-4">
                  {"TRUSS".split('').map((c, i) => <span key={i}>{c}</span>)}
                </h3>
                
-               <div className="flex flex-col sm:flex-row gap-6 md:gap-12 items-center md:items-end justify-center md:justify-start">
+               <div className="flex flex-col sm:flex-row gap-6 md:gap-16 items-center md:items-end justify-center md:justify-start">
                   <div className="flex flex-col">
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black/30 mb-2 md:mb-4 italic">Pacote Premium (4 sessões)</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/50 mb-2 md:mb-4 italic">Pacote Premium (4 sessões)</span>
                     <div className="flex items-baseline gap-1 md:gap-2">
-                      <span className="text-5xl md:text-[5vw] font-black leading-none text-black">R$ 720</span>
-                      <span className="text-base md:text-2xl font-bold opacity-30 text-black">,00</span>
+                      <span className="text-6xl md:text-[6vw] font-black leading-none text-white">R$ 720</span>
+                      <span className="text-2xl md:text-3xl font-bold opacity-30 text-white">,00</span>
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black/30 mb-2 md:mb-4 italic">Sessão Avulsa</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/50 mb-2 md:mb-4 italic">Sessão Avulsa</span>
                     <div className="flex items-baseline gap-1 md:gap-2">
-                      <span className="text-3xl md:text-5xl font-black text-[#D4AF37]">R$ 180</span>
-                      <span className="text-sm md:text-lg font-bold opacity-30 text-[#D4AF37]">,00</span>
+                      <span className="text-4xl md:text-6xl font-black text-[#D4AF37]">R$ 180</span>
+                      <span className="text-lg md:text-2xl font-bold opacity-30 text-[#D4AF37]">,00</span>
                     </div>
                   </div>
                </div>
                
-               <p className="mt-8 md:mt-12 text-xs md:text-base text-black/50 max-w-xl leading-relaxed italic border-l-2 border-black/10 pl-6 mx-auto md:mx-0">
-                A tecnologia de infusão lipídica mais premiada do Brasil. Recuperação imediata do brilho, toque aveludado e proteção térmica extrema.
+               <p className="mt-6 md:mt-12 text-sm md:text-xl text-white/60 max-w-xl leading-relaxed italic border-l-2 border-white/20 pl-6 mx-auto md:mx-0">
+                A tecnologia de infusão lipídica mais premiada do Brasil. Recuperação imediata do brilho e toque aveludado.
                </p>
             </div>
           </div>
 
-          <div className="h-px w-full bg-black/5"></div>
+          <div className="h-px w-full bg-white/10"></div>
 
           {/* WELLA SECTION */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
-            <div className="md:col-span-8 flex flex-col items-center md:items-end text-center md:text-right order-2 md:order-1">
-               <h2 className="text-lg md:text-4xl font-serif italic mb-1 md:mb-2 text-black/30">Cronograma</h2>
-               <h3 className="flex justify-between w-full text-4xl md:text-[6vw] font-black tracking-[0.1em] text-black leading-none mb-6 md:mb-10 uppercase border-b border-black/5 pb-4">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
+            <div className="md:col-span-8 flex flex-col items-center md:items-end text-center md:text-right order-2 md:order-1 mt-[-20px] md:mt-0">
+               <h2 className="text-xl md:text-4xl font-serif italic mb-1 md:mb-2 text-white/40">Cronograma</h2>
+               <h3 className="flex justify-between w-full text-5xl md:text-[7vw] font-black tracking-[0.15em] text-white leading-none mb-4 md:mb-10 uppercase border-b border-white/10 pb-4">
                  {"WELLA".split('').map((c, i) => <span key={i}>{c}</span>)}
                </h3>
                
-               <div className="flex flex-col sm:flex-row-reverse gap-6 md:gap-12 items-center md:items-end justify-center md:justify-end">
+               <div className="flex flex-col sm:flex-row-reverse gap-6 md:gap-16 items-center md:items-end justify-center md:justify-end">
                   <div className="flex flex-col items-center md:items-end">
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black/30 mb-2 md:mb-4 italic">Pacote Excellence (4 sessões)</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/50 mb-2 md:mb-4 italic">Pacote Excellence (4 sessões)</span>
                     <div className="flex items-baseline gap-1 md:gap-2">
-                       <span className="text-5xl md:text-[5vw] font-black leading-none text-black">R$ 570</span>
-                       <span className="text-base md:text-2xl font-bold opacity-30 text-black">,00</span>
+                       <span className="text-6xl md:text-[6vw] font-black leading-none text-white">R$ 570</span>
+                       <span className="text-2xl md:text-3xl font-bold opacity-30 text-white">,00</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-center md:items-end">
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black/30 mb-2 md:mb-4 italic">Sessão Avulsa</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/50 mb-2 md:mb-4 italic">Sessão Avulsa</span>
                     <div className="flex items-baseline gap-1 md:gap-2">
-                       <span className="text-3xl md:text-5xl font-black text-[#D4AF37]">R$ 143</span>
-                       <span className="text-sm md:text-lg font-bold opacity-30 text-[#D4AF37]">,00</span>
+                       <span className="text-4xl md:text-6xl font-black text-[#D4AF37]">R$ 143</span>
+                       <span className="text-lg md:text-2xl font-bold opacity-30 text-[#D4AF37]">,00</span>
                     </div>
                   </div>
                </div>
                
-               <p className="mt-8 md:mt-12 text-xs md:text-base text-black/50 max-w-xl leading-relaxed italic border-r-2 border-black/10 pr-6 mx-auto md:mx-0">
-                 Pioneirismo mundial em hidratação. A linha Professionals oferece nutrição otimizada para fios tingidos e danificados.
+               <p className="mt-6 md:mt-12 text-sm md:text-xl text-white/60 max-w-xl leading-relaxed italic border-r-2 border-white/20 pr-6 mx-auto md:mx-0">
+                 Pioneirismo mundial em hidratação. A linha Professionals oferece nutrição otimizada para fios danificados.
                </p>
             </div>
 
             <div className="md:col-span-4 relative group order-1 md:order-last max-w-[280px] mx-auto md:max-w-none">
-              <img src={IMAGES.wella_products} className="w-full h-auto drop-shadow-xl group-hover:scale-105 transition-transform duration-700" alt="Wella Products" />
-              <div className="absolute -bottom-4 -right-4 bg-black text-white w-14 h-14 md:w-20 md:h-20 flex items-center justify-center rounded-full scale-0 group-hover:scale-100 transition-transform duration-500">
+              <img src={IMAGES.wella_products} className="w-full h-auto drop-shadow-2xl group-hover:scale-110 transition-transform duration-700" alt="Wella Products" />
+              <div className="absolute -bottom-4 -right-4 bg-black text-white w-14 h-14 md:w-20 md:h-20 flex items-center justify-center rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 z-10">
                 <span className="text-[10px] md:text-xs font-black">CLASSIC</span>
               </div>
             </div>
@@ -257,68 +235,68 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
 
 
       {/* PAGE 4: ALFAPARF & ANEETHUN */}
-      <Page className="bg-[#FDFBF7] text-black">
-         <div className="w-full max-w-7xl mx-auto flex flex-col gap-24 md:gap-32">
+      <Page className="bg-[#C29E7D] text-white">
+         <div className="w-full max-w-7xl mx-auto flex flex-col gap-16 md:gap-24">
           {/* ALFAPARF SECTION */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
             <div className="md:col-span-5 relative group max-w-[280px] mx-auto md:max-w-none">
-              <img src={IMAGES.alfaparf_products} className="w-full h-auto drop-shadow-2xl" alt="Alfaparf Milano" />
+              <img src={IMAGES.alfaparf_products} className="w-full h-auto drop-shadow-2xl brightness-110" alt="Alfaparf Milano" />
             </div>
             
-            <div className="md:col-span-7 flex flex-col text-center md:text-left">
-               <h2 className="text-base md:text-3xl font-serif italic text-black/40 mb-1 md:mb-2 font-bold lowercase">alfaparf milano</h2>
-               <h3 className="flex flex-col w-full text-4xl md:text-[5vw] font-black text-black leading-[0.8] mb-6 md:mb-10 uppercase">
+            <div className="md:col-span-7 flex flex-col text-center md:text-left mt-[-10px] md:mt-0">
+               <h2 className="text-lg md:text-4xl font-serif italic text-white/50 mb-1 md:mb-2 font-bold lowercase">alfaparf milano</h2>
+               <h3 className="flex flex-col w-full text-5xl md:text-[6vw] font-black text-white leading-[0.8] mb-4 md:mb-10 uppercase">
                  <div className="flex justify-between w-full">{"CRONO".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
                  <div className="flex justify-between w-full opacity-30 mt-[-0.1em]">{"GRAMA".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
                </h3>
                
-               <div className="flex flex-col sm:flex-row gap-6 md:gap-12 items-center md:items-start mt-4 md:mt-6 justify-center md:justify-start">
+               <div className="flex flex-col sm:flex-row gap-6 md:gap-16 items-center md:items-start mt-4 md:mt-6 justify-center md:justify-start">
                   <div className="flex flex-col">
-                    <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-black mb-1 md:mb-2 text-xs">4 Tratamentos</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/50 mb-1 md:mb-4 text-xs">4 Tratamentos</span>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-5xl md:text-7xl font-bold">R$ 450</span>
-                      <span className="text-base md:text-xl text-black/20">,00</span>
+                      <span className="text-6xl md:text-8xl font-bold">R$ 450</span>
+                      <span className="text-2xl text-white/20">,00</span>
                     </div>
                   </div>
-                  <div className="h-16 w-px bg-black/10 hidden md:block self-end mb-2"></div>
+                  <div className="h-16 w-px bg-white/10 hidden md:block self-end mb-2"></div>
                   <div className="flex flex-col">
-                    <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-black mb-1 md:mb-2 text-xs">Sessão</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-white/50 mb-1 md:mb-4 text-xs">Sessão</span>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-3xl md:text-5xl font-bold text-[#D4AF37]">R$ 130</span>
-                      <span className="text-base md:text-lg text-black/20">,00</span>
+                      <span className="text-4xl md:text-6xl font-bold text-[#D4AF37]">R$ 130</span>
+                      <span className="text-xl text-white/20">,00</span>
                     </div>
                   </div>
                </div>
             </div>
           </div>
 
-          <div className="h-px w-full bg-black/5"></div>
+          <div className="h-px w-full bg-white/10"></div>
 
           {/* ANEETHUN SECTION */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-             <div className="flex flex-col items-center md:items-end text-center md:text-right order-2 md:order-1">
-               <span className="text-black/30 text-[9px] md:text-xs font-black uppercase tracking-[0.5em] mb-2 md:mb-4">Aneethun Profissional</span>
-               <h3 className="flex flex-col w-full text-4xl md:text-8xl font-black text-black mb-4 md:mb-6 leading-none italic uppercase">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+             <div className="flex flex-col items-center md:items-end text-center md:text-right order-2 md:order-1 mt-[-20px] md:mt-0">
+               <span className="text-white/40 text-[10px] md:text-sm font-black uppercase tracking-[0.5em] mb-2 md:mb-4">Aneethun Profissional</span>
+               <h3 className="flex flex-col w-full text-5xl md:text-8xl font-black text-white mb-4 md:mb-6 leading-none italic uppercase">
                  <div className="flex justify-between w-full">{"CRONO".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
                  <div className="flex justify-between w-full mt-[-0.1em]">{"GRAMA".split('').map((c, i) => <span key={i}>{c}</span>)}</div>
                </h3>
                
                <div className="space-y-4 md:space-y-6 mt-6 md:mt-10 w-full flex flex-col items-center md:items-end">
-                  <div className="flex flex-col md:flex-row-reverse items-center gap-4 md:gap-6 border-b border-black/10 pb-6 md:pb-8 w-full justify-center md:justify-start">
+                  <div className="flex flex-col md:flex-row-reverse items-center gap-4 md:gap-10 border-b border-white/10 pb-6 md:pb-10 w-full justify-center md:justify-start">
                     <div className="flex flex-col">
-                      <span className="text-5xl md:text-7xl font-black">R$ 400</span>
+                      <span className="text-6xl md:text-8xl font-black">R$ 400</span>
                     </div>
-                    <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black/40">4 Sessões</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/40">4 Sessões</span>
                   </div>
-                  <div className="flex flex-col md:flex-row-reverse items-center gap-2 md:gap-4 justify-center md:justify-start">
-                    <span className="text-3xl font-black text-[#D4AF37]">R$ 108</span>
-                    <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black/40 md:mb-1">Sessão</span>
+                  <div className="flex flex-col md:flex-row-reverse items-center gap-2 md:gap-6 justify-center md:justify-start">
+                    <span className="text-4xl md:text-5xl font-black text-[#D4AF37]">R$ 108</span>
+                    <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/40 md:mb-2">Sessão</span>
                   </div>
                </div>
              </div>
 
              <div className="relative order-1 md:order-2 flex justify-center max-w-[280px] mx-auto md:max-w-none">
-                <img src={IMAGES.alfaparf_products} className="w-full h-auto grayscale" alt="Aneethun" />
+                <img src={IMAGES.alfaparf_products} className="w-full h-auto brightness-110" alt="Aneethun" />
              </div>
           </div>
         </div>

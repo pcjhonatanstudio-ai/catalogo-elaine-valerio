@@ -141,8 +141,8 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto"
             >
-              <h1 className="text-[8vw] md:text-[5vw] font-black tracking-tighter leading-none mb-12 border-b border-black/5 pb-8 uppercase">
-                Menu de <br/> <span className="text-[#D4AF37] italic font-serif">Serviços.</span>
+              <h1 className="text-[7.5vw] md:text-[5vw] font-black tracking-tighter leading-none mb-12 border-b border-black/5 pb-8 uppercase whitespace-nowrap">
+                Menu de <span className="text-[#D4AF37] italic font-serif">Serviços.</span>
               </h1>
               
               <div className="flex flex-col">
@@ -227,13 +227,13 @@ export default function App() {
                         >
                           <div className="flex-1">
                             <div className="flex justify-between items-end gap-4 md:gap-6">
-                              <span className="text-sm md:text-xl font-black tracking-tighter flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-all uppercase">
+                              <span className="text-base md:text-2xl font-black tracking-tighter flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-all uppercase">
                                 {svc.name.split(/(\([^)]+\))/g).map((part: string, i: number) => {
                                   const isParen = part.startsWith('(') && part.endsWith(')');
                                   return (
                                     <span 
                                       key={i} 
-                                      className={isParen ? "font-serif italic opacity-40 text-xs md:text-base lowercase block md:inline md:ml-2 font-normal" : ""}
+                                      className={isParen ? "font-serif italic opacity-40 text-xs md:text-lg lowercase block md:inline md:ml-2 font-normal" : ""}
                                     >
                                       {part}
                                     </span>
@@ -241,7 +241,7 @@ export default function App() {
                                 })}
                               </span>
                               <div className="flex-1 border-b border-dotted border-black/10 mb-2 h-px"></div>
-                              <span className="text-[#D4AF37] font-black text-base md:text-3xl ml-2 md:ml-4">
+                              <span className="text-[#D4AF37] font-black text-lg md:text-4xl ml-2 md:ml-4">
                                 R${svc.price}
                               </span>
                             </div>
