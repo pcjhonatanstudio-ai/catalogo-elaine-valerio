@@ -5,13 +5,58 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MessageCircle, Scissors, Sparkles, Paintbrush, Flame, ArrowRight } from 'lucide-react';
+import { X, ArrowRight, Clock, Scissors, Sparkles, User, Calendar, CircleUserRound } from 'lucide-react';
 import ScheduleCatalog from './components/ScheduleCatalog';
+
+const NailPolishIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M8 8h8v4H8z" />
+    <path d="M10 2h4v6h-4z" />
+    <path d="M7 12h10v10H7z" />
+  </svg>
+);
+
+const DecorationDivider = () => (
+  <div className="flex items-center justify-center gap-2 my-2 opacity-80">
+    <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+    <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D4AF37]"></div>
+  </div>
+);
+
+const LotusIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 3a7 7 0 0 1 7 7c0 4-4 10-7 11-3-1-7-7-7-11a7 7 0 0 1 7-7z"/>
+    <path d="M12 3c-2 2-2 6-2 6s-2-2-4-2-2 2-2 4 4 6 8 8 4-2 8-8-2-2-2-4-4-2-2 2-2 6s0-4-2-6z"/>
+  </svg>
+);
+
+const LeafBackground = () => (
+  <svg className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-20" preserveAspectRatio="none" viewBox="0 0 400 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Top Right Leaves */}
+    <path d="M450 100 Q 380 50 350 150 Q 400 200 450 100" fill="#D4AF37" opacity="0.1"/>
+    <path d="M400 0 Q 300 50 320 180 Q 450 150 400 0" fill="#D4AF37" opacity="0.05"/>
+    <path d="M420 50 Q 350 80 340 160" stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.3"/>
+    
+    {/* Bottom Left Leaves */}
+    <path d="M-50 700 Q 20 750 50 650 Q 0 600 -50 700" fill="#D4AF37" opacity="0.1"/>
+    <path d="M0 800 Q 100 750 80 620 Q -50 650 0 800" fill="#D4AF37" opacity="0.05"/>
+    <path d="M-20 750 Q 50 720 60 640" stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.3"/>
+
+    {/* Abstract wavy lines */}
+    <path d="M-100 300 Q 200 200 500 50" stroke="#D4AF37" strokeWidth="0.5" fill="none" opacity="0.3"/>
+    <path d="M-100 700 Q 200 800 500 950" stroke="#D4AF37" strokeWidth="0.5" fill="none" opacity="0.3"/>
+  </svg>
+);
+
 
 const CATEGORIES = [
   {
     id: 'cronograma',
     title: 'Cronograma 2026',
+    icon: Clock,
     image: 'https://lh3.googleusercontent.com/d/1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku',
     services: [
       { name: 'Crono (Alinhamento)', price: 350 },
@@ -24,6 +69,7 @@ const CATEGORIES = [
   {
     id: 'esmalteria',
     title: 'Esmalteria',
+    icon: NailPolishIcon,
     image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Acrigel', price: 145 },
@@ -45,6 +91,7 @@ const CATEGORIES = [
   {
     id: 'cortes',
     title: 'Cortes e Escovas',
+    icon: Scissors,
     image: 'https://images.unsplash.com/photo-1560066984-138dadb4c0d5?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Corte', isTitle: true },
@@ -77,6 +124,7 @@ const CATEGORIES = [
   {
     id: 'tratamentos',
     title: 'Tratamentos',
+    icon: Sparkles,
     image: 'https://images.unsplash.com/photo-1522335789103-8017255a7070?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Cronograma Truss (4 sessões)', price: 720 },
@@ -87,6 +135,7 @@ const CATEGORIES = [
   {
     id: 'cor',
     title: 'Alinhamento e Cor',
+    icon: User,
     image: 'https://images.unsplash.com/photo-1595476108169-2533ae56612d?q=80&w=800&auto=format&fit=crop',
     services: [
       { name: 'Aplicação Coloração', price: 68 },
@@ -101,37 +150,15 @@ export default function App() {
   const [view, setView] = useState<'catalogue' | 'cronograma'>('catalogue');
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#2D1B14] font-sans flex flex-col selection:bg-[#D4AF37]/20">
+    <div className="min-h-[100dvh] bg-[#FDFBF7] text-[#3E2723] font-sans flex flex-col selection:bg-[#D4AF37]/20 relative overflow-x-hidden pb-24">
+      <LeafBackground />
       <AnimatePresence>
         {view === 'cronograma' && (
           <ScheduleCatalog onClose={() => setView('catalogue')} />
         )}
       </AnimatePresence>
 
-      <nav className="h-24 px-6 md:px-12 flex items-center justify-between border-b border-[#D4AF37]/10 flex-shrink-0 bg-white/50 backdrop-blur-sm sticky top-0 z-40">
-        <div className="flex flex-col cursor-pointer" onClick={() => { setView('catalogue'); setSelectedCategory(null); }}>
-          <span className="font-script text-4xl md:text-5xl leading-none text-[#D4AF37]">Elaine Valerio</span>
-          <span className="font-sans text-[9px] md:text-[10px] tracking-[0.3em] uppercase opacity-60 mt-1 font-bold">Studio de Beleza</span>
-        </div>
-        <div className="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-black">
-          <span 
-            className={`cursor-pointer transition-colors hover:text-[#D4AF37] ${view === 'catalogue' ? 'text-[#D4AF37]' : 'opacity-40'}`}
-            onClick={() => { setView('catalogue'); setSelectedCategory(null); }}
-          >
-            Serviços
-          </span>
-          <span 
-            className={`cursor-pointer transition-colors hover:text-[#D4AF37] ${view === 'cronograma' ? 'text-[#D4AF37]' : 'opacity-40'}`}
-            onClick={() => setView('cronograma')}
-          >
-            Cronograma 2026
-          </span>
-          <span className="opacity-20 cursor-default">Lookbook</span>
-          <span className="opacity-20 cursor-default">Reservas</span>
-        </div>
-      </nav>
-
-      <main className="flex-1 overflow-x-hidden">
+      <main className="flex-1 overflow-x-hidden relative z-10">
         <AnimatePresence mode="wait">
           {!selectedCategory ? (
             <motion.section 
@@ -139,17 +166,28 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto"
+              className="w-full"
             >
-              <h1 className="text-4xl md:text-[5vw] font-black tracking-tighter leading-none mb-12 border-b border-black/5 pb-8 uppercase">
-                Menu de <span className="text-[#D4AF37] italic font-serif">Serviços.</span>
-              </h1>
+              <div className="flex flex-col items-center justify-center pt-16 pb-12 md:pt-24 text-center w-full max-w-sm mx-auto px-4">
+                <span className="font-script text-6xl md:text-8xl leading-none text-[#D4AF37] relative -left-2">Elaine Valerio</span>
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-black/60 mt-1 font-semibold">Studio de Beleza</span>
+                
+                <DecorationDivider />
+                
+                <h1 className="flex flex-col items-center mt-6 md:mt-10">
+                   <span className="font-serif text-[42px] md:text-[56px] leading-[0.9] text-[#3E2723]">MENU DE</span>
+                   <span className="font-serif text-[42px] md:text-[56px] leading-[0.9] text-[#D4AF37]">SERVIÇOS.</span>
+                   <div className="mt-4 opacity-50 text-[#D4AF37]">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                   </div>
+                </h1>
+              </div>
               
-              <div className="flex flex-col relative">
+              <div className="flex flex-col gap-4 w-full max-w-md mx-auto px-5 relative z-10 pb-12">
                 {CATEGORIES.map((cat) => (
                   <motion.button
                     key={cat.id}
-                    whileHover={{ x: 20 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       if (cat.id === 'cronograma') {
                          setView('cronograma');
@@ -158,18 +196,15 @@ export default function App() {
                          window.scrollTo({ top: 0, behavior: 'smooth' });
                       }
                     }}
-                    className="group border-b border-black/10 py-6 md:py-12 flex items-center justify-between transition-all relative overflow-hidden px-4 hover:bg-[#D4AF37]/5 backdrop-blur-[2px]"
+                    className="group bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_24px_rgba(0,0,0,0.03)] rounded-2xl py-6 px-6 flex items-center transition-all hover:shadow-[0_8px_32px_rgba(212,175,55,0.08)]"
                   >
-                    <div className="flex items-baseline gap-6 relative z-10">
-                      <span className="text-xl md:text-8xl font-black tracking-tighter group-hover:italic transition-all uppercase group-hover:text-[#D4AF37]">
-                        {cat.title}
-                      </span>
+                    <div className="w-12 h-12 flex items-center justify-center text-[#D4AF37]">
+                      {cat.icon && <cat.icon className="w-8 h-8" strokeWidth={1.5} />}
                     </div>
-                    <div className="flex items-center gap-4 relative z-10">
-                      <span className="text-[10px] font-black tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-all text-[#D4AF37] translate-x-4 group-hover:translate-x-0 hidden md:block">Descobrir</span>
-                      <ArrowRight className="w-6 h-6 md:w-16 md:h-16 opacity-0 group-hover:opacity-100 transition-all text-[#D4AF37] scale-75 group-hover:scale-100" />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/5 to-[#D4AF37]/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <span className="flex-1 text-left text-sm md:text-base font-serif font-bold uppercase tracking-widest text-[#3E2723] ml-4 group-hover:text-[#D4AF37] transition-colors leading-tight">
+                      {cat.title}
+                    </span>
+                    <ArrowRight className="w-5 h-5 text-[#D4AF37] opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </motion.button>
                 ))}
               </div>
@@ -274,21 +309,29 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <footer className="h-auto md:h-24 px-6 md:px-12 py-10 md:py-0 flex flex-col md:flex-row items-center justify-between border-t border-[#D4AF37]/10 bg-white/50 backdrop-blur-sm relative z-40 gap-8">
-        <div className="flex space-x-12 text-[9px] uppercase tracking-[0.2em] font-black opacity-30">
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Tabela</span>
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Serviços</span>
-          <span className="hover:text-[#D4AF37] cursor-pointer transition-colors">Contato</span>
-        </div>
-        
-        <div className="flex items-center gap-8">
-           <span className="text-[10px] font-black uppercase tracking-widest opacity-20 hidden lg:block italic">Elegância em cada detalhe.</span>
-           <div className="flex flex-col items-end">
-              <span className="text-[10px] font-serif italic text-[#D4AF37]">Studio Elaine Valerio</span>
-              <span className="text-[8px] uppercase tracking-tighter opacity-40">2026 All Rights Reserved</span>
-           </div>
-        </div>
-      </footer>
+      {/* Bottom Navigation */}
+      {!selectedCategory && view === 'catalogue' && (
+        <nav className="fixed bottom-0 left-0 w-full z-50 pointer-events-none">
+          <div className="bg-white/80 backdrop-blur-xl border-t border-[#D4AF37]/20 rounded-t-[40px] px-8 py-4 flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.03)] pointer-events-auto">
+             <button className="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity px-6 cursor-pointer">
+                <Calendar className="w-5 h-5 text-[#3E2723]" strokeWidth={1.5} />
+                <span className="text-[9px] uppercase tracking-widest font-black text-[#3E2723]">Tabela</span>
+             </button>
+             
+             <button className="relative flex flex-col items-center justify-center -mt-10 group cursor-pointer">
+                <div className="w-16 h-16 rounded-full bg-white border border-[#D4AF37]/30 shadow-lg flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-white transition-colors duration-300">
+                   <LotusIcon className="w-8 h-8" />
+                </div>
+                <span className="text-[9px] uppercase tracking-widest font-black text-[#D4AF37] mt-3">Serviços</span>
+             </button>
+
+             <button className="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity px-6 cursor-pointer">
+                <CircleUserRound className="w-5 h-5 text-[#3E2723]" strokeWidth={1.5} />
+                <span className="text-[9px] uppercase tracking-widest font-black text-[#3E2723]">Contato</span>
+             </button>
+          </div>
+        </nav>
+      )}
     </div>
   );
 }
