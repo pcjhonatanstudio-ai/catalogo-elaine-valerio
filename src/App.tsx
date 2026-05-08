@@ -26,6 +26,7 @@ import {
   Fingerprint
 } from '@phosphor-icons/react';
 import ScheduleCatalog from './components/ScheduleCatalog';
+import MechasPresentation from './components/MechasPresentation';
 
 const DecorationDivider = () => (
   <div className="flex items-center justify-center gap-2 my-2 opacity-60">
@@ -101,6 +102,24 @@ const CATEGORIES = [
     ]
   },
   {
+    id: 'mechas',
+    title: 'Catálogo de Mechas',
+    icon: Sparkle,
+    image: 'https://images.unsplash.com/photo-1560869713-7d0a29430863?q=80&w=800&auto=format&fit=crop',
+    services: [
+      { name: 'Iluminação', isTitle: true },
+      { name: 'Full Blond', price: 850 },
+      { name: 'Mãos de Ouro (Mechas)', price: 750 },
+      { name: 'Retoque de Mechas', price: 450 },
+      { name: 'Mechas Criativas', price: 650 },
+      { name: 'Balayagem', price: 550 },
+      { name: 'Contour', price: 350 },
+      { name: 'Tratamentos', isTitle: true },
+      { name: 'Matização Premium', price: 120 },
+      { name: 'Tonalização Luxo', price: 180 },
+    ]
+  },
+  {
     id: 'cortes',
     title: 'Cortes e Escovas',
     icon: 'https://lh3.googleusercontent.com/d/1UxIS8fOztbkRpz7MQnXajw-mnTrysj9f',
@@ -145,6 +164,9 @@ export default function App() {
       <AnimatePresence>
         {view === 'cronograma' && (
           <ScheduleCatalog onClose={() => setView('catalogue')} />
+        )}
+        {selectedCategory?.id === 'mechas' && (
+          <MechasPresentation onClose={() => setSelectedCategory(null)} />
         )}
       </AnimatePresence>
 
@@ -213,7 +235,7 @@ export default function App() {
                 ))}
               </div>
             </motion.section>
-          ) : (
+          ) : selectedCategory.id === 'mechas' ? null : (
             <motion.section 
               key="detail"
               initial={{ opacity: 0 }}
