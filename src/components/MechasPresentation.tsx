@@ -29,12 +29,52 @@ const MandalaBg = () => (
   </div>
 );
 
-const Slide: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
-  <section className={`h-[100dvh] w-full flex-shrink-0 snap-start relative flex flex-col overflow-hidden bg-[#F5F1E9] ${className}`}>
+const Slide: React.FC<{ children: React.ReactNode; className?: string; noSnap?: boolean; autoHeight?: boolean }> = ({ 
+  children, 
+  className = "",
+  noSnap = false,
+  autoHeight = false
+}) => (
+  <section className={`
+    ${autoHeight ? 'h-auto min-h-screen' : 'h-[100dvh]'} 
+    w-full flex-shrink-0 
+    ${noSnap ? '' : 'snap-start'} 
+    relative flex flex-col overflow-hidden bg-[#F5F1E9] 
+    ${className}
+  `}>
     <MandalaBg />
     {children}
   </section>
 );
+
+const AccordionItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div className="border-b border-[#D9A07E]/20 w-full group">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-6 flex justify-between items-center text-left transition-all px-2"
+      >
+        <span className="font-sans text-[15px] font-medium text-[#4A4A4A] pr-6 leading-snug group-hover:text-[#D9A07E] transition-colors">
+          {question}
+        </span>
+        <div className={`w-8 h-8 rounded-full border border-[#D9A07E]/20 flex items-center justify-center transition-all ${isOpen ? 'bg-[#D9A07E] border-[#D9A07E]' : ''}`}>
+          <CaretDown className={`w-4 h-4 transition-transform duration-500 ${isOpen ? 'rotate-180 text-white' : 'text-[#D9A07E]'}`} weight="bold" />
+        </div>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+        className="overflow-hidden"
+      >
+        <div className="px-2 pb-8">
+           <p className="font-sans text-[14px] text-[#4A4A4A]/70 leading-relaxed max-w-2xl">{answer}</p>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 const PriceItem: React.FC<{ name: string; price: string | number }> = ({ name, price }) => (
   <div className="flex items-center gap-4 py-3 group">
@@ -191,73 +231,51 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
 
       {/* Slide FAQ */}
       <Slide className="items-center justify-center px-6">
-        <div className="w-full max-w-4xl z-20">
-          <h2 className="font-serif text-5xl text-[#4A4A4A] mb-12 text-center">Perguntas frequentes</h2>
+        <div className="w-full max-w-3xl z-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-serif text-5xl text-[#4A4A4A] mb-4">Perguntas frequentes</h2>
+            <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase font-light">Tire suas dúvidas</p>
+          </motion.div>
           
+          <div className="space-y-2">
+            <AccordionItem 
+              question="Meu cabelo é virgem. Preciso fazer teste de mechas?"
+              answer="Sim! O teste de mechas é indispensável mesmo em fios virgens. Ele avalia não só a cor, mas a resistência e elasticidade do fio antes de receber a química, garantindo total segurança no procedimento."
+            />
+            <AccordionItem 
+              question="Mechas em cabelos que há progressivas danifica?"
+              answer="Depende da saúde do fio e do tipo de química. Cabelos com resíduos químicos têm mais probabilidades de ficarem frágeis ou apresentarem incompatibilidade. Por isso, a decisão final sempre acontece após o teste de mechas, onde verificamos até onde o fio suporta clarear com saúde."
+            />
+            <AccordionItem 
+              question="Não pretendo largar a progressiva, consigo manter os dois?"
+              answer="Sim, é possível conciliar, porém com ressalvas. A progressiva cria uma barreira que compromete o fundo de clareamento, dificultando a chegada em tons muito claros. O ideal é manter um cronograma de tratamento rigoroso para sustentar as duas químicas."
+            />
+            <AccordionItem 
+              question="Quanto tempo dura o procedimento?"
+              answer="O tempo total varia entre 4 a 7 horas, dependendo da técnica escolhida, densidade do cabelo e tempo de abertura do clareamento. Prezamos pela saúde do fio, por isso respeitamos o tempo natural de cada cabelo."
+            />
+          </div>
+
           {/* Info Box */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="bg-[#D9A07E]/10 border border-[#D9A07E]/30 rounded-2xl p-6 mb-10 flex items-start gap-4"
+            className="bg-[#D9A07E]/5 border border-[#D9A07E]/20 rounded-2xl p-6 mt-12 flex items-start gap-4"
           >
             <Info className="w-6 h-6 text-[#D9A07E] flex-shrink-0 mt-0.5" weight="light" />
-            <p className="text-[12px] text-[#4A4A4A] leading-relaxed font-sans">
-              <strong>Importante:</strong> Os valores da tabela são bases referenciais. O investimento final pode variar conforme o <strong>volume, densidade e comprimento</strong> do cabelo, bem como a necessidade de tratamentos complementares de reconstrução.
+            <p className="text-[12px] text-[#4A4A4A]/80 leading-relaxed font-sans">
+              <strong>Nota:</strong> Os valores são referenciais e variam conforme o volume, densidade e comprimento do cabelo, além da necessidade de tratamentos complementares.
             </p>
           </motion.div>
-
-          {/* Table based on image */}
-          <div className="bg-white/60 backdrop-blur-md rounded-xl overflow-hidden border border-[#D9A07E]/20 shadow-lg">
-            <div className="grid grid-cols-2 bg-[#D1C2BA]">
-              <div className="px-6 py-4 text-center border-r border-white/20">
-                <span className="font-serif italic text-white text-lg tracking-wide">Pergunta</span>
-              </div>
-              <div className="px-6 py-4 text-center">
-                <span className="font-serif italic text-white text-lg tracking-wide">Resposta</span>
-              </div>
-            </div>
-            
-            <div className="divide-y divide-[#D9A07E]/20">
-              {/* Row 1 */}
-              <div className="grid grid-cols-2">
-                <div className="p-6 border-r border-[#D9A07E]/20 flex items-center">
-                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-snug">Meu cabelo é virgem. Preciso fazer teste de mechas?</p>
-                </div>
-                <div className="p-6 flex items-center">
-                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-relaxed">Sim! É preciso fazer testes até mesmo nos cabelos virgens.</p>
-                </div>
-              </div>
-
-              {/* Row 2 */}
-              <div className="grid grid-cols-2">
-                <div className="p-6 border-r border-[#D9A07E]/20 flex items-center">
-                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-snug font-light italic">Mechas em cabelos que há progressivas danifica?</p>
-                </div>
-                <div className="p-6 flex items-center">
-                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-relaxed italic">
-                    Depende! Cabelos que tem resíduos químicos tem mais probabilidades de ficarem frágeis. Porém podemos decidir se é algo seguro ou não no teste de mechas.
-                  </p>
-                </div>
-              </div>
-
-              {/* Row 3 */}
-              <div className="grid grid-cols-2">
-                <div className="p-6 border-r border-[#D9A07E]/20 flex items-center">
-                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-snug">Não pretendo largar a progressiva, consigo manter os dois?</p>
-                </div>
-                <div className="p-6 flex items-center">
-                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-relaxed">
-                    Sim! Mas a progressiva vai comprometer o fundo de clareamento que o fio suportará chegar. Então não é recomendado para loiros muito claros.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </Slide>
 
       {/* Slide CTA */}
-      <Slide className="items-center justify-center px-10">
+      <Slide className="items-center justify-center px-10 pb-20 md:pb-0" noSnap autoHeight>
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
