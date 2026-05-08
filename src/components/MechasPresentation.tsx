@@ -29,14 +29,14 @@ const MandalaBg = () => (
   </div>
 );
 
-const Slide = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+const Slide: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
   <section className={`h-[100dvh] w-full flex-shrink-0 snap-start relative flex flex-col overflow-hidden bg-[#F5F1E9] ${className}`}>
     <MandalaBg />
     {children}
   </section>
 );
 
-const PriceItem = ({ name, price }: { name: string, price: string | number }) => (
+const PriceItem: React.FC<{ name: string; price: string | number }> = ({ name, price }) => (
   <div className="flex items-center gap-4 py-3 group">
     <span className="font-sans text-[13px] text-[#4A4A4A] tracking-wider uppercase font-light">{name}</span>
     <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-3"></div>
@@ -86,7 +86,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
         {
           id: 'iluminar',
           title: 'Iluminar',
-          image: 'https://lh3.googleusercontent.com/d/1QiUmD8jrcJmEgzoSH5NDVvDMpVGMNJup',
+          image: 'https://lh3.googleusercontent.com/d/10ZyFi-WdgBx7k0XOajdBicLUaXFWdgiT',
           services: [
             { name: 'Iluminação Pontual', price: 350 },
             { name: 'Sun Kissed', price: 420 },
@@ -182,9 +182,9 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           </div>
 
           <div className="flex justify-center gap-10 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-             <span className="font-serif text-lg tracking-widest text-[#4A4A4A]">WELLA</span>
-             <span className="font-serif text-lg tracking-widest text-[#4A4A4A]">L'ORÉAL</span>
-             <span className="font-serif text-lg tracking-widest text-[#4A4A4A]">KERASTASE</span>
+             <span className="font-serif text-base tracking-widest text-[#4A4A4A]">WELLA</span>
+             <span className="font-serif text-base tracking-widest text-[#4A4A4A]">ALFAPARF MILANO</span>
+             <span className="font-serif text-base tracking-widest text-[#4A4A4A]">TRUSS PROFESSIONAL</span>
           </div>
         </motion.div>
       </Slide>
