@@ -134,6 +134,12 @@ const CATEGORIES = [
         { name: 'Médio | Ombro', price: 360 },
         { name: 'Longo | Soutien', price: 410 },
         { name: 'Longo Cintura', price: 490 },
+        { name: 'Anti-Frizz', isTitle: true },
+        { name: 'Curto', price: 170 },
+        { name: 'Chanel | Nuca', price: 190 },
+        { name: 'Médio | Ombro', price: 250 },
+        { name: 'Longo | Soutien', price: 270 },
+        { name: 'Longo Cintura', price: 290 },
         { name: 'Escovas', isTitle: true },
         { name: 'SIMPLES | MODELADA', isTitle: true },
         { name: 'Curto', price: '47 | 55' },
@@ -157,10 +163,14 @@ const CATEGORIES = [
     id: 'cor',
     title: 'Alinhamento e Cor',
     icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV',
-    image: 'https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=800&auto=format&fit=crop',
+    image: 'https://lh3.googleusercontent.com/d/15l6uCMz04lseHMg5CvC8k6hn3FCrPXDU',
     services: [
-      { name: 'Aplicação Coloração', price: 68 },
-      { name: 'Retoque', price: 99 },
+      { name: 'Colorações', isTitle: true },
+      { name: 'Aplicação', price: 68 },
+      { name: 'Retoque | Retoque + Tratamento', price: '99 | 130' },
+      { name: 'Coloração P', price: 140 },
+      { name: 'Coloração M', price: 165 },
+      { name: 'Coloração G', price: 198 },
     ]
   }
 ];
