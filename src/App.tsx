@@ -25,7 +25,9 @@ import {
   Jar,
   Fingerprint,
   Crown,
-  Diamond
+  Diamond,
+  InstagramLogo,
+  WhatsappLogo
 } from '@phosphor-icons/react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 import MechasPresentation from './components/MechasPresentation';
@@ -212,7 +214,28 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="w-full"
             >
-              <div className="flex flex-col items-center justify-center pt-16 pb-8 text-center w-full max-w-sm mx-auto px-4">
+              <div className="flex flex-col items-center justify-center pt-12 pb-8 text-center w-full max-w-sm mx-auto px-4">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  className="relative w-44 h-60 mb-10 group"
+                >
+                  <div className="absolute inset-0 border border-[#C5A059]/30 rounded-[100px] transform translate-x-3 translate-y-3 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
+                  <div className="w-full h-full rounded-[100px] overflow-hidden border-2 border-white shadow-2xl relative">
+                    <img 
+                      src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w1000" 
+                      alt="Elaine Valerio" 
+                      className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-[#C5A059]/20">
+                    <FlowerLotus className="w-6 h-6 text-[#C5A059]" weight="light" />
+                  </div>
+                </motion.div>
+
                 <span className="font-serif italic text-5xl md:text-7xl leading-none text-[#C5A059]">Elaine Valerio</span>
                 <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#333333]/60 mt-2 font-medium">STUDIO DE BELEZA</span>
                 
@@ -222,9 +245,8 @@ export default function App() {
                    <div className="w-12 h-px bg-[#C5A059]"></div>
                 </div>
                 
-                <h1 className="flex flex-col items-center">
-                   <span className="font-serif text-[42px] leading-[0.9] text-[#333333]">MENU DE</span>
-                   <span className="font-serif text-[42px] leading-[0.9] text-[#333333]">SERVIÇOS.</span>
+                <h1 className="font-serif text-3xl tracking-widest text-[#C5A059] uppercase">
+                   Menu de Serviços
                 </h1>
 
                 <div className="flex items-center gap-2 mt-6 opacity-60">
@@ -411,10 +433,15 @@ export default function App() {
       {!selectedCategory && view === 'catalogue' && (
         <nav className="fixed bottom-0 left-0 w-full z-50 pointer-events-none">
           <div className="bg-white/90 backdrop-blur-xl border-t border-[#C5A059]/20 rounded-t-[40px] px-8 py-4 flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.02)] pointer-events-auto">
-             <button className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity px-6 cursor-pointer">
-                <CalendarBlank className="w-5 h-5 text-[#333333]" weight="light" />
-                <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">Tabela</span>
-             </button>
+             <a 
+               href="https://www.instagram.com/valerioelaine?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity px-6 cursor-pointer"
+             >
+                <InstagramLogo className="w-5 h-5 text-[#333333]" weight="light" />
+                <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">Instagram</span>
+             </a>
              
              <button className="relative flex flex-col items-center justify-center -mt-10 group cursor-pointer">
                 <div className="w-16 h-16 rounded-full bg-white border border-[#C5A059]/30 shadow-[0_8px_30px_rgba(197,160,89,0.15)] flex items-center justify-center text-[#C5A059] group-hover:bg-[#C5A059] group-hover:text-white transition-all duration-300">
@@ -422,11 +449,16 @@ export default function App() {
                 </div>
                 <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#C5A059] mt-3">Serviços</span>
              </button>
-
-             <button className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity px-6 cursor-pointer">
-                <UserCircle className="w-5 h-5 text-[#333333]" weight="light" />
-                <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">Contato</span>
-             </button>
+ 
+             <a 
+               href="https://wa.me/5522988335171" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity px-6 cursor-pointer"
+             >
+                <WhatsappLogo className="w-5 h-5 text-[#333333]" weight="light" />
+                <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">WhatsApp</span>
+             </a>
           </div>
         </nav>
       )}
