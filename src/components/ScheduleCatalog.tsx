@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { 
   X, 
-  WhatsappLogo, 
   Crown, 
   Diamond, 
   CheckCircle, 
@@ -17,14 +16,14 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'hero',
       title: 'CRONOGRAMA',
       subtitle: '2026',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/17718491707347506178',
+      image: 'https://drive.google.com/thumbnail?id=1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku&sz=w1000',
       description: 'A excelência em tratamentos capilares personalizados.'
     },
     {
       id: 'tecnologia',
       type: 'content',
       title: 'Tecnologia & Ciência',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/729032443470409124',
+      image: 'https://drive.google.com/thumbnail?id=1EW9JWwatUhpTdIgBcJbgbQs4O6b7JjtQ&sz=w1000',
       description: 'Aliamos tecnologia de ponta com o aparelho Ponce para resultados extraordinários na regeneração da fibra capilar.',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -32,7 +31,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       id: 'anamnese',
       type: 'content',
       title: 'Anamnese Personalizada',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/3323410242616565418',
+      image: 'https://drive.google.com/thumbnail?id=12txvF5bAXfPg8wTlWYBtlYkyBL7eR2Yd&sz=w1000',
       description: 'Cada diagnóstico é único. Realizamos análise microscópica profunda para identificar as reais necessidades do seu fio.',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -41,7 +40,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Truss Infusion',
       title: 'Protocolo Truss',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/12921822144226505389',
+      image: 'https://drive.google.com/thumbnail?id=1AqBMrfdV7V74rPc4O-681_Ky5QE1EVx5&sz=w1000',
       schedulePrice: '720',
       singlePrice: '150',
       icon: <Crown className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -51,7 +50,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Wella Professionals',
       title: 'Luxury Care Wella',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/9795754315464976754',
+      image: 'https://drive.google.com/thumbnail?id=1gGjOXw6VOG62eLOBlvGgnh-MKNNczDDX&sz=w1000',
       schedulePrice: '570',
       singlePrice: '143',
       icon: <Diamond className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -61,7 +60,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Alfaparf Milano',
       title: 'Excellence Alfaparf',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/9806936743572695880',
+      image: 'https://drive.google.com/thumbnail?id=1l_6feX81b0UI8pLcrempdxk3thq9RtVK&sz=w1000',
       schedulePrice: '450',
       singlePrice: '130',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -71,7 +70,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Aneethun',
       title: 'Essential Aneethun',
-      image: 'http://googleusercontent.com/image_collection/image_retrieval/3281091352048834621',
+      image: 'https://drive.google.com/thumbnail?id=16ww0F_L708XS1kc-3arbLBS_wpMi_XCA&sz=w1000',
       schedulePrice: '400',
       singlePrice: '108',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -122,7 +121,12 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                 
                 <div className="w-full max-w-sm mt-12 aspect-[4/5] relative">
                   <div className="absolute inset-0 border border-[#C5A059]/30 rounded-2xl transform translate-x-4 translate-y-4 -z-10"></div>
-                  <img src={slide.image} alt={slide.title} className="w-full h-full object-cover rounded-2xl shadow-2xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700" />
+                  <img 
+                    src={slide.image} 
+                    alt={slide.title} 
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover rounded-2xl shadow-2xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700" 
+                  />
                 </div>
                 
                 <p className="mt-12 text-[#E5E5E5]/60 text-sm tracking-[0.2em] font-medium max-w-xs leading-relaxed">
@@ -167,7 +171,12 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                 >
                   <div className="absolute inset-0 border border-[#C5A059]/20 rounded-3xl -rotate-3 scale-[1.02] transform transition-transform group-hover:rotate-0"></div>
                   <div className="relative aspect-square overflow-hidden rounded-3xl border border-[#C5A059]/30 shadow-2xl">
-                     <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+                     <img 
+                       src={slide.image} 
+                       alt={slide.title} 
+                       referrerPolicy="no-referrer"
+                       className="w-full h-full object-cover" 
+                     />
                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   </div>
                 </motion.div>
@@ -196,6 +205,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                     <img 
                       src={slide.image} 
                       alt={slide.brand} 
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-contain p-8 transform hover:scale-110 transition-transform duration-700" 
                     />
                   </div>
@@ -240,24 +250,8 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       <footer className="h-[20vh] w-full snap-start bg-[#050505] flex flex-col items-center justify-center border-t border-[#C5A059]/10 px-6 text-center">
          <p className="text-[#C5A059]/40 text-[10px] uppercase tracking-[0.4em] font-bold mb-4">Consulte condições na recepção</p>
          <div className="w-12 h-px bg-[#C5A059]/20 mb-4"></div>
-         <p className="text-[#E5E5E5]/20 text-[9px] uppercase tracking-widest leading-loose">
-           Copyright © 2026 ELAINE VALÉRIO LUXURY HAIR. <br/>
-           Todos os direitos reservados.
-         </p>
       </footer>
 
-      {/* Botão Flutuante WhatsApp */}
-      <motion.a
-        href="https://wa.me/5500000000000"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[110] bg-[#C5A059] text-[#0D0D0D] px-10 py-5 rounded-full font-sans font-bold text-xs tracking-[0.3em] shadow-[0_15px_40px_rgba(197,160,89,0.3)] flex items-center gap-4 whitespace-nowrap"
-      >
-        <WhatsappLogo className="w-5 h-5" weight="bold" />
-        RESERVAR HORÁRIO
-      </motion.a>
     </motion.div>
   );
 }
