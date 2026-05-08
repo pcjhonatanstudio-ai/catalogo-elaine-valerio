@@ -219,7 +219,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="min-h-screen flex flex-col bg-[#F9F6F1] pb-32 relative overflow-hidden"
+              className="min-h-screen flex flex-col bg-[#F9F6F1] pb-44 relative overflow-hidden"
             >
               <BotanicalDecor />
               
@@ -298,11 +298,11 @@ export default function App() {
                         })()}
                       </div>
                       
-                      <div className="flex-1 min-w-0 flex items-center overflow-hidden">
-                        <span className="text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug flex-shrink-0 uppercase">
+                      <div className="flex-1 min-w-0 flex items-center">
+                        <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase">
                           {svc.name}
                         </span>
-                        <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3"></div>
+                        <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3 opacity-30"></div>
                       </div>
 
                       <div className="text-[18px] font-sans font-bold text-[#C5A059] flex-shrink-0">
@@ -334,16 +334,16 @@ export default function App() {
               </div>
 
               {/* Action Button */}
-              <div className="mt-16 px-6 flex justify-center sticky bottom-28 z-40">
-                 <motion.a 
-                   href="https://wa.me/5500000000000"
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                   className="bg-[#333333] text-white px-14 py-6 rounded-full font-sans font-semibold text-lg tracking-[0.2em] shadow-[0_15px_40px_rgba(0,0,0,0.1)] hover:bg-black transition-all flex items-center gap-4"
-                 >
-                   AGENDAR AGORA
-                   <ArrowRight className="w-5 h-5 text-[#C5A059]" weight="light" />
-                 </motion.a>
+              <div className="mt-16 px-6 flex justify-center sticky bottom-8 z-40">
+                  <motion.a 
+                    href="https://wa.me/5500000000000"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="bg-[#333333] text-white px-10 py-5 rounded-full font-sans font-semibold text-base tracking-[0.2em] shadow-[0_15px_30px_rgba(0,0,0,0.15)] hover:bg-black transition-all flex items-center gap-4 text-center whitespace-nowrap"
+                  >
+                    AGENDAR AGORA
+                    <ArrowRight className="w-5 h-5 text-[#C5A059]" weight="light" />
+                  </motion.a>
               </div>
             </motion.section>
           )}
