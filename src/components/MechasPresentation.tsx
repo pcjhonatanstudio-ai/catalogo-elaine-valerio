@@ -191,7 +191,9 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
 
       {/* Slide FAQ */}
       <Slide className="items-center justify-center px-6">
-        <div className="w-full max-w-xl z-20">
+        <div className="w-full max-w-4xl z-20">
+          <h2 className="font-serif text-5xl text-[#4A4A4A] mb-12 text-center">Perguntas frequentes</h2>
+          
           {/* Info Box */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
@@ -204,28 +206,51 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
             </p>
           </motion.div>
 
-          {/* Table */}
-          <div className="bg-white/40 backdrop-blur-sm rounded-[30px] overflow-hidden border border-[#D9A07E]/20">
-            <div className="bg-[#D9A07E] px-8 py-5 text-white text-center">
-              <span className="font-sans font-semibold tracking-[0.2em] uppercase text-[12px]">Condições Gerais</span>
+          {/* Table based on image */}
+          <div className="bg-white/60 backdrop-blur-md rounded-xl overflow-hidden border border-[#D9A07E]/20 shadow-lg">
+            <div className="grid grid-cols-2 bg-[#D1C2BA]">
+              <div className="px-6 py-4 text-center border-r border-white/20">
+                <span className="font-serif italic text-white text-lg tracking-wide">Pergunta</span>
+              </div>
+              <div className="px-6 py-4 text-center">
+                <span className="font-serif italic text-white text-lg tracking-wide">Resposta</span>
+              </div>
             </div>
-            <div className="p-8 space-y-4">
-               <div className="flex justify-between border-b border-[#D9A07E]/10 pb-3">
-                  <span className="font-sans text-[12px] text-[#4A4A4A] uppercase tracking-wider">Cabelo Curto</span>
-                  <span className="font-sans text-[12px] font-bold text-[#D9A07E]">Base Tabela</span>
-               </div>
-               <div className="flex justify-between border-b border-[#D9A07E]/10 pb-3">
-                  <span className="font-sans text-[12px] text-[#4A4A4A] uppercase tracking-wider">Cabelo Médio</span>
-                  <span className="font-sans text-[12px] font-bold text-[#D9A07E]">+ 15%</span>
-               </div>
-               <div className="flex justify-between border-b border-[#D9A07E]/10 pb-3">
-                  <span className="font-sans text-[12px] text-[#4A4A4A] uppercase tracking-wider">Cabelo Longo</span>
-                  <span className="font-sans text-[12px] font-bold text-[#D9A07E]">+ 25%</span>
-               </div>
-               <div className="flex justify-between">
-                  <span className="font-sans text-[12px] text-[#4A4A4A] uppercase tracking-wider">Extra Longo</span>
-                  <span className="font-sans text-[12px] font-bold text-[#D9A07E]">Sob Consulta</span>
-               </div>
+            
+            <div className="divide-y divide-[#D9A07E]/20">
+              {/* Row 1 */}
+              <div className="grid grid-cols-2">
+                <div className="p-6 border-r border-[#D9A07E]/20 flex items-center">
+                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-snug">Meu cabelo é virgem. Preciso fazer teste de mechas?</p>
+                </div>
+                <div className="p-6 flex items-center">
+                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-relaxed">Sim! É preciso fazer testes até mesmo nos cabelos virgens.</p>
+                </div>
+              </div>
+
+              {/* Row 2 */}
+              <div className="grid grid-cols-2">
+                <div className="p-6 border-r border-[#D9A07E]/20 flex items-center">
+                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-snug font-light italic">Mechas em cabelos que há progressivas danifica?</p>
+                </div>
+                <div className="p-6 flex items-center">
+                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-relaxed italic">
+                    Depende! Cabelos que tem resíduos químicos tem mais probabilidades de ficarem frágeis. Porém podemos decidir se é algo seguro ou não no teste de mechas.
+                  </p>
+                </div>
+              </div>
+
+              {/* Row 3 */}
+              <div className="grid grid-cols-2">
+                <div className="p-6 border-r border-[#D9A07E]/20 flex items-center">
+                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-snug">Não pretendo largar a progressiva, consigo manter os dois?</p>
+                </div>
+                <div className="p-6 flex items-center">
+                  <p className="font-sans text-[13px] text-[#4A4A4A] leading-relaxed">
+                    Sim! Mas a progressiva vai comprometer o fundo de clareamento que o fio suportará chegar. Então não é recomendado para loiros muito claros.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
