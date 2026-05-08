@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, Calendar, CircleUserRound } from 'lucide-react';
+import { X, ArrowRight, Calendar, CircleUserRound, ChevronLeft, Star, Heart } from 'lucide-react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 
 const ClockIcon = ({ className }: { className?: string }) => (
@@ -46,12 +46,10 @@ const UserSilhouetteIcon = ({ className }: { className?: string }) => (
 );
 
 const DecorationDivider = () => (
-  <div className="flex items-center justify-center gap-2 my-2 opacity-80">
-    <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-    </svg>
-    <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D4AF37]"></div>
+  <div className="flex items-center justify-center gap-2 my-2 opacity-60">
+    <div className="w-12 h-px bg-[#D4AF37]"></div>
+    <LotusIcon className="w-4 h-4 text-[#D4AF37]" />
+    <div className="w-12 h-px bg-[#D4AF37]"></div>
   </div>
 );
 
@@ -62,22 +60,63 @@ const LotusIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const LeafBackground = () => (
-  <svg className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-20" preserveAspectRatio="none" viewBox="0 0 400 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Top Right Leaves */}
-    <path d="M450 100 Q 380 50 350 150 Q 400 200 450 100" fill="#D4AF37" opacity="0.1"/>
-    <path d="M400 0 Q 300 50 320 180 Q 450 150 400 0" fill="#D4AF37" opacity="0.05"/>
-    <path d="M420 50 Q 350 80 340 160" stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.3"/>
-    
-    {/* Bottom Left Leaves */}
-    <path d="M-50 700 Q 20 750 50 650 Q 0 600 -50 700" fill="#D4AF37" opacity="0.1"/>
-    <path d="M0 800 Q 100 750 80 620 Q -50 650 0 800" fill="#D4AF37" opacity="0.05"/>
-    <path d="M-20 750 Q 50 720 60 640" stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.3"/>
-
-    {/* Abstract wavy lines */}
-    <path d="M-100 300 Q 200 200 500 50" stroke="#D4AF37" strokeWidth="0.5" fill="none" opacity="0.3"/>
-    <path d="M-100 700 Q 200 800 500 950" stroke="#D4AF37" strokeWidth="0.5" fill="none" opacity="0.3"/>
+const ManicureHandsIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M7 13c1-2 2-6 2-6s1 0 1 1-1 4-1 6" />
+    <path d="M10 12c1-2 2-7 2-7s1 0 1 1-1 5-1 7" />
+    <path d="M13 11c1-2 2-6 2-6s1 0 1 1-1 5-1 6" />
+    <path d="M16 12c1-2 1-4 1-4s1 0 1 1 0 3-1 4" />
+    <path d="M5 18c2 0 4-1 5-3l1-4c0-1-1-1-1 0l-1 4c-1 2-2 3-4 3" />
+    <path d="M19 14.5l-3.5 1s-1.5 0-2 1.5l-1 3.5c-.5 1.5-2 1.5-2 1.5h6l2.5-7.5" />
+    <path d="M18 4l1 1-1 1" />
+    <path d="M21 7l1 1-1 1" />
   </svg>
+);
+
+const DropIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5L12 2 8 9.5c-2 1.6-3 3.5-3 5.5a7 7 0 0 0 7 7z" />
+  </svg>
+);
+
+const PolishBrushIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 2v6" />
+    <path d="M10 8h4v4h-4z" />
+    <path d="M17 14c-1-1-3-1-3-1s-1 1-1 3v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4s0-2-2-2z" />
+    <path d="M7 14h2l1 6H6l1-6z" />
+  </svg>
+);
+
+const FlowerIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 9c0-3.5 3.5-3.5 3.5 0s-3.5 3.5-3.5 3.5" />
+    <path d="M12 9c0-3.5-3.5-3.5-3.5 0s3.5 3.5 3.5 3.5" />
+    <path d="M15 12c3.5 0 3.5 3.5 0 3.5s-3.5-3.5-3.5-3.5" />
+    <path d="M9 12c-3.5 0-3.5 3.5 0 3.5s3.5-3.5 3.5-3.5" />
+    <path d="M12 15c0 3.5 3.5 3.5 3.5 0s-3.5-3.5-3.5-3.5" />
+    <path d="M12 15c0 3.5-3.5 3.5-3.5 0s3.5-3.5 3.5-3.5" />
+  </svg>
+);
+
+const WaveDivider = () => (
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180 z-20">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] h-[40px] text-[#FDFBF7]">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.4,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,0,1200,0H0Z" fill="currentColor"></path>
+    </svg>
+  </div>
+);
+
+const BotanicalDecor = () => (
+  <div className="fixed bottom-20 right-[-50px] opacity-[0.08] pointer-events-none rotate-[-15deg] z-0">
+    <svg width="300" height="400" viewBox="0 0 100 150" fill="none" stroke="#D4AF37" strokeWidth="0.5">
+      <path d="M50 150 Q 50 100 80 50 M50 120 Q 20 80 40 40 M50 140 Q 70 90 90 60" />
+      <circle cx="80" cy="50" r="2" />
+      <circle cx="40" cy="40" r="2" />
+      <circle cx="90" cy="60" r="2" />
+    </svg>
+  </div>
 );
 
 
@@ -180,7 +219,6 @@ export default function App() {
 
   return (
     <div className="min-h-[100dvh] bg-[#FDFBF7] text-[#3E2723] font-sans flex flex-col selection:bg-[#D4AF37]/20 relative overflow-x-hidden pb-24">
-      <LeafBackground />
       <AnimatePresence>
         {view === 'cronograma' && (
           <ScheduleCatalog onClose={() => setView('catalogue')} />
@@ -255,97 +293,133 @@ export default function App() {
           ) : (
             <motion.section 
               key="detail"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="min-h-screen flex flex-col md:flex-row bg-white overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="min-h-screen flex flex-col bg-[#FDFBF7] pb-32 relative overflow-hidden"
             >
-              <div className="w-full md:w-[40%] h-[400px] md:h-screen sticky top-0">
-                <div className="h-full w-full relative overflow-hidden group">
-                  <motion.img 
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1 }}
-                    src={selectedCategory.image} 
-                    alt={selectedCategory.title} 
-                    className="w-full h-full object-cover grayscale-[20%]" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-12 left-6 right-6 md:left-12 md:right-12 text-white">
-                    <button 
-                      onClick={() => setSelectedCategory(null)}
-                      className="flex items-center gap-3 text-[11px] uppercase font-bold tracking-[0.4em] mb-8 border border-white/10 rounded-full px-8 py-4 bg-white/5 backdrop-blur-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-700 group relative overflow-hidden"
-                    >
-                      <X className="w-3.5 h-3.5 relative z-10 transition-transform duration-500 group-hover:rotate-180" />
-                      <span className="relative z-10 opacity-70 group-hover:opacity-100 transition-opacity">Voltar ao Menu</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.2s]"></div>
-                    </button>
-                    <h2 className="font-serif text-3xl md:text-8xl italic leading-[0.9] tracking-tighter mix-blend-difference">
+              <BotanicalDecor />
+              
+              {/* Header Image with Curve */}
+              <div className="relative h-[48vh] w-full overflow-hidden">
+                <motion.div 
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="w-full h-full absolute inset-0 rounded-b-[60px] md:rounded-b-[100px] overflow-hidden"
+                >
+                  <img src={selectedCategory.image} className="w-full h-full object-cover" alt="" />
+                  <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
+                </motion.div>
+                
+                {/* Gold Border for curve */}
+                <div className="absolute inset-x-0 bottom-[-2px] h-full rounded-b-[62px] md:rounded-b-[102px] border-b-[3px] border-[#D4AF37] pointer-events-none z-10"></div>
+                
+                <WaveDivider />
+
+                {/* Content Overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-6">
+                   <button 
+                     onClick={() => setSelectedCategory(null)}
+                     className="absolute top-10 left-6 w-11 h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all hover:bg-white/30 active:scale-90"
+                   >
+                     <ChevronLeft className="w-7 h-7 text-[#D4AF37]" strokeWidth={2.5} />
+                   </button>
+                   
+                   <h2 className="font-script text-6xl md:text-8xl leading-none text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
                       {selectedCategory.title}
-                    </h2>
-                  </div>
+                   </h2>
+                   <LotusIcon className="w-10 h-10 text-[#D4AF37] mt-5 drop-shadow-md" />
                 </div>
               </div>
 
-              <div className="flex-1 p-6 md:p-20 overflow-y-auto bg-[#FDFBF7]">
-                <div className="max-w-2xl">
-                  <header className="mb-10 md:mb-16 pb-8 border-b border-black/10">
-                    <h3 className="font-serif text-xl md:text-2xl italic text-[#D4AF37]">Tabela de Valores</h3>
-                    <p className="text-[9px] md:text-[10px] uppercase font-black tracking-widest opacity-30 mt-2">Catálogo 2026</p>
-                  </header>
+              {/* Tabela Header */}
+              <div className="px-6 mt-16 mb-12 text-center relative z-10">
+                 <h3 className="font-serif text-[32px] text-[#D4AF37] tracking-tight">Tabela de Valores</h3>
+                 <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/30 mt-2">CATÁLOGO 2026</p>
+                 
+                 <div className="flex items-center justify-center gap-4 mt-8 opacity-60">
+                    <div className="w-16 h-px bg-[#D4AF37]"></div>
+                    <LotusIcon className="w-5 h-5 text-[#D4AF37]" />
+                    <div className="w-16 h-px bg-[#D4AF37]"></div>
+                 </div>
+              </div>
 
-                  <div className="space-y-6 md:space-y-12">
-                    {selectedCategory.services.map((svc: any, i) => (
-                      svc.isTitle ? (
-                        <div key={i} className="pt-6 border-b border-black/5 pb-2">
-                          <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-[#D4AF37]">{svc.name}</span>
-                        </div>
-                      ) : (
-                        <motion.div 
-                          key={i}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.05 }}
-                          className="flex items-center group cursor-default"
-                        >
-                          <div className="flex-1">
-                            <div className="flex justify-between items-end gap-4 md:gap-6">
-                              <span className="text-base md:text-2xl font-black tracking-tighter flex-1 text-[#2D1B14] group-hover:text-[#D4AF37] transition-all uppercase">
-                                {svc.name.split(/(\([^)]+\))/g).map((part: string, i: number) => {
-                                  const isParen = part.startsWith('(') && part.endsWith(')');
-                                  return (
-                                    <span 
-                                      key={i} 
-                                      className={isParen ? "font-serif italic opacity-40 text-xs md:text-lg lowercase block md:inline md:ml-2 font-normal" : ""}
-                                    >
-                                      {part}
-                                    </span>
-                                  );
-                                })}
-                              </span>
-                              <div className="flex-1 border-b border-dotted border-black/10 mb-2 h-px"></div>
-                              <span className="text-[#D4AF37] font-black text-lg md:text-4xl ml-2 md:ml-4">
-                                R${svc.price}
-                              </span>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )
-                    ))}
-                  </div>
-
-                  <div className="mt-24 pt-12 border-t border-black/10 flex flex-col gap-10">
-                    <p className="text-xs italic text-black/40">Valores sujeitos a alteração conforme avaliação técnica presencial.</p>
-                    <a 
-                      href="https://wa.me/5500000000000" 
-                      className="group relative w-full py-10 bg-black text-white text-center rounded-3xl text-[12px] font-bold uppercase tracking-[0.6em] hover:bg-[#D4AF37] transition-all duration-700 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden"
+              {/* Service Cards List */}
+              <div className="px-5 space-y-4 max-w-xl mx-auto w-full relative z-10">
+                {selectedCategory.services.map((svc: any, i) => (
+                  svc.isTitle ? (
+                    <div key={i} className="pt-10 pb-4">
+                      <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#D4AF37] px-4 opacity-80">{svc.name}</span>
+                    </div>
+                  ) : (
+                    <motion.div 
+                      key={svc.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="bg-white shadow-[0_8px_20px_rgba(0,0,0,0.04)] border border-[#E5E0D8]/40 rounded-2xl p-5 flex items-center gap-5"
                     >
-                      <span className="relative z-10">AGENDAR AGORA</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.5s] ease-in-out"></div>
-                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </a>
-                  </div>
+                      <div className="w-11 h-11 flex-shrink-0 flex items-center justify-center text-[#D4AF37] bg-[#FDFBF7] rounded-full border border-[#D4AF37]/10">
+                        {(() => {
+                           const name = svc.name.toLowerCase();
+                           if (name.includes('alongamento')) return <ManicureHandsIcon className="w-6 h-6" />;
+                           if (name.includes('manutenção')) return <SparklesIcon className="w-6 h-6" />;
+                           if (name.includes('banho de gel')) return <DropIcon className="w-6 h-6" />;
+                           if (name.includes('pincel') || name.includes('esmaltação em gel')) return <PolishBrushIcon className="w-6 h-6" />;
+                           if (name.includes('esmaltação tradicional')) return <NailPolishIcon className="w-6 h-6" />;
+                           if (name.includes('francesinha') || name.includes('flor')) return <FlowerIcon className="w-6 h-6" />;
+                           return <SparklesIcon className="w-5 h-5" />;
+                        })()}
+                      </div>
+                      
+                      <div className="flex-1 min-w-0 flex items-center overflow-hidden">
+                        <span className="text-[14px] font-sans font-semibold text-[#3E2723] leading-tight flex-shrink-0 uppercase tracking-tight">
+                          {svc.name}
+                        </span>
+                        <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3"></div>
+                      </div>
+
+                      <div className="text-[18px] font-serif font-black text-[#D4AF37] flex-shrink-0">
+                        R${svc.price}
+                      </div>
+                    </motion.div>
+                  )
+                ))}
+              </div>
+
+              {/* Extra Info Footer Box */}
+              <div className="mt-16 px-5 max-w-xl mx-auto w-full relative z-10">
+                <div className="bg-white/80 backdrop-blur-md border border-[#E5E0D8] rounded-[24px] p-8 flex flex-col md:flex-row gap-8 shadow-sm">
+                   <div className="flex-1 flex items-center gap-5">
+                      <SparklesIcon className="w-7 h-7 text-[#D4AF37] flex-shrink-0" />
+                      <p className="text-[10px] text-[#3E2723] leading-relaxed font-bold uppercase tracking-[0.1em]">
+                         Valores sujeitos a alteração. <br/> 
+                         <span className="opacity-40 font-medium">Consulte condições na recepção.</span>
+                      </p>
+                   </div>
+                   <div className="hidden md:block w-px h-12 bg-[#E5E0D8]/50"></div>
+                   <div className="flex-1 flex items-center gap-5">
+                      <Heart className="w-7 h-7 text-[#D4AF37] flex-shrink-0" />
+                      <p className="text-[10px] text-[#3E2723] leading-relaxed font-bold uppercase tracking-[0.1em]">
+                         Atendimento com <br/>
+                         <span className="opacity-40 font-medium">excelência e carinho</span>
+                      </p>
+                   </div>
                 </div>
+              </div>
+
+              {/* Action Button */}
+              <div className="mt-12 px-6 flex justify-center sticky bottom-28 z-40">
+                 <motion.a 
+                   href="https://wa.me/5500000000000"
+                   whileHover={{ scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   className="bg-[#3E2723] text-white px-14 py-6 rounded-full font-serif text-lg tracking-[0.2em] shadow-[0_15px_40px_rgba(62,39,35,0.3)] hover:bg-[#2D1B14] transition-all flex items-center gap-4"
+                 >
+                   AGENDAR AGORA
+                   <ArrowRight className="w-5 h-5" />
+                 </motion.a>
               </div>
             </motion.section>
           )}
