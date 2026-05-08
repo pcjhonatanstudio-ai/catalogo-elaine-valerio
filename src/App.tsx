@@ -23,7 +23,9 @@ import {
   MagicWand, 
   ShieldCheck, 
   Jar,
-  Fingerprint
+  Fingerprint,
+  Crown,
+  Diamond
 } from '@phosphor-icons/react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 import MechasPresentation from './components/MechasPresentation';
@@ -155,8 +157,18 @@ const CATEGORIES = [
     icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U',
     image: 'https://images.unsplash.com/photo-1590439471364-192aa70c0b53?q=80&w=800&auto=format&fit=crop',
     services: [
+      { name: 'Protocolos Truss', isTitle: true },
       { name: 'Cronograma Truss (4 sessões)', price: 720 },
-      { name: 'Cronograma Truss (Avulsa)', price: 150 },
+      { name: 'Sessão Avulsa Truss', price: 150 },
+      { name: 'Wella Professionals', isTitle: true },
+      { name: 'Cronograma Wella (4 sessões)', price: 570 },
+      { name: 'Sessão Avulsa Wella', price: 143 },
+      { name: 'Alfaparf Milano', isTitle: true },
+      { name: 'Cronograma Alfaparf (4 sessões)', price: 450 },
+      { name: 'Sessão Avulsa Alfaparf', price: 130 },
+      { name: 'Aneethun Care', isTitle: true },
+      { name: 'Cronograma Aneethun (4 sessões)', price: 400 },
+      { name: 'Sessão Avulsa Aneethun', price: 108 },
     ]
   },
   {
@@ -336,6 +348,9 @@ export default function App() {
                            if (name.includes('esmaltação em gel')) return <PaintBrush className="w-7 h-7" weight="light" />;
                            if (name.includes('postiça')) return <Fingerprint className="w-7 h-7" weight="light" />;
                            if (name.includes('blindagem')) return <ShieldCheck className="w-7 h-7" weight="light" />;
+                           if (name.includes('truss')) return <Crown className="w-7 h-7" weight="light" />;
+                           if (name.includes('wella')) return <Diamond className="w-7 h-7" weight="light" />;
+                           if (name.includes('cronograma')) return <Jar className="w-7 h-7" weight="light" />;
                            return <Sparkle className="w-6 h-6" weight="light" />;
                         })()}
                       </div>
