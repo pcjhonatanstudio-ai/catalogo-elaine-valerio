@@ -90,9 +90,9 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
       {/* Global Close Button */}
       <button 
         onClick={onClose}
-        className="fixed top-6 left-6 z-[110] w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white"
+        className="fixed top-6 left-6 z-[110] w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(197,160,89,0.4)] border-2 border-[#D9A07E] flex items-center justify-center text-[#D9A07E] hover:scale-110 active:scale-95 transition-all group"
       >
-        <CaretLeft className="w-6 h-6" weight="light" />
+        <CaretLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" weight="bold" />
       </button>
 
       {/* Slide 1: Capa */}

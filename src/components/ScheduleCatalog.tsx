@@ -16,14 +16,14 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'hero',
       title: 'CRONOGRAMA',
       subtitle: '2026',
-      image: 'https://drive.google.com/thumbnail?id=1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1X-mAClSsAFRdN_ZaL0oYzOhiZZbzlVIR&sz=w1000',
       description: 'A excelência em tratamentos capilares personalizados.'
     },
     {
       id: 'tecnologia',
       type: 'content',
       title: 'Tecnologia & Ciência',
-      image: 'https://drive.google.com/thumbnail?id=1EW9JWwatUhpTdIgBcJbgbQs4O6b7JjtQ&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1KMCd1uNowV-3u7lN7TYByOccwLti9m6d&sz=w1000',
       description: 'Aliamos tecnologia de ponta com o aparelho Ponce para resultados extraordinários na regeneração da fibra capilar.',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -31,7 +31,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       id: 'anamnese',
       type: 'content',
       title: 'Anamnese Personalizada',
-      image: 'https://drive.google.com/thumbnail?id=12txvF5bAXfPg8wTlWYBtlYkyBL7eR2Yd&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1vfZPDA-F68CDGfDU6G4QUaI8XSC_MEBC&sz=w1000',
       description: 'Cada diagnóstico é único. Realizamos análise microscópica profunda para identificar as reais necessidades do seu fio.',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -40,7 +40,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Truss Infusion',
       title: 'Protocolo Truss',
-      image: 'https://drive.google.com/thumbnail?id=1AqBMrfdV7V74rPc4O-681_Ky5QE1EVx5&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1sUVOtt5CNMVgxLwzoxffl7KerLCFU97T&sz=w1000',
       schedulePrice: '720',
       singlePrice: '150',
       icon: <Crown className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -50,7 +50,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Wella Professionals',
       title: 'Luxury Care Wella',
-      image: 'https://drive.google.com/thumbnail?id=1gGjOXw6VOG62eLOBlvGgnh-MKNNczDDX&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=11KJa31i89js-8iN4LeAk7UHeInJuVQpZ&sz=w1000',
       schedulePrice: '570',
       singlePrice: '143',
       icon: <Diamond className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -60,7 +60,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Alfaparf Milano',
       title: 'Excellence Alfaparf',
-      image: 'https://drive.google.com/thumbnail?id=1l_6feX81b0UI8pLcrempdxk3thq9RtVK&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1J5FdaKQhhURl5iCgVu7psfVsxBoXRKM_&sz=w1000',
       schedulePrice: '450',
       singlePrice: '130',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -70,7 +70,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'price',
       brand: 'Aneethun',
       title: 'Essential Aneethun',
-      image: 'https://drive.google.com/thumbnail?id=16ww0F_L708XS1kc-3arbLBS_wpMi_XCA&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1khESMmmezgAZzyj-dVM6EU7a1hUtE71q&sz=w1000',
       schedulePrice: '400',
       singlePrice: '108',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
@@ -87,9 +87,9 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       {/* Botão Fechar Luxo */}
       <button 
         onClick={onClose}
-        className="fixed top-8 right-8 z-[110] bg-white/5 backdrop-blur-md border border-[#C5A059]/30 text-[#C5A059] p-3 rounded-full hover:bg-[#C5A059]/10 active:scale-95 transition-all"
+        className="fixed top-8 right-8 z-[110] bg-white border-2 border-[#C5A059] text-[#C5A059] p-3 rounded-full shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group"
       >
-        <X className="w-6 h-6" />
+        <X className="w-6 h-6 group-hover:rotate-90 transition-transform" weight="bold" />
       </button>
 
       {slides.map((slide, index) => (
@@ -106,9 +106,9 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
             
             {slide.type === 'hero' && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 1 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex flex-col items-center w-full"
               >
                 <span className="text-[#C5A059] tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs font-semibold mb-2 md:mb-4 uppercase shrink-0">Experience Luxury</span>
@@ -119,14 +119,16 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                   {slide.subtitle}
                 </h2>
                 
-                <div className="w-full max-w-[260px] md:max-w-sm mt-6 md:mt-10 aspect-[3/4] md:aspect-[4/5] relative group">
-                  <div className="absolute inset-0 border border-[#C5A059]/30 rounded-2xl transform translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
-                  <div className="w-full h-full bg-black/20 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/5">
+                <div className="w-full max-w-[260px] md:max-w-sm mt-6 md:mt-10 aspect-video relative group">
+                  <div className="absolute inset-0 border border-[#C5A059]/40 rounded-2xl -z-10 shadow-[0_0_20px_rgba(197,160,89,0.1)]"></div>
+                  <div className="w-full h-full bg-black/20 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 flex items-center justify-center">
                     <img 
                       src={slide.image} 
                       alt={slide.title} 
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover shadow-2xl scale-125 grayscale-[0.2] hover:grayscale-0 transition-all duration-700" 
+                      className={`w-full h-full shadow-2xl transition-opacity duration-700 object-center ${
+                        slide.id === 'capa' ? 'object-cover scale-150' : 'object-cover'
+                      } grayscale-[0.2] hover:grayscale-0`} 
                     />
                   </div>
                 </div>
@@ -171,24 +173,32 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                   transition={{ duration: 1 }}
                   className="relative group hidden md:block" // Hide image on very small mobile for content slides if it overflows, or scale it
                 >
-                  <div className="relative aspect-square overflow-hidden rounded-3xl border border-[#C5A059]/30 shadow-2xl bg-black/20">
+                  <div className="relative aspect-video overflow-hidden rounded-3xl border border-[#C5A059]/30 shadow-2xl bg-black/20 flex items-center justify-center">
                      <img 
                        src={slide.image} 
                        alt={slide.title} 
                        referrerPolicy="no-referrer"
-                       className={`w-full h-full ${slide.id === 'anamnese' ? 'object-contain p-2' : 'object-cover'}`} 
+                       className={`w-full h-full object-center ${
+                         slide.id === 'anamnese' ? 'object-cover scale-110' : 
+                         slide.id === 'tecnologia' ? 'object-cover scale-150' : 
+                         'object-cover'
+                       }`} 
                      />
                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   </div>
                 </motion.div>
                 {/* Mobile version of image - smaller */}
                 <div className="md:hidden relative mt-4 w-full flex justify-center px-4">
-                   <div className="relative aspect-square max-h-[30vh] w-full overflow-hidden rounded-2xl border border-[#C5A059]/30 shadow-xl bg-black/20">
+                   <div className="relative aspect-video max-h-[30vh] w-full overflow-hidden rounded-2xl border border-[#C5A059]/30 shadow-xl bg-black/20 flex items-center justify-center">
                       <img 
                         src={slide.image} 
                         alt={slide.title} 
                         referrerPolicy="no-referrer"
-                        className={`w-full h-full object-contain ${slide.id === 'anamnese' ? 'p-0 scale-110' : 'p-2'}`} 
+                        className={`w-full h-full object-center ${
+                          slide.id === 'anamnese' ? 'object-cover scale-110' : 
+                          slide.id === 'tecnologia' ? 'object-cover scale-150' : 
+                          'object-cover'
+                        }`} 
                       />
                    </div>
                 </div>
@@ -213,15 +223,16 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                   className="bg-white/5 backdrop-blur-xl border border-[#C5A059]/20 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row w-full max-w-sm md:max-w-3xl"
                 >
                   {/* Imagem do Produto */}
-                  <div className="w-full md:w-1/2 h-44 md:h-96 relative bg-black/40 flex items-center justify-center">
+                  <div className="w-full md:w-1/2 aspect-video relative bg-black/40 flex items-center justify-center overflow-hidden">
                     <img 
                       src={slide.image} 
                       alt={slide.brand} 
                       referrerPolicy="no-referrer"
-                      className={`w-full h-full object-cover transform hover:scale-110 transition-transform duration-700 ${
-                        slide.id === 'alfaparf' ? 'scale-150' : 
-                        slide.id === 'truss' || slide.id === 'wella' || slide.id === 'aneethun' ? 'scale-125' : 
-                        ''
+                      className={`w-full h-full object-center ${
+                        slide.id === 'aneethun' || slide.id === 'alfaparf' ? 'object-cover scale-110' :
+                        slide.id === 'wella' ? 'object-cover scale-110' :
+                        slide.id === 'truss' ? 'object-cover scale-110' :
+                        'object-cover'
                       }`} 
                     />
                   </div>

@@ -166,7 +166,7 @@ const CATEGORIES = [
     id: 'tratamentos',
     title: 'Tratamentos',
     icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U',
-    image: 'https://images.unsplash.com/photo-1590439471364-192aa70c0b53?q=80&w=800&auto=format&fit=crop',
+    image: 'https://lh3.googleusercontent.com/d/18285y_AaJ-tuP0vxU4d6mMyKS9Q2gOH-',
     services: [
       { name: 'Protocolos Truss', isTitle: true },
       { name: 'Cronograma Truss (4 sessões)', price: 720 },
@@ -332,11 +332,11 @@ export default function App() {
 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-6">
-                   <button 
+                  <button 
                      onClick={() => setSelectedCategory(null)}
-                     className="absolute top-10 left-6 w-11 h-11 rounded-full bg-black/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all hover:bg-black/20"
+                     className="absolute top-10 left-6 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(197,160,89,0.3)] border-2 border-[#C5A059] flex items-center justify-center transition-all hover:scale-110 active:scale-95 group z-50"
                    >
-                     <CaretLeft className="w-7 h-7 text-white" weight="light" />
+                     <CaretLeft className="w-7 h-7 text-[#C5A059] group-hover:scale-110 transition-transform" weight="bold" />
                    </button>
                    
                    <h2 className="font-serif italic text-6xl md:text-8xl leading-none text-white drop-shadow-[0_2px_10px_rgba(197,160,89,0.3)]">
