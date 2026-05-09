@@ -285,7 +285,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           <h2 className="font-serif text-4xl text-[#4A4A4A] mb-12">Pronta para transformar seu visual?</h2>
           
           <motion.a 
-            href="https://wa.me/5500000000000"
+            href="https://wa.me/5522988335171"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-4 bg-[#D9A07E] text-white px-12 py-6 rounded-full font-sans font-semibold tracking-[0.2em] shadow-lg shadow-[#D9A07E]/30"

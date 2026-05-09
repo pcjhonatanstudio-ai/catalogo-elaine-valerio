@@ -27,7 +27,8 @@ import {
   Crown,
   Diamond,
   InstagramLogo,
-  WhatsappLogo
+  WhatsappLogo,
+  MapPin
 } from '@phosphor-icons/react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 import MechasPresentation from './components/MechasPresentation';
@@ -97,12 +98,20 @@ const CATEGORIES = [
     icon: 'https://lh3.googleusercontent.com/d/1r7r7-ZPTym7Bq6pd_XI3vAc-JMO4G9Wr',
     image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop',
     services: [
-      { name: 'Alongamento em Acrigel', price: 145 },
-      { name: 'Manutenção em Acrigel', price: 95 },
+      { name: 'Acrigel', price: 145 },
+      { name: 'Manutenção de Acrigel', price: 95 },
       { name: 'Banho de Gel', price: 90 },
-      { name: 'Esmaltação em Gel', price: 130 },
+      { name: 'Esmaltação em Gel', price: 70 },
+      { name: 'Postiça Realista', price: 130 },
       { name: 'Postiça de Vidro', price: 140 },
       { name: 'Blindagem', price: 65 },
+      { name: 'Remoção Blindagem', price: 15 },
+      { name: 'Remoção Alongamento', price: 65 },
+      { name: 'Unha Encapsulada / par', price: 35 },
+      { name: 'Francesa Encapsulada', price: 30 },
+      { name: 'Lixamento de Pés', price: 10 },
+      { name: 'Plástica dos Pés', price: 70 },
+      { name: 'SPA dos pés', price: 40 },
     ]
   },
   {
@@ -175,7 +184,7 @@ const CATEGORIES = [
   },
   {
     id: 'cor',
-    title: 'Alinhamento e Cor',
+    title: 'Coloração',
     icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV',
     image: 'https://lh3.googleusercontent.com/d/15l6uCMz04lseHMg5CvC8k6hn3FCrPXDU',
     services: [
@@ -226,7 +235,7 @@ export default function App() {
                     <img 
                       src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w1000" 
                       alt="Elaine Valerio" 
-                      className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
+                      className="w-full h-full object-cover scale-150 object-[center_30%] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -309,6 +318,9 @@ export default function App() {
                 >
                   <img src={selectedCategory.image} className="w-full h-full object-cover" alt="" />
                   <div className="absolute inset-0 bg-black/20"></div>
+                  
+                  {/* Refined Inset Frame from Photo Reference */}
+                  <div className="absolute inset-4 border border-white/30 rounded-[30px] md:rounded-[60px] pointer-events-none"></div>
                 </motion.div>
                 
                 {/* Curve SVG Separator */}
@@ -415,7 +427,7 @@ export default function App() {
               {/* Action Button */}
               <div className="mt-16 px-6 flex justify-center sticky bottom-8 z-40">
                   <motion.a 
-                    href="https://wa.me/5500000000000"
+                    href="https://wa.me/5522988335171"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="bg-[#333333] text-white px-10 py-5 rounded-full font-sans font-semibold text-base tracking-[0.2em] shadow-[0_15px_30px_rgba(0,0,0,0.15)] hover:bg-black transition-all flex items-center gap-4 text-center whitespace-nowrap"
@@ -443,12 +455,17 @@ export default function App() {
                 <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">Instagram</span>
              </a>
              
-             <button className="relative flex flex-col items-center justify-center -mt-10 group cursor-pointer">
+             <a 
+               href="https://www.google.com/maps/search/?api=1&query=R.+Cap.+Vergara,+43+-+Coqueiral,+Araruama+-+RJ,+28982-335"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="relative flex flex-col items-center justify-center -mt-10 group cursor-pointer"
+             >
                 <div className="w-16 h-16 rounded-full bg-white border border-[#C5A059]/30 shadow-[0_8px_30px_rgba(197,160,89,0.15)] flex items-center justify-center text-[#C5A059] group-hover:bg-[#C5A059] group-hover:text-white transition-all duration-300">
-                   <FlowerLotus className="w-8 h-8" weight="light" />
+                   <MapPin className="w-8 h-8" weight="light" />
                 </div>
-                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#C5A059] mt-3">Serviços</span>
-             </button>
+                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#C5A059] mt-3">Localização</span>
+             </a>
  
              <a 
                href="https://wa.me/5522988335171" 

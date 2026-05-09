@@ -126,7 +126,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                       src={slide.image} 
                       alt={slide.title} 
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-contain p-4 md:p-6 shadow-2xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700" 
+                      className="w-full h-full object-cover shadow-2xl scale-125 grayscale-[0.2] hover:grayscale-0 transition-all duration-700" 
                     />
                   </div>
                 </div>
@@ -171,7 +171,6 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                   transition={{ duration: 1 }}
                   className="relative group hidden md:block" // Hide image on very small mobile for content slides if it overflows, or scale it
                 >
-                  <div className="absolute inset-0 border border-[#C5A059]/20 rounded-3xl -rotate-3 scale-[1.02] transform transition-transform group-hover:rotate-0"></div>
                   <div className="relative aspect-square overflow-hidden rounded-3xl border border-[#C5A059]/30 shadow-2xl bg-black/20">
                      <img 
                        src={slide.image} 
@@ -219,10 +218,10 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                       src={slide.image} 
                       alt={slide.brand} 
                       referrerPolicy="no-referrer"
-                      className={`w-full h-full object-contain transform hover:scale-110 transition-transform duration-700 ${
-                        slide.id === 'alfaparf' ? 'p-0 scale-125' : 
-                        slide.id === 'truss' || slide.id === 'wella' || slide.id === 'aneethun' ? 'p-2 md:p-4' : 
-                        'p-6 md:p-8'
+                      className={`w-full h-full object-cover transform hover:scale-110 transition-transform duration-700 ${
+                        slide.id === 'alfaparf' ? 'scale-150' : 
+                        slide.id === 'truss' || slide.id === 'wella' || slide.id === 'aneethun' ? 'scale-125' : 
+                        ''
                       }`} 
                     />
                   </div>
