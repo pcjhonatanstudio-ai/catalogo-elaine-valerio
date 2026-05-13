@@ -221,7 +221,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
              <div className="absolute inset-0 bg-black/5"></div>
           </div>
 
-          <div className="flex justify-center gap-10 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+          <div className="flex justify-center gap-10 opacity-60 transition-all duration-700">
              <span className="font-serif text-base tracking-widest text-[#4A4A4A]">WELLA</span>
              <span className="font-serif text-base tracking-widest text-[#4A4A4A]">ALFAPARF MILANO</span>
              <span className="font-serif text-base tracking-widest text-[#4A4A4A]">TRUSS PROFESSIONAL</span>

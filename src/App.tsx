@@ -32,6 +32,7 @@ import {
 } from '@phosphor-icons/react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 import MechasPresentation from './components/MechasPresentation';
+import InspirationGallery from './components/InspirationGallery';
 
 const DecorationDivider = () => (
   <div className="flex items-center justify-center gap-2 my-2 opacity-60">
@@ -195,6 +196,13 @@ const CATEGORIES = [
       { name: 'Coloração M', price: 165 },
       { name: 'Coloração G', price: 198 },
     ]
+  },
+  {
+    id: 'inspire-se',
+    title: 'Inspire-se',
+    icon: Sparkle,
+    image: 'https://drive.google.com/thumbnail?id=1_Ob8nVE13ni75Z6tu5-UaBVO7y95gqIm&sz=w1000',
+    services: []
   }
 ];
 
@@ -210,6 +218,9 @@ export default function App() {
         )}
         {selectedCategory?.id === 'mechas' && (
           <MechasPresentation onClose={() => setSelectedCategory(null)} />
+        )}
+        {selectedCategory?.id === 'inspire-se' && (
+          <InspirationGallery onClose={() => setSelectedCategory(null)} />
         )}
       </AnimatePresence>
 
@@ -298,7 +309,7 @@ export default function App() {
                 ))}
               </div>
             </motion.section>
-          ) : selectedCategory.id === 'mechas' ? null : (
+          ) : (selectedCategory.id === 'mechas' || selectedCategory.id === 'inspire-se') ? null : (
             <motion.section 
               key="detail"
               initial={{ opacity: 0 }}

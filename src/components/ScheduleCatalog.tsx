@@ -128,7 +128,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                       referrerPolicy="no-referrer"
                       className={`w-full h-full shadow-2xl transition-opacity duration-700 object-center ${
                         slide.id === 'capa' ? 'object-cover scale-125' : 'object-cover'
-                      } grayscale-[0.2] hover:grayscale-0`} 
+                      }`} 
                     />
                   </div>
                 </div>
