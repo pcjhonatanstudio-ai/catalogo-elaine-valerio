@@ -245,7 +245,7 @@ export default function App() {
                   <div className="w-full h-full rounded-[100px] overflow-hidden border-2 border-white shadow-2xl relative">
                     <img 
                       src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w1000" 
-                      alt="Elaine Valerio" 
+                      alt="ELAINE VALERIO" 
                       className="w-full h-full object-cover scale-150 object-[center_30%] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
@@ -256,7 +256,7 @@ export default function App() {
                   </div>
                 </motion.div>
 
-                <span className="font-serif italic text-5xl md:text-7xl leading-none text-[#C5A059]">Elaine Valerio</span>
+                <span className="font-serif italic text-5xl md:text-7xl leading-none text-[#C5A059]">ELAINE VALERIO</span>
                 <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#333333]/60 mt-2 font-medium">STUDIO DE BELEZA</span>
                 
                 <div className="flex items-center gap-2 my-6 opacity-60">
