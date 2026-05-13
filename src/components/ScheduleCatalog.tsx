@@ -24,7 +24,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       type: 'content',
       title: 'Tecnologia & Ciência',
       image: 'https://drive.google.com/thumbnail?id=1KMCd1uNowV-3u7lN7TYByOccwLti9m6d&sz=w1000',
-      description: 'Aliamos tecnologia de ponta com o aparelho Ponce para resultados extraordinários na regeneração da fibra capilar.',
+      description: 'Unimos inovação tecnológica e o aparelho Ponce para transformar profundamente a saúde da fibra capilar.',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {
@@ -127,7 +127,7 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                       alt={slide.title} 
                       referrerPolicy="no-referrer"
                       className={`w-full h-full shadow-2xl transition-opacity duration-700 object-center ${
-                        slide.id === 'capa' ? 'object-cover scale-125' : 'object-cover'
+                        slide.id === 'capa' ? 'object-cover scale-105' : 'object-cover'
                       }`} 
                     />
                   </div>

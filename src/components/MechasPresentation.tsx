@@ -180,7 +180,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
             {/* Left Image Section */}
             <div className="w-full md:w-1/2 h-[45%] md:h-full p-8 md:p-16 flex flex-col justify-center">
               <div className="relative w-full h-full rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
-                <img src={cat.image} className="w-full h-full object-cover" alt={cat.title} />
+                <img src={cat.image} className="w-full h-full object-cover object-top" alt={cat.title} />
                 <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
             </div>

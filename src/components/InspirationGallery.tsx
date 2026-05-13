@@ -110,7 +110,7 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
                   src={`https://drive.google.com/thumbnail?id=${id}&sz=w1000`} 
                   alt={`Inspiração ${index + 1}`}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-700"
                 />
               </div>
             </motion.div>
