@@ -99,20 +99,17 @@ const CATEGORIES = [
     icon: 'https://lh3.googleusercontent.com/d/1r7r7-ZPTym7Bq6pd_XI3vAc-JMO4G9Wr',
     image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop',
     services: [
-      { name: 'Acrigel', price: 145 },
-      { name: 'Manutenção de Acrigel', price: 95 },
-      { name: 'Banho de Gel', price: 90 },
-      { name: 'Esmaltação em Gel', price: 70 },
-      { name: 'Postiça Realista', price: 130 },
-      { name: 'Postiça de Vidro', price: 140 },
-      { name: 'Blindagem', price: 65 },
-      { name: 'Remoção Blindagem', price: 15 },
-      { name: 'Remoção Alongamento', price: 65 },
-      { name: 'Unha Encapsulada / par', price: 35 },
-      { name: 'Francesa Encapsulada', price: 30 },
-      { name: 'Lixamento de Pés', price: 10 },
-      { name: 'Plástica dos Pés', price: 70 },
-      { name: 'SPA dos pés', price: 40 },
+      { name: 'PÉ E MÃO', price: 55 },
+      { name: 'PÉ', price: 38 },
+      { name: 'MÃO', price: 33 },
+      { name: 'BANHO DE GEL', price: 99 },
+      { name: 'ESMALTAÇÃO EM GEL', price: 77 },
+      { name: 'BLINDAGEM', price: '71,50' },
+      { name: 'REMOÇÃO DE BLINDAGEM', price: 22 },
+      { name: 'REMOÇÃO DE ALONGAMENTO', price: 65 },
+      { name: 'LIXAMENTO DOS PÉS', price: 11 },
+      { name: 'PLASTICA DOS PÉS', price: 77 },
+      { name: 'SPA DOS PÉS', price: 44 },
     ]
   },
   {
@@ -169,18 +166,14 @@ const CATEGORIES = [
     icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U',
     image: 'https://lh3.googleusercontent.com/d/18285y_AaJ-tuP0vxU4d6mMyKS9Q2gOH-',
     services: [
-      { name: 'Protocolos Truss', isTitle: true },
-      { name: 'Cronograma Truss (4 sessões)', price: 720 },
-      { name: 'Sessão Avulsa Truss', price: 150 },
-      { name: 'Wella Professionals', isTitle: true },
-      { name: 'Cronograma Wella (4 sessões)', price: 570 },
-      { name: 'Sessão Avulsa Wella', price: 143 },
-      { name: 'Alfaparf Milano', isTitle: true },
-      { name: 'Cronograma Alfaparf (4 sessões)', price: 450 },
-      { name: 'Sessão Avulsa Alfaparf', price: 130 },
-      { name: 'Aneethun Care', isTitle: true },
-      { name: 'Cronograma Aneethun (4 sessões)', price: 400 },
-      { name: 'Sessão Avulsa Aneethun', price: 108 },
+      { name: "TRATAMENTO AVANÇADO INDIVIDUALIZADO\n(SESSÕES INDIVIDUAIS)\nA PARTIR DE:", isTitle: true },
+      { name: 'TRUZ', price: 176 },
+      { name: 'WELLA', price: 165 },
+      { name: 'ALFAPARF', price: '159,50' },
+      { name: 'ANETHUN', price: 132 },
+      { name: 'ERIK KENED', price: 165 },
+      { name: 'SPA DETOX ERIK KENED', price: 230 },
+      { name: 'LOREAL (ABSOLUT REPER)', price: 215 },
     ]
   },
   {
@@ -292,13 +285,13 @@ export default function App() {
                     }}
                     className="group bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-black/5 rounded-[20px] p-5 flex items-center transition-all hover:translate-y-[-2px] hover:shadow-[0_8px_30px_rgba(197,160,89,0.1)]"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center text-[#C5A059] bg-[#F9F6F1] rounded-full border border-black/5 overflow-hidden">
+                    <div className="w-12 h-12 flex items-center justify-center text-[#C5A059] overflow-hidden">
                       {typeof cat.icon === 'string' ? (
-                        <img src={cat.icon} alt={cat.title} className="w-8 h-8 object-contain" />
+                        <img src={cat.icon} alt={cat.title} className="w-10 h-10 object-contain" />
                       ) : (
                         (() => {
                           const Icon = cat.icon as React.ComponentType<{ className?: string, weight?: string }>;
-                          return Icon ? <Icon className="w-6 h-6" weight="light" /> : null;
+                          return Icon ? <Icon className="w-8 h-8" weight="light" /> : null;
                         })()
                       )}
                     </div>
@@ -352,7 +345,7 @@ export default function App() {
                    </button>
                    
                    <h2 className="font-serif italic text-6xl md:text-8xl leading-none text-white drop-shadow-[0_2px_10px_rgba(197,160,89,0.3)]">
-                      {selectedCategory.title}
+                      {selectedCategory.id === 'tratamentos' ? '' : selectedCategory.title}
                    </h2>
                    <FlowerLotus className="w-10 h-10 text-[#C5A059] mt-3" weight="light" />
                 </div>
@@ -374,15 +367,33 @@ export default function App() {
               <div className="px-5 space-y-4 max-w-xl mx-auto w-full relative z-10">
                 {selectedCategory.services.map((svc: any, i) => (
                   svc.isTitle ? (
-                    <div key={i} className="pt-10 pb-4">
-                      {svc.name.split('\n').map((line: string, idx: number) => (
-                        <span 
-                          key={idx} 
-                          className={`text-[12px] font-bold uppercase tracking-[0.6em] text-[#C5A059] px-4 opacity-80 block ${idx === 0 ? 'text-center' : 'text-left text-[10px] tracking-[0.4em] mt-4'}`}
-                        >
-                          {line}
-                        </span>
-                      ))}
+                    <div key={i} className="pt-2 pb-4">
+                      {svc.name.split('\n').map((line: string, idx: number) => {
+                        let alignmentClass = 'text-left';
+                        let sizeClass = 'text-[12px] tracking-[0.6em]';
+                        let marginClass = 'mt-0';
+
+                        if (idx === 0) {
+                          alignmentClass = 'text-center';
+                        } else if (line.includes('(SESSÕES INDIVIDUAIS)')) {
+                          alignmentClass = 'text-center';
+                          sizeClass = 'text-[10px] tracking-[0.4em]';
+                          marginClass = 'mt-12';
+                        } else if (line.includes('A PARTIR DE:')) {
+                          alignmentClass = 'text-left';
+                          sizeClass = 'text-[10px] tracking-[0.4em]';
+                          marginClass = 'mt-8';
+                        }
+
+                        return (
+                          <span 
+                            key={idx} 
+                            className={`${sizeClass} font-bold uppercase ${alignmentClass} text-[#C5A059] px-4 opacity-80 block ${marginClass}`}
+                          >
+                            {line}
+                          </span>
+                        );
+                      })}
                     </div>
                   ) : (
                     <motion.div 
@@ -394,17 +405,19 @@ export default function App() {
                     >
                       <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center text-[#C5A059]">
                         {(() => {
-                           const name = svc.name.toLowerCase();
-                           if (name.includes('alongamento')) return <HandWaving className="w-7 h-7" weight="light" />;
-                           if (name.includes('manutenção')) return <MagicWand className="w-7 h-7" weight="light" />;
-                           if (name.includes('banho de gel')) return <Drop className="w-7 h-7" weight="light" />;
-                           if (name.includes('esmaltação em gel')) return <PaintBrush className="w-7 h-7" weight="light" />;
-                           if (name.includes('postiça')) return <Fingerprint className="w-7 h-7" weight="light" />;
-                           if (name.includes('blindagem')) return <ShieldCheck className="w-7 h-7" weight="light" />;
-                           if (name.includes('truss')) return <Crown className="w-7 h-7" weight="light" />;
-                           if (name.includes('wella')) return <Diamond className="w-7 h-7" weight="light" />;
-                           if (name.includes('cronograma')) return <Jar className="w-7 h-7" weight="light" />;
-                           return <Sparkle className="w-6 h-6" weight="light" />;
+                            if (selectedCategory.id === 'tratamentos') return <Sparkle className="w-6 h-6" weight="light" />;
+                            const name = svc.name.toLowerCase();
+                            if (name.includes('alongamento')) return <HandWaving className="w-7 h-7" weight="light" />;
+                            if (name.includes('manutenção')) return <MagicWand className="w-7 h-7" weight="light" />;
+                            if (name.includes('banho de gel')) return <Drop className="w-7 h-7" weight="light" />;
+                            if (name.includes('esmaltação em gel')) return <PaintBrush className="w-7 h-7" weight="light" />;
+                            if (name.includes('postiça')) return <Fingerprint className="w-7 h-7" weight="light" />;
+                            if (name.includes('blindagem')) return <ShieldCheck className="w-7 h-7" weight="light" />;
+                            if (name.includes('truss') || name.includes('truz')) return <Crown className="w-7 h-7" weight="light" />;
+                            if (name.includes('wella')) return <Diamond className="w-7 h-7" weight="light" />;
+                            if (name.includes('anethun')) return <Jar className="w-7 h-7" weight="light" />;
+                            if (name.includes('cronograma')) return <Jar className="w-7 h-7" weight="light" />;
+                            return <Sparkle className="w-6 h-6" weight="light" />;
                         })()}
                       </div>
                       
