@@ -189,12 +189,13 @@ const CATEGORIES = [
     icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV',
     image: 'https://lh3.googleusercontent.com/d/15l6uCMz04lseHMg5CvC8k6hn3FCrPXDU',
     services: [
-      { name: 'Colorações', isTitle: true },
-      { name: 'Aplicação', price: 68 },
-      { name: 'Retoque | Retoque + Tratamento', price: '99 | 130' },
-      { name: 'Coloração P', price: 140 },
-      { name: 'Coloração M', price: 165 },
-      { name: 'Coloração G', price: 198 },
+      { name: 'Colorações (A partir de)', isTitle: true },
+      { name: 'RETOQUE', price: 109 },
+      { name: 'RETOQUE + TRATAMENTO ( COM COLORAÇÃO DO STUDIO )', price: 148 },
+      { name: 'COLORAÇÃO P', price: 155 },
+      { name: 'COLORAÇÃO M', price: 190 },
+      { name: 'COLORAÇÃO G', price: 242 },
+      { name: 'COLORAÇÃO XG', price: 'SOB AVALIAÇÃO' },
     ]
   },
   {
@@ -408,7 +409,7 @@ export default function App() {
                       </div>
 
                       <div className="text-[18px] font-sans font-bold text-[#C5A059] flex-shrink-0">
-                        R${svc.price}
+                        {svc.price === 'SOB AVALIAÇÃO' ? svc.price : `R$${svc.price}`}
                       </div>
                     </motion.div>
                   )
