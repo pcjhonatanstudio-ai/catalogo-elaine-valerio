@@ -77,10 +77,13 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
 };
 
 const PriceItem: React.FC<{ name: string; price: string | number }> = ({ name, price }) => (
-  <div className="flex items-center gap-4 py-3 group">
-    <span className="font-sans text-[13px] text-[#4A4A4A] tracking-wider uppercase font-light">{name}</span>
+  <div className="flex items-center gap-2 md:gap-4 py-1.5 md:py-2 group">
+    <span className="font-sans text-[11px] md:text-[13px] text-[#4A4A4A] tracking-wider uppercase font-light">{name}</span>
     <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-3"></div>
-    <span className="font-sans text-[16px] text-[#D9A07E] font-semibold">R${price}</span>
+    <div className="flex flex-col items-end">
+      <span className="font-sans text-[8px] md:text-[9px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
+      <span className="font-sans text-[14px] md:text-[16px] text-[#D9A07E] font-semibold">R${price}</span>
+    </div>
   </div>
 );
 
@@ -130,8 +133,8 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           services: [
             { name: 'CURTO - PIXIE CUT', price: '544,50' },
             { name: 'CURTO - NUCA', price: '654,50' },
-            { name: 'MÉDIO - PESCOÇO', price: 869 },
-            { name: 'MÉDIO - OMBRO', price: 935 },
+            { name: 'MÉDIO - PESCOÇO', price: '869' },
+            { name: 'MÉDIO - OMBRO', price: '935' },
             { name: 'LONGO - SOUTIEN', price: '1.120' },
             { name: 'LONGO - CINTURA', price: '1.320' }
           ]
@@ -143,8 +146,8 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           services: [
             { name: 'CURTO - PIXIE CUT', price: '544,50' },
             { name: 'CURTO - NUCA', price: '654,50' },
-            { name: 'MÉDIO - PESCOÇO', price: 869 },
-            { name: 'MÉDIO - OMBRO', price: 935 },
+            { name: 'MÉDIO - PESCOÇO', price: '869' },
+            { name: 'MÉDIO - OMBRO', price: '935' },
             { name: 'LONGO - SOUTIEN', price: '1.120' },
             { name: 'LONGO - CINTURA', price: '1.320' }
           ]
@@ -156,8 +159,8 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           services: [
             { name: 'CURTO - PIXIE CUT', price: '544,50' },
             { name: 'CURTO - NUCA', price: '654,50' },
-            { name: 'MÉDIO - PESCOÇO', price: 869 },
-            { name: 'MÉDIO - OMBRO', price: 935 },
+            { name: 'MÉDIO - PESCOÇO', price: '869' },
+            { name: 'MÉDIO - OMBRO', price: '935' },
             { name: 'LONGO - SOUTIEN', price: '1.120' },
             { name: 'LONGO - CINTURA', price: '1.320' }
           ]
@@ -167,8 +170,8 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           title: 'Super Blond',
           image: 'https://lh3.googleusercontent.com/d/1vNXCDTOUWIIZwvd9DDLL9bV--TG1EfBF',
           services: [
-            { name: 'CURTO - NUCA', price: 759 },
-            { name: 'MÉDIO - PESCOÇO', price: 979 },
+            { name: 'CURTO - NUCA', price: '759' },
+            { name: 'MÉDIO - PESCOÇO', price: '979' },
             { name: 'MÉDIO - OMBRO', price: '1.045' },
             { name: 'LONGO - SOUTIEN', price: '1.122' },
             { name: 'EXTRA LONGO CINTURA', price: '1.375' }
@@ -179,7 +182,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           title: 'Blond Iluminar',
           image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt', 
           services: [
-            { name: 'CURTO - NUCA', price: 959 },
+            { name: 'CURTO - NUCA', price: '959' },
             { name: 'MÉDIO - PESCOÇO', price: '1.179' },
             { name: 'MÉDIO - OMBRO', price: '1.245' },
             { name: 'LONGO - SOUTIEN', price: '1.322' },
@@ -205,16 +208,16 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
             </div>
 
             {/* Right List Section */}
-            <div className="w-full md:w-1/2 h-[60%] md:h-full px-8 md:px-20 pb-12 flex flex-col justify-start md:justify-center pt-10 md:pt-0">
+            <div className="w-full md:w-1/2 h-[60%] md:h-full px-6 md:px-20 pb-8 flex flex-col justify-start md:justify-center pt-8 md:pt-0">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="font-serif text-3xl md:text-4xl text-[#4A4A4A] mb-2">{cat.title}</h2>
-                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-8 md:mb-10">Tabela de Valores</p>
+                <h2 className="font-serif text-3xl md:text-4xl text-[#4A4A4A] mb-1">{cat.title}</h2>
+                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-4 md:mb-8">Expertise & Arte</p>
                 
-                <div className="space-y-1.5 md:space-y-2">
+                <div className="space-y-0.5 md:space-y-1">
                   {cat.services.map((svc, i) => (
                     <PriceItem key={i} {...svc} />
                   ))}
