@@ -189,32 +189,32 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
       ].map((cat) => (
         <Slide key={cat.id}>
           {/* Vertical Large Text */}
-          <div className="absolute right-0 top-0 h-full flex items-center pr-4 pointer-events-none overflow-hidden">
-            <span className="font-serif text-[18vh] text-black/[0.03] rotate-90 origin-center whitespace-nowrap uppercase tracking-tighter">
+          <div className="absolute inset-y-0 left-0 w-20 md:w-32 flex items-center justify-center pointer-events-none overflow-hidden z-0">
+            <span className="font-serif text-[10vh] md:text-[15vh] text-black/[0.02] -rotate-90 whitespace-nowrap uppercase tracking-widest leading-none">
               {cat.title}
             </span>
           </div>
 
-          <div className="flex flex-col md:flex-row h-full w-full z-10 pt-20">
+          <div className="flex flex-col md:flex-row h-full w-full z-10 pt-16 md:pt-20">
             {/* Left Image Section */}
-            <div className="w-full md:w-1/2 h-[45%] md:h-full p-8 md:p-16 flex flex-col justify-center">
-              <div className="relative w-full h-full rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
-                <img src={cat.image} className="w-full h-full object-cover object-top" alt={cat.title} />
+            <div className="w-full md:w-1/2 h-[40%] md:h-full p-6 md:p-16 flex flex-col justify-center">
+              <div className="relative w-full h-full rounded-b-[80px] md:rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
+                <img src={cat.image} className="w-full h-full object-cover object-center" alt={cat.title} />
                 <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
             </div>
 
             {/* Right List Section */}
-            <div className="w-full md:w-1/2 h-[55%] md:h-full px-8 md:px-20 pb-16 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 h-[60%] md:h-full px-8 md:px-20 pb-12 flex flex-col justify-start md:justify-center pt-10 md:pt-0">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="font-serif text-4xl text-[#4A4A4A] mb-2">{cat.title}</h2>
-                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-10">Tabela de Valores</p>
+                <h2 className="font-serif text-3xl md:text-4xl text-[#4A4A4A] mb-2">{cat.title}</h2>
+                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-8 md:mb-10">Tabela de Valores</p>
                 
-                <div className="space-y-2">
+                <div className="space-y-1.5 md:space-y-2">
                   {cat.services.map((svc, i) => (
                     <PriceItem key={i} {...svc} />
                   ))}
