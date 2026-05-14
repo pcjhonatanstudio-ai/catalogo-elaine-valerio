@@ -77,12 +77,12 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
 };
 
 const PriceItem: React.FC<{ name: string; price: string | number }> = ({ name, price }) => (
-  <div className="flex items-center gap-2 md:gap-4 py-1.5 md:py-2 group">
-    <span className="font-sans text-[11px] md:text-[13px] text-[#4A4A4A] tracking-wider uppercase font-light">{name}</span>
+  <div className="flex items-center gap-2 md:gap-4 py-2 md:py-2.5 group">
+    <span className="font-sans text-[12.5px] md:text-[15px] text-[#4A4A4A] tracking-wider uppercase font-light">{name}</span>
     <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-3"></div>
     <div className="flex flex-col items-end">
-      <span className="font-sans text-[8px] md:text-[9px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
-      <span className="font-sans text-[14px] md:text-[16px] text-[#D9A07E] font-semibold">R${price}</span>
+      <span className="font-sans text-[9px] md:text-[10px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
+      <span className="font-sans text-[16px] md:text-[18px] text-[#D9A07E] font-semibold">R${price}</span>
     </div>
   </div>
 );
