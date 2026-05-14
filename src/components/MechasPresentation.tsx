@@ -128,10 +128,12 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           title: 'Iluminar',
           image: 'https://lh3.googleusercontent.com/d/10ZyFi-WdgBx7k0XOajdBicLUaXFWdgiT',
           services: [
-            { name: 'Iluminação Pontual', price: 350 },
-            { name: 'Sun Kissed', price: 420 },
-            { name: 'Baby Lights', price: 480 },
-            { name: 'Contour Light', price: 380 }
+            { name: 'CURTO - PIXIE CUT', price: '544,50' },
+            { name: 'CURTO - NUCA', price: '654,50' },
+            { name: 'MÉDIO - PESCOÇO', price: 869 },
+            { name: 'MÉDIO - OMBRO', price: 935 },
+            { name: 'LONGO - SOUTIEN', price: '1.120' },
+            { name: 'LONGO - CINTURA', price: '1.320' }
           ]
         },
         {
@@ -139,10 +141,12 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           title: 'Contraste',
           image: 'https://lh3.googleusercontent.com/d/1kssz8lXblrQPU0gwqNko8E-7Kubyy8_n',
           services: [
-            { name: 'Balayage Contrast', price: 550 },
-            { name: 'Mechas Slice', price: 620 },
-            { name: 'Low Lights', price: 450 },
-            { name: 'Dimension Blond', price: 680 }
+            { name: 'CURTO - PIXIE CUT', price: '544,50' },
+            { name: 'CURTO - NUCA', price: '654,50' },
+            { name: 'MÉDIO - PESCOÇO', price: 869 },
+            { name: 'MÉDIO - OMBRO', price: 935 },
+            { name: 'LONGO - SOUTIEN', price: '1.120' },
+            { name: 'LONGO - CINTURA', price: '1.320' }
           ]
         },
         {
@@ -150,10 +154,12 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           title: 'Camuflar',
           image: 'https://lh3.googleusercontent.com/d/1QiUmD8jrcJmEgzoSH5NDVvDMpVGMNJup',
           services: [
-            { name: 'Camuflagem de Brancos', price: 280 },
-            { name: 'Ice Grey Blond', price: 520 },
-            { name: 'Neutralização', price: 180 },
-            { name: 'Glossing', price: 120 }
+            { name: 'CURTO - PIXIE CUT', price: '544,50' },
+            { name: 'CURTO - NUCA', price: '654,50' },
+            { name: 'MÉDIO - PESCOÇO', price: 869 },
+            { name: 'MÉDIO - OMBRO', price: 935 },
+            { name: 'LONGO - SOUTIEN', price: '1.120' },
+            { name: 'LONGO - CINTURA', price: '1.320' }
           ]
         },
         {
@@ -161,10 +167,23 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           title: 'Super Blond',
           image: 'https://lh3.googleusercontent.com/d/1vNXCDTOUWIIZwvd9DDLL9bV--TG1EfBF',
           services: [
-            { name: 'Pérola Total', price: 850 },
-            { name: 'Platinado Luxo', price: 950 },
-            { name: 'Nude Blond', price: 780 },
-            { name: 'Baunilha Ice', price: 820 }
+            { name: 'CURTO - NUCA', price: 759 },
+            { name: 'MÉDIO - PESCOÇO', price: 979 },
+            { name: 'MÉDIO - OMBRO', price: '1.045' },
+            { name: 'LONGO - SOUTIEN', price: '1.122' },
+            { name: 'EXTRA LONGO CINTURA', price: '1.375' }
+          ]
+        },
+        {
+          id: 'blond-iluminar',
+          title: 'Blond Iluminar',
+          image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt', 
+          services: [
+            { name: 'CURTO - NUCA', price: 959 },
+            { name: 'MÉDIO - PESCOÇO', price: '1.179' },
+            { name: 'MÉDIO - OMBRO', price: '1.245' },
+            { name: 'LONGO - SOUTIEN', price: '1.322' },
+            { name: 'EXTRA LONGO CINTURA', price: '1.595' }
           ]
         }
       ].map((cat) => (
