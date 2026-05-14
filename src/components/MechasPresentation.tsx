@@ -198,26 +198,26 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
             </span>
           </div>
 
-          <div className="flex flex-col md:flex-row h-full w-full z-10 pt-16 md:pt-20">
+          <div className="flex flex-col md:flex-row h-full w-full z-10 pt-10 md:pt-20">
             {/* Left Image Section */}
-            <div className="w-full md:w-1/2 h-[40%] md:h-full p-6 md:p-16 flex flex-col justify-center">
-              <div className="relative w-full h-full rounded-b-[80px] md:rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
+            <div className="w-full md:w-1/2 h-[35%] md:h-full p-2 md:p-16 flex flex-col justify-center">
+              <div className="relative w-full h-full rounded-b-[40px] md:rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
                 <img src={cat.image} className="w-full h-full object-cover object-center" alt={cat.title} />
                 <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
             </div>
 
             {/* Right List Section */}
-            <div className="w-full md:w-1/2 h-[60%] md:h-full px-6 md:px-20 pb-8 flex flex-col justify-start md:justify-center pt-8 md:pt-0">
+            <div className="w-full md:w-1/2 h-[65%] md:h-full px-6 md:px-20 pb-4 flex flex-col justify-start md:justify-center pt-1 md:pt-0">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
                 <h2 className="font-serif text-3xl md:text-4xl text-[#4A4A4A] mb-1">{cat.title}</h2>
-                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-4 md:mb-8">Expertise & Arte</p>
+                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-1 md:mb-8">Expertise & Arte</p>
                 
-                <div className="space-y-0.5 md:space-y-1">
+                <div className="space-y-0 md:space-y-1">
                   {cat.services.map((svc, i) => (
                     <PriceItem key={i} {...svc} />
                   ))}
