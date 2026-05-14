@@ -415,7 +415,7 @@ export default function App() {
                         <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3 opacity-30"></div>
                       </div>
 
-                      <div className="text-[18px] font-sans font-bold text-[#C5A059] flex-shrink-0">
+                      <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] flex-shrink-0`}>
                         {svc.price === 'SOB AVALIAÇÃO' ? svc.price : `R$${svc.price}`}
                       </div>
                     </motion.div>
