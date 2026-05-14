@@ -160,14 +160,14 @@ const CATEGORIES = [
     image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt',
       services: [
         { name: 'Corte', isTitle: true },
-        { name: 'Corte (Tesoura)', price: 99 },
-        { name: 'Corte (Pontas)', price: 77 },
+        { name: 'CORTE TESOURA ELAINE', price: 180 },
+        { name: 'CORTE TESOURA EQUIPE', price: 120 },
         { name: 'London', isTitle: true },
-        { name: 'Curto', price: 300 },
-        { name: 'Chanel | Nuca', price: 330 },
-        { name: 'Médio | Ombro', price: 360 },
-        { name: 'Longo | Soutien', price: 410 },
-        { name: 'Longo Cintura', price: 490 },
+        { name: 'CURTO', price: 330 },
+        { name: 'CHANEL', price: 356 },
+        { name: 'MÉDIO - OMBRO', price: 396 },
+        { name: 'LONGO - SOUTIEN', price: 465 },
+        { name: 'LONGO - CINTURA', price: 540 },
         { name: "ANTIFRIZZ\nA PARTIR DE:", isTitle: true },
         { name: 'CHANEL - NUCA', price: 242 },
         { name: 'MÉDIO - OMBRO', price: 290 },
@@ -210,6 +210,30 @@ const CATEGORIES = [
       { name: 'COLORAÇÃO M', price: 190 },
       { name: 'COLORAÇÃO G', price: 242 },
       { name: 'COLORAÇÃO XG', price: 'SOB AVALIAÇÃO' },
+    ]
+  },
+  {
+    id: 'sobrancelha',
+    title: 'Sobrancelha',
+    icon: MagicWand,
+    image: 'https://images.unsplash.com/photo-1522337621168-3e4776034173?q=80&w=800&auto=format&fit=crop',
+    services: [
+      { name: 'DESIGN', price: 55 },
+      { name: 'LIMPEZA SIMPLES', price: 45 },
+      { name: 'HENA + LIMPEZA', price: 66 },
+      { name: 'COLORAÇÃO + LIMPEZA', price: 77 },
+      { name: 'BROW LAMINATION', price: 200 },
+      { name: 'BROW + COLORAÇÃO', price: 220 },
+    ]
+  },
+  {
+    id: 'penteados',
+    title: 'Penteados',
+    icon: Crown,
+    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop',
+    services: [
+      { name: 'SOCIAL', price: '200 CARTÃO | 190 DINHEIRO' },
+      { name: 'NOIVA', price: 'SOB AVALIAÇÃO' },
     ]
   },
   {
@@ -360,15 +384,10 @@ export default function App() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-6">
                   <button 
                      onClick={() => setSelectedCategory(null)}
-                     className="absolute top-10 left-6 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(197,160,89,0.3)] border-2 border-[#C5A059] flex items-center justify-center transition-all hover:scale-110 active:scale-95 group z-50"
+                     className="fixed top-10 left-6 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(197,160,89,0.3)] border-2 border-[#C5A059] flex items-center justify-center transition-all hover:scale-110 active:scale-95 group z-50 text-[#C5A059]"
                    >
-                     <CaretLeft className="w-7 h-7 text-[#C5A059] group-hover:scale-110 transition-transform" weight="bold" />
+                     <CaretLeft className="w-7 h-7 group-hover:-translate-x-1 transition-transform" weight="bold" />
                    </button>
-                   
-                   <h2 className="font-serif italic text-6xl md:text-8xl leading-none text-white drop-shadow-[0_2px_10px_rgba(197,160,89,0.3)]">
-                      {selectedCategory.id === 'tratamentos' ? '' : selectedCategory.title}
-                   </h2>
-                   <FlowerLotus className="w-10 h-10 text-[#C5A059] mt-3" weight="light" />
                 </div>
               </div>
 
@@ -424,34 +443,35 @@ export default function App() {
                       transition={{ delay: i * 0.05 }}
                       className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-black/[0.03] rounded-[15px] p-5 flex items-center gap-4"
                     >
-                      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center text-[#C5A059]">
-                        {(() => {
-                            if (selectedCategory.id === 'tratamentos') return <Sparkle className="w-6 h-6" weight="light" />;
-                            const name = svc.name.toLowerCase();
-                            if (name.includes('alongamento')) return <HandWaving className="w-7 h-7" weight="light" />;
-                            if (name.includes('manutenção')) return <MagicWand className="w-7 h-7" weight="light" />;
-                            if (name.includes('banho de gel')) return <Drop className="w-7 h-7" weight="light" />;
-                            if (name.includes('esmaltação em gel')) return <PaintBrush className="w-7 h-7" weight="light" />;
-                            if (name.includes('postiça')) return <Fingerprint className="w-7 h-7" weight="light" />;
-                            if (name.includes('blindagem')) return <ShieldCheck className="w-7 h-7" weight="light" />;
-                            if (name.includes('truss') || name.includes('truz')) return <Crown className="w-7 h-7" weight="light" />;
-                            if (name.includes('wella')) return <Diamond className="w-7 h-7" weight="light" />;
-                            if (name.includes('anethun')) return <Jar className="w-7 h-7" weight="light" />;
-                            if (name.includes('cronograma')) return <Jar className="w-7 h-7" weight="light" />;
-                            return <Sparkle className="w-6 h-6" weight="light" />;
-                        })()}
-                      </div>
-                      
-                      <div className="flex-1 min-w-0 flex items-center">
+                      <div className={`flex-1 min-w-0 ${selectedCategory.id === 'penteados' && svc.name === 'SOCIAL' ? 'flex flex-col' : 'flex items-center'}`}>
                         <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase">
                           {svc.name}
                         </span>
-                        <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3 opacity-30"></div>
+                        {selectedCategory.id === 'penteados' && svc.name === 'SOCIAL' ? (
+                          <div className="mt-1 text-[16px] font-sans font-bold text-[#C5A059]">
+                            {svc.price}
+                          </div>
+                        ) : (
+                          <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3 opacity-30"></div>
+                        )}
                       </div>
 
-                      <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] flex-shrink-0`}>
-                        {svc.price === 'SOB AVALIAÇÃO' ? svc.price : `R$${svc.price}`}
-                      </div>
+                      {!(selectedCategory.id === 'penteados' && svc.name === 'SOCIAL') && (
+                        <div className="flex flex-col items-end flex-shrink-0">
+                          {!['esmalteria', 'sobrancelha', 'penteados'].includes(selectedCategory.id) && 
+                           svc.price !== 'SOB AVALIAÇÃO' && (
+                            <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#C5A059]/60 leading-none mb-0.5">A PARTIR DE</span>
+                          )}
+                          <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] leading-none`}>
+                            { svc.price === 'SOB AVALIAÇÃO' 
+                              ? svc.price 
+                              : typeof svc.price === 'number' || !isNaN(Number(svc.price.toString().replace(',','.'))) 
+                                ? `R$${svc.price}` 
+                                : svc.price 
+                            }
+                          </div>
+                        </div>
+                      )}
                     </motion.div>
                   )
                 ))}

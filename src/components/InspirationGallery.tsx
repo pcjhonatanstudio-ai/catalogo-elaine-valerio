@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { X, CaretDown, Sparkle, House } from '@phosphor-icons/react';
+import { X, CaretDown, CaretLeft, Sparkle, House } from '@phosphor-icons/react';
 
 const IMAGES = [
   '1_Ob8nVE13ni75Z6tu5-UaBVO7y95gqIm',
@@ -41,9 +41,9 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
       {/* Back Button */}
       <button 
         onClick={onClose}
-        className="fixed top-8 right-8 z-[110] bg-white border-2 border-[#C5A059] text-[#C5A059] p-3 rounded-full shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group"
+        className="fixed top-8 left-8 z-[110] w-12 h-12 rounded-full bg-white border-2 border-[#C5A059] text-[#C5A059] shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group flex items-center justify-center"
       >
-        <X className="w-6 h-6 group-hover:rotate-90 transition-transform" weight="bold" />
+        <CaretLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" weight="bold" />
       </button>
 
       {/* Cover Slide */}
@@ -58,18 +58,6 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
           transition={{ duration: 1 }}
           className="relative z-10 flex flex-col items-center text-center"
         >
-          <h1 className="font-serif text-6xl md:text-9xl text-white mb-2 tracking-tight">
-            Inspire-se
-          </h1>
-          <div className="flex items-center gap-4 my-6">
-            <div className="w-12 md:w-20 h-px bg-[#C5A059]/40"></div>
-            <Sparkle className="w-6 h-6 text-[#C5A059]" weight="light" />
-            <div className="w-12 md:w-20 h-px bg-[#C5A059]/40"></div>
-          </div>
-          <p className="font-serif italic text-xl md:text-3xl text-[#C5A059]/80 max-w-md">
-            Transformações que traduzem a sua melhor versão.
-          </p>
-          
           <motion.div 
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}

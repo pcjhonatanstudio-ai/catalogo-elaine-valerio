@@ -6,6 +6,7 @@ import {
   Diamond, 
   CheckCircle, 
   CaretDown,
+  CaretLeft,
   Sparkle
 } from '@phosphor-icons/react';
 
@@ -84,12 +85,12 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[100] bg-[#0D0D0D] text-[#E5E5E5] overflow-y-scroll snap-y snap-mandatory font-sans"
     >
-      {/* Botão Fechar Luxo */}
+      {/* Global Back Button */}
       <button 
         onClick={onClose}
-        className="fixed top-8 right-8 z-[110] bg-white border-2 border-[#C5A059] text-[#C5A059] p-3 rounded-full shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group"
+        className="fixed top-8 left-8 z-[110] w-12 h-12 rounded-full bg-white border-2 border-[#C5A059] text-[#C5A059] shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group flex items-center justify-center"
       >
-        <X className="w-6 h-6 group-hover:rotate-90 transition-transform" weight="bold" />
+        <CaretLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" weight="bold" />
       </button>
 
       {slides.map((slide, index) => (
@@ -111,14 +112,6 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex flex-col items-center w-full"
               >
-                <span className="text-[#C5A059] tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs font-semibold mb-2 md:mb-4 uppercase shrink-0">Experience Luxury</span>
-                <h1 className="font-serif text-5xl md:text-8xl text-white mb-1 md:mb-2 tracking-tight shrink-0">
-                  {slide.title}
-                </h1>
-                <h2 className="font-serif italic text-6xl md:text-9xl text-[#C5A059] -mt-2 md:-mt-4 drop-shadow-2xl shrink-0">
-                  {slide.subtitle}
-                </h2>
-                
                 <div className="w-full max-w-[260px] md:max-w-sm mt-6 md:mt-10 aspect-video relative group">
                   <div className="absolute inset-0 border border-[#C5A059]/40 rounded-2xl -z-10 shadow-[0_0_20px_rgba(197,160,89,0.1)]"></div>
                   <div className="w-full h-full bg-black/20 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 flex items-center justify-center">
@@ -242,7 +235,10 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                     <div className="flex flex-col gap-1 md:gap-2">
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
                           <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Cronograma 2026</span>
-                          <span className="text-[#C5A059] font-serif text-xl md:text-3xl">R$ {slide.schedulePrice}</span>
+                          <div className="flex flex-col items-end">
+                             <span className="text-[8px] md:text-[10px] text-[#C5A059]/60 uppercase tracking-tighter leading-none mb-1">A PARTIR DE</span>
+                             <span className="text-[#C5A059] font-serif text-xl md:text-3xl leading-none transition-all">R$ {slide.schedulePrice}</span>
+                           </div>
                        </div>
                        <p className="text-[10px] text-[#E5E5E5]/40 text-left mt-1 italic tracking-wider">Protocolo Premium com 4 sessões</p>
                     </div>
@@ -250,7 +246,10 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                     <div className="flex flex-col gap-1 md:gap-2">
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
                           <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Sessão Avulsa</span>
-                          <span className="text-[#E5E5E5] font-serif text-xl md:text-3xl">R$ {slide.singlePrice}</span>
+                          <div className="flex flex-col items-end">
+                             <span className="text-[8px] md:text-[10px] text-[#E5E5E5]/40 uppercase tracking-tighter leading-none mb-1">A PARTIR DE</span>
+                             <span className="text-[#E5E5E5] font-serif text-xl md:text-3xl leading-none transition-all">R$ {slide.singlePrice}</span>
+                           </div>
                        </div>
                        <p className="text-[10px] text-[#E5E5E5]/40 text-left mt-1 italic tracking-wider">Experiência única restauradora</p>
                     </div>
