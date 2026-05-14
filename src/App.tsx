@@ -189,7 +189,7 @@ const CATEGORIES = [
     icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV',
     image: 'https://lh3.googleusercontent.com/d/15l6uCMz04lseHMg5CvC8k6hn3FCrPXDU',
     services: [
-      { name: 'Colorações (A partir de)', isTitle: true },
+      { name: "COLORAÇÕES\nA PARTIR DE:", isTitle: true },
       { name: 'RETOQUE', price: 109 },
       { name: 'RETOQUE + TRATAMENTO ( COM COLORAÇÃO DO STUDIO )', price: 148 },
       { name: 'COLORAÇÃO P', price: 155 },
@@ -375,7 +375,14 @@ export default function App() {
                 {selectedCategory.services.map((svc: any, i) => (
                   svc.isTitle ? (
                     <div key={i} className="pt-10 pb-4">
-                      <span className="text-[12px] font-bold uppercase tracking-[0.6em] text-[#C5A059] px-4 opacity-80">{svc.name}</span>
+                      {svc.name.split('\n').map((line: string, idx: number) => (
+                        <span 
+                          key={idx} 
+                          className={`text-[12px] font-bold uppercase tracking-[0.6em] text-[#C5A059] px-4 opacity-80 block ${idx === 0 ? 'text-center' : 'text-left text-[10px] tracking-[0.4em] mt-4'}`}
+                        >
+                          {line}
+                        </span>
+                      ))}
                     </div>
                   ) : (
                     <motion.div 
