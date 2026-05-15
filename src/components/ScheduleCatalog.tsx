@@ -32,9 +32,9 @@ export default function ScheduleCatalog({
     {
       id: 'tecnologia',
       type: 'content',
-      title: 'Desintoxicação de Metais',
+      title: 'NO METAL',
       image: 'https://drive.google.com/thumbnail?id=1KMCd1uNowV-3u7lN7TYByOccwLti9m6d&sz=w1000',
-      description: 'Protocolos exclusivos com produtos Premium que neutralizam e removem metais pesados acumulados na fibra capilar, prevenindo quebra e garantindo resultados de cor impecáveis.',
+      description: 'Protocolo exclusivo com produtos premium que associado ao vapor de ozônio, neutralizam e removem metais pesados acumulados na fibra capilar.',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {
@@ -49,7 +49,7 @@ export default function ScheduleCatalog({
       id: 'truss',
       type: 'price',
       brand: 'Truss Infusion',
-      title: 'PROTOCOLO TRUSS',
+      title: 'CRONOGRAMA TRUSS',
       image: 'https://drive.google.com/thumbnail?id=1sUVOtt5CNMVgxLwzoxffl7KerLCFU97T&sz=w1000',
       scheduleLabel: 'CRONOGRAMA TRUSS',
       schedulePrice: '748',
@@ -63,7 +63,7 @@ export default function ScheduleCatalog({
       id: 'wella',
       type: 'price',
       brand: 'Wella Professionals',
-      title: 'PROTOCOLO WELLA',
+      title: 'CRONOGRAMA WELLA',
       image: 'https://drive.google.com/thumbnail?id=11KJa31i89js-8iN4LeAk7UHeInJuVQpZ&sz=w1000',
       scheduleLabel: 'CRONOGRAMA WELLA',
       schedulePrice: '660',
@@ -77,7 +77,7 @@ export default function ScheduleCatalog({
       id: 'alfaparf',
       type: 'price',
       brand: 'Alfaparf Milano',
-      title: 'PROTOCOLO ALFAPARF',
+      title: 'CRONOGRAMA ALFAPARF',
       image: 'https://drive.google.com/thumbnail?id=1J5FdaKQhhURl5iCgVu7psfVsxBoXRKM_&sz=w1000',
       scheduleLabel: 'CRONOGRAMA ALFAPARF',
       schedulePrice: '638',
@@ -91,7 +91,7 @@ export default function ScheduleCatalog({
       id: 'aneethun',
       type: 'price',
       brand: 'Aneethun',
-      title: 'PROTOCOLO ANETHUN',
+      title: 'CRONOGRAMA ANETHUN',
       image: 'https://drive.google.com/thumbnail?id=1khESMmmezgAZzyj-dVM6EU7a1hUtE71q&sz=w1000',
       scheduleLabel: 'CRONOGRAMA ANETHUN',
       schedulePrice: '528',
@@ -269,9 +269,9 @@ export default function ScheduleCatalog({
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
                           <div className="flex items-center gap-3">
                             <button 
-                              onClick={() => toggleCartItem({ name: `Protocolo ${slide.title} (4 sessões)`, price: slide.schedulePrice }, 'Cronograma')}
+                              onClick={() => toggleCartItem({ name: `${slide.title} (4 sessões)`, price: slide.schedulePrice }, 'Cronograma')}
                               className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
-                                cart.find(item => item.name === `Protocolo ${slide.title} (4 sessões)`)
+                                cart.find(item => item.name === `${slide.title} (4 sessões)`)
                                   ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
                                   : 'border-[#C5A059]/40 text-transparent hover:border-[#C5A059] hover:bg-[#C5A059]/5'
                               }`}

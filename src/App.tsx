@@ -294,7 +294,7 @@ const CATEGORIES = [
     services: [
       { name: 'RITUAL RELAXANTE "PERNAS E PÉS"\n(45MIN)', price: 100 },
       { name: 'MASSAGEM', isTitle: true },
-      { name: 'PACOTE RELAXANTE\n(DETOX COM MASSAGEM epicrânia E RITUAL RELAXANTE PERNAS E PÉS COM SAIS E ÓLEOS AROMATICOS)', price: 200 },
+      { name: 'PACOTE RELAXANTE\n(DETOX COM MASSAGEM EPICRANIANA E RITUAL RELAXANTE PERNAS E PÉS COM SAIS E ÓLEOS AROMATICOS)', price: 200 },
     ]
   },
   {

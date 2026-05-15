@@ -201,8 +201,8 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
           ]
         },
         {
-          id: 'blond-iluminar',
-          title: 'Blond Iluminar',
+          id: 'blond-lumiere',
+          title: 'Blond Lumière',
           image: 'https://drive.google.com/thumbnail?id=1aWsd1tYh6oQvH7adkDrpwuKDMLlM_uZb&sz=w1000', 
           services: [
             { name: 'CURTO - NUCA', price: '959' },
