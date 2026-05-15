@@ -224,7 +224,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
           <div className="flex flex-col md:flex-row h-full w-full z-10 pt-10 md:pt-20">
             {/* Left Image Section */}
             <div className="w-full md:w-1/2 h-[35%] md:h-full p-2 md:p-16 flex flex-col justify-center">
-              <div className="relative w-full h-full rounded-b-[40px] md:rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
+              <div className="relative w-full h-full overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
                 <img src={cat.image} className="w-full h-full object-cover object-[center_15%]" alt={cat.title} />
                 <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
@@ -267,7 +267,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
           <h2 className="font-serif text-4xl text-[#4A4A4A] mb-4">Produtos Premium</h2>
           <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-12">Performance & Cuidado</p>
           
-          <div className="relative aspect-video rounded-[30px] overflow-hidden mb-12 border border-[#D9A07E]/20 shadow-xl">
+          <div className="relative aspect-video overflow-hidden mb-12 border border-[#D9A07E]/20 shadow-xl">
              <img src="https://lh3.googleusercontent.com/d/1TLOZ7XfuqkDmHdQCUwEDrvC6hwVNjwuX" className="w-full h-full object-cover" alt="Premium Products" />
              <div className="absolute inset-0 bg-black/5"></div>
           </div>

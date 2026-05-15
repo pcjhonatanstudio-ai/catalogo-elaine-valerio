@@ -32,9 +32,9 @@ export default function ScheduleCatalog({
     {
       id: 'tecnologia',
       type: 'content',
-      title: 'Tecnologia & Ciência',
+      title: 'Desintoxicação de Metais',
       image: 'https://drive.google.com/thumbnail?id=1KMCd1uNowV-3u7lN7TYByOccwLti9m6d&sz=w1000',
-      description: 'Unimos inovação tecnológica e o aparelho Ponce para transformar profundamente a saúde da fibra capilar.',
+      description: 'Protocolos exclusivos com produtos Premium que neutralizam e removem metais pesados acumulados na fibra capilar, prevenindo quebra e garantindo resultados de cor impecáveis.',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {
@@ -42,7 +42,7 @@ export default function ScheduleCatalog({
       type: 'content',
       title: 'Anamnese Personalizada',
       image: 'https://drive.google.com/thumbnail?id=1lgq49DzibvfWksYVR1ZGOZcwgpq9tFL1&sz=w1000',
-      description: 'Cada diagnóstico é único. Realizamos análise microscópica profunda para identificar as reais necessidades do seu fio.',
+      description: 'Cada diagnóstico é único. Realizamos análise profunda para identificar as reais necessidades do seu fio.',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {

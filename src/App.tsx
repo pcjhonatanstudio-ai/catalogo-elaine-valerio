@@ -188,10 +188,10 @@ const CATEGORIES = [
     id: 'tratamentos',
     title: 'Tratamentos',
     icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U',
-    image: 'https://lh3.googleusercontent.com/d/18285y_AaJ-tuP0vxU4d6mMyKS9Q2gOH-',
+    image: 'https://lh3.googleusercontent.com/d/1FUxuHlt_2W4F8QETGqZBrHvm4t4PVDd2',
     services: [
       { name: "TRATAMENTO AVANÇADO INDIVIDUALIZADO\n(SESSÕES INDIVIDUAIS)\nA PARTIR DE:", isTitle: true },
-      { name: 'TRUZ', price: 176 },
+      { name: 'TRUSS', price: 176 },
       { name: 'WELLA', price: 165 },
       { name: 'ALFAPARF', price: '159,50' },
       { name: 'ANETHUN', price: 132 },
@@ -235,8 +235,16 @@ const CATEGORIES = [
     icon: Crown,
     image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop',
     services: [
-      { name: 'SOCIAL', price: '200 CARTÃO | 190 DINHEIRO' },
-      { name: 'NOIVA', price: 'SOB AVALIAÇÃO' },
+      { name: 'SOCIAL', cashPrice: 170, cardPrice: 187 },
+      { name: 'NOIVA COM PRÉVIA', cashPrice: 430, cardPrice: 465 },
+      { name: 'NOIVA SEM PRÉVIA', cashPrice: 320, cardPrice: 345 },
+      { name: 'DEBUTANTES COM PRÉVIA', cashPrice: 320, cardPrice: 345 },
+      { name: 'DEBUTANTES SEM PRÉVIA', cashPrice: 215, cardPrice: 230 },
+      { name: 'MAQUIAGEM', isTitle: true },
+      { name: 'SOCIAL', cashPrice: 170, cardPrice: 187 },
+      { name: 'NOIVA COM PRÉVIA', cashPrice: 780, cardPrice: 800 },
+      { name: 'NOIVA SEM PRÉVIA', cashPrice: 370, cardPrice: 390 },
+      { name: 'ESCOVA COM ONDAS + MAQUIAGEM', cashPrice: 265, cardPrice: 291 },
     ]
   },
   {
@@ -251,11 +259,19 @@ const CATEGORIES = [
       { name: 'VOLUME BRASILEIRO', isTitle: true },
       { name: 'COLOCAÇÃO', price: 175 },
       { name: 'MANUTENÇÃO', price: 99 },
-      { name: 'TÉCNICA STUDIO ELAINE VALERIO', isTitle: true },
+      { 
+        name: 'TÉCNICA STUDIO ELAINE VALERIO', 
+        isTitle: true,
+        description: 'Uma junção de técnicas adaptadas que nossa profissional usou sua persona, para adaptar em mulheres de personalidades fortes, que são fashionistas.\n\nManutenção 15 dias'
+      },
       { name: 'COLOCAÇÃO', price: 187 },
       { name: 'MANUTENÇÃO', price: 105 },
-      { name: 'LASH LIFTING', isTitle: true },
-      { name: 'LASH LIFTING\n(40 DIAS RETORNO)', price: 175 },
+      { 
+        name: 'LASH LIFTING', 
+        isTitle: true,
+        description: 'Técnica que permite levantar os fios naturais dos cilios, utilizando produtos para proporcionar uma curvatura acentuada e bem natural.\n\nEspecífico para mulheres que gostam de ser discretas, porém sem deixarem de ser elegantes.\n\nTEMPO DO PROCEDIMENTO, 1h20m\n\n(40 DIAS RETORNO)'
+      },
+      { name: 'LASH LIFTING', price: 175, description: '(40 DIAS RETORNO)' },
     ]
   },
   {
@@ -317,7 +333,7 @@ const CategoryHeaderCarousel = ({ images }: { images: string[] }) => {
       <AnimatePresence mode="popLayout">
         <motion.img
           key={currentIndex}
-          initial={{ opacity: 0, scale: 1.1 }}
+          initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -335,27 +351,56 @@ export default function App() {
   const [view, setView] = useState<'catalogue' | 'cronograma'>('catalogue');
   const [cart, setCart] = useState<any[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [itemPaymentModes, setItemPaymentModes] = useState<Record<string, 'cash' | 'card'>>({});
 
   const toggleCartItem = (service: any, categoryName: string) => {
+    const itemKey = `${categoryName}-${service.name}`;
+    const currentMode = itemPaymentModes[itemKey] || 'cash';
+    
     setCart(prev => {
       const exists = prev.find(item => item.name === service.name && item.category === categoryName);
       if (exists) {
         return prev.filter(item => !(item.name === service.name && item.category === categoryName));
       }
-      return [...prev, { ...service, category: categoryName }];
+      return [...prev, { ...service, category: categoryName, selectedPaymentMode: currentMode }];
     });
   };
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => {
-      const priceStr = item.price.toString().split('|')[0].trim();
+      // Find the original service to handle dynamic pricing based on the item's stored selectedPaymentMode
+      const cat = CATEGORIES.find(c => c.title === item.category);
+      const svc = cat?.services.find(s => s.name === item.name);
+      
+      const priceVal = (svc as any)?.cashPrice 
+        ? (item.selectedPaymentMode === 'card' ? (svc as any).cardPrice : (svc as any).cashPrice)
+        : item.price;
+
+      if (!priceVal) return total;
+      
+      const priceStr = priceVal.toString().split('|')[0].trim();
       const priceNum = parseFloat(priceStr.replace('.', '').replace(',', '.'));
       return isNaN(priceNum) ? total : total + priceNum;
     }, 0);
   };
 
   const handleWhatsAppRedirect = () => {
-    const itemsList = cart.map(item => `- ${item.category}: ${item.name} (${typeof item.price === 'number' ? `R$${item.price}` : item.price})`).join('\n');
+    const itemsList = cart.map(item => {
+      const cat = CATEGORIES.find(c => c.title === item.category);
+      const svc = cat?.services.find(s => s.name === item.name);
+      
+      let priceDisplay = '';
+      if ((svc as any)?.cashPrice) {
+        priceDisplay = item.selectedPaymentMode === 'card' 
+          ? `R$${(svc as any).cardPrice} (CARTÃO)` 
+          : `R$${(svc as any).cashPrice} (À VISTA)`;
+      } else {
+        priceDisplay = typeof item.price === 'number' ? `R$${item.price}` : item.price;
+      }
+      
+      return `- ${item.category}: ${item.name} (${priceDisplay})`;
+    }).join('\n');
+    
     const total = calculateTotal();
     const message = `Olá! Gostaria de agendar os seguintes serviços:\n\n${itemsList}\n\nTotal estimado: R$${total.toFixed(2).replace('.', ',')}\n\n*Valores sujeitos a avaliação presencial conforme volume e tamanho do cabelo.`;
     
@@ -425,7 +470,14 @@ export default function App() {
                       </div>
                       <div className="flex items-center gap-4">
                         <span className="font-bold text-[#C5A059]">
-                          {typeof item.price === 'number' ? `R$${item.price}` : item.price}
+                          {(() => {
+                            const cat = CATEGORIES.find(c => c.title === item.category);
+                            const svc = cat?.services.find(s => s.name === item.name);
+                            if ((svc as any)?.cashPrice) {
+                              return item.selectedPaymentMode === 'card' ? `R$${(svc as any).cardPrice}` : `R$${(svc as any).cashPrice}`;
+                            }
+                            return typeof item.price === 'number' ? `R$${item.price}` : item.price;
+                          })()}
                         </span>
                         <button onClick={() => toggleCartItem(item, item.category)} className="text-red-400 p-1">
                           <Trash size={18} />
@@ -577,10 +629,10 @@ export default function App() {
               {/* Header Image with Curve */}
               <div className="relative h-[48vh] w-full overflow-hidden">
                 <motion.div 
-                  initial={{ scale: 1.1 }}
+                  initial={{ scale: 1.02 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="w-full h-full absolute inset-0 rounded-b-[40px] md:rounded-b-[80px] overflow-hidden"
+                  className="w-full h-full absolute inset-0 overflow-hidden"
                 >
                   {selectedCategory.id === 'penteados' ? (
                     <CategoryHeaderCarousel images={PENTEADOS_IMAGES} />
@@ -594,16 +646,9 @@ export default function App() {
                   <div className="absolute inset-0 bg-black/20"></div>
                   
                   {/* Refined Inset Frame from Photo Reference */}
-                  <div className="absolute inset-4 border border-white/30 rounded-[30px] md:rounded-[60px] pointer-events-none"></div>
+                  <div className="absolute inset-4 border border-white/30 pointer-events-none"></div>
                 </motion.div>
                 
-                {/* Curve SVG Separator */}
-                <div className="absolute bottom-[-1px] left-0 w-full overflow-hidden leading-none rotate-180 z-20">
-                  <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] text-[#F9F6F1]">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.4,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,0,1200,0H0Z" fill="currentColor"></path>
-                  </svg>
-                </div>
-
                 {/* Content Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-6">
                   <button 
@@ -632,6 +677,23 @@ export default function App() {
                        <span className="text-[#C5A059] font-bold">(DIOR, MAC, KATHERINE HELL, SEBASTIAN, WELLA)</span>
                      </p>
                    </div>
+                 ) : selectedCategory.id === 'cilios' ? (
+                   <div className="max-w-md mx-auto px-4">
+                     <p className="text-[14px] text-[#333333] leading-relaxed font-light uppercase tracking-[0.1em]">
+                       Procedimento estético que visa aumentar o volume de fios, sem a necessidade de utilizar maquiagem ou cílios postiços. Proporciona, também, o preenchimento de falhas, deixando assim um olhar mais elegante e charmoso.
+                     </p>
+                     <div className="flex items-center justify-center gap-3 my-6">
+                        <div className="w-12 h-px bg-[#C5A059]/30"></div>
+                        <FlowerLotus className="w-5 h-5 text-[#C5A059] opacity-60" weight="light" />
+                        <div className="w-12 h-px bg-[#C5A059]/30"></div>
+                     </div>
+                     <p className="text-[11px] text-[#333333]/60 leading-relaxed uppercase tracking-[0.1em] font-medium mb-3">
+                       Nossa profissional é <span className="text-[#C5A059] font-bold">QUALIFICADA E EXPERIENTE</span>, usa produtos importados de qualidade, também, indicando o modelo certo para cada cliente.
+                     </p>
+                     <p className="text-[14px] text-[#C5A059] font-bold uppercase tracking-[0.2em]">
+                       TEMPO DO PROCEDIMENTO 3h
+                     </p>
+                   </div>
                  ) : (
                    <>
                      <h3 className="font-serif text-[36px] text-[#C5A059] tracking-tight leading-tight">Tabela de Valores</h3>
@@ -639,7 +701,7 @@ export default function App() {
                    </>
                  )}
                  
-                 {selectedCategory.id !== 'penteados' && (
+                 {['penteados', 'cilios'].indexOf(selectedCategory.id) === -1 && (
                    <div className="flex items-center justify-center gap-4 mt-8">
                       <div className="w-20 h-px bg-[#C5A059]/40"></div>
                       <FlowerLotus className="w-6 h-6 text-[#C5A059]" weight="light" />
@@ -655,30 +717,39 @@ export default function App() {
                     <div key={i} className="pt-2 pb-4">
                       {svc.name.split('\n').map((line: string, idx: number) => {
                         let alignmentClass = 'text-left';
-                        let sizeClass = 'text-[12px] tracking-[0.6em]';
+                        let sizeClass = 'text-[20px] tracking-[0.5em]';
                         let marginClass = 'mt-0';
+                        let shadowClass = 'drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]';
 
                         if (idx === 0) {
                           alignmentClass = 'text-center';
                         } else if (line.includes('(SESSÕES INDIVIDUAIS)')) {
                           alignmentClass = 'text-center';
-                          sizeClass = 'text-[10px] tracking-[0.4em]';
+                          sizeClass = 'text-[12px] tracking-[0.4em]';
                           marginClass = 'mt-12';
+                          shadowClass = '';
                         } else if (line.includes('A PARTIR DE:')) {
                           alignmentClass = 'text-left';
-                          sizeClass = 'text-[10px] tracking-[0.4em]';
+                          sizeClass = 'text-[11px] tracking-[0.4em]';
                           marginClass = 'mt-8';
+                          shadowClass = '';
                         }
 
                         return (
-                          <span 
-                            key={idx} 
-                            className={`${sizeClass} font-bold uppercase ${alignmentClass} text-[#C5A059] px-4 opacity-80 block ${marginClass}`}
-                          >
-                            {line}
-                          </span>
+                          <React.Fragment key={idx}>
+                            <span 
+                              className={`${sizeClass} font-bold uppercase ${alignmentClass} text-[#C5A059] px-4 opacity-100 block ${marginClass} ${shadowClass}`}
+                            >
+                              {line}
+                            </span>
+                          </React.Fragment>
                         );
                       })}
+                      {svc.description && (
+                        <p className="mt-4 px-8 text-center text-[13px] text-[#333333]/70 font-light italic leading-relaxed whitespace-pre-line">
+                          {svc.description}
+                        </p>
+                      )}
                     </div>
                   ) : (
                     <motion.div 
@@ -688,7 +759,7 @@ export default function App() {
                       transition={{ delay: i * 0.05 }}
                       className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-black/[0.03] rounded-[15px] p-5 flex items-center gap-4"
                     >
-                      <div className={`flex-1 min-w-0 ${selectedCategory.id === 'penteados' && svc.name === 'SOCIAL' ? 'flex flex-col' : 'flex items-center'}`}>
+                      <div className="flex-1 min-w-0 flex flex-col">
                         <div className="flex items-center gap-3 w-full">
                           <button 
                             onClick={() => toggleCartItem(svc, selectedCategory.title)}
@@ -703,17 +774,60 @@ export default function App() {
                           <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase whitespace-pre-line">
                             {svc.name}
                           </span>
+                          {!(selectedCategory.id === 'penteados') && (
+                            <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3 opacity-30"></div>
+                          )}
                         </div>
-                        {selectedCategory.id === 'penteados' && svc.name === 'SOCIAL' ? (
-                          <div className="mt-1 ml-9 text-[16px] font-sans font-bold text-[#C5A059]">
-                            {svc.price}
+                        {svc.description && (
+                          <div className="ml-9 mt-1 text-[11px] text-[#333333]/60 font-light italic leading-relaxed whitespace-pre-line">
+                            {svc.description}
                           </div>
-                        ) : (
-                          <div className="flex-1 mx-3 border-b border-dotted border-black/10 h-3 opacity-30"></div>
                         )}
                       </div>
 
-                      {!(selectedCategory.id === 'penteados' && svc.name === 'SOCIAL') && (
+                      {selectedCategory.id === 'penteados' ? (
+                        <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                           {(() => {
+                              const itemKey = `${selectedCategory.title}-${svc.name}`;
+                              const currentMode = itemPaymentModes[itemKey] || 'cash';
+                              
+                              const handleModeSwitch = (mode: 'cash' | 'card') => {
+                                setItemPaymentModes(prev => ({ ...prev, [itemKey]: mode }));
+                                // If the item is already in the cart, update its mode in the cart too
+                                setCart(prevCart => prevCart.map(cartItem => 
+                                  (cartItem.name === svc.name && cartItem.category === selectedCategory.title)
+                                    ? { ...cartItem, selectedPaymentMode: mode }
+                                    : cartItem
+                                ));
+                              };
+
+                              return (
+                                <>
+                                  <button 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleModeSwitch('cash');
+                                    }}
+                                    className={`border rounded-lg px-3 py-1 flex flex-col items-end min-w-[100px] transition-all duration-300 ${currentMode === 'cash' ? 'bg-[#F9F6F1] border-[#C5A059] shadow-sm' : 'bg-transparent border-[#C5A059]/10 opacity-40'}`}
+                                  >
+                                      <span className="text-[14px] font-sans font-bold text-[#C5A059]">R${svc.cashPrice}</span>
+                                      <span className="text-[8px] uppercase tracking-wider font-bold text-[#333333]/40 leading-none pb-0.5">À VISTA</span>
+                                  </button>
+                                  <button 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleModeSwitch('card');
+                                    }}
+                                    className={`border rounded-lg px-3 py-1 flex flex-col items-end min-w-[100px] transition-all duration-300 ${currentMode === 'card' ? 'bg-[#F9F6F1] border-[#C5A059] shadow-sm' : 'bg-transparent border-[#C5A059]/10 opacity-40'}`}
+                                  >
+                                      <span className="text-[12px] font-sans font-bold text-[#C5A059]/70">R${svc.cardPrice}</span>
+                                      <span className="text-[8px] uppercase tracking-wider font-bold text-[#333333]/40 leading-none pb-0.5">CARTÃO</span>
+                                  </button>
+                                </>
+                              );
+                           })()}
+                        </div>
+                      ) : (
                         <div className="flex flex-col items-end flex-shrink-0">
                           {!['esmalteria', 'sobrancelha', 'penteados', 'cilios', 'limpeza-pele', 'corporal'].includes(selectedCategory.id) && 
                            svc.price !== 'SOB AVALIAÇÃO' && (
