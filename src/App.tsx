@@ -253,7 +253,6 @@ export default function App() {
   const [view, setView] = useState<'catalogue' | 'cronograma'>('catalogue');
   const [cart, setCart] = useState<any[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isAware, setIsAware] = useState(false);
 
   const toggleCartItem = (service: any, categoryName: string) => {
     setCart(prev => {
@@ -274,11 +273,9 @@ export default function App() {
   };
 
   const handleWhatsAppRedirect = () => {
-    if (!isAware) return;
-
     const itemsList = cart.map(item => `- ${item.category}: ${item.name} (${typeof item.price === 'number' ? `R$${item.price}` : item.price})`).join('\n');
     const total = calculateTotal();
-    const message = `Olá! Gostaria de agendar os seguintes serviços:\n\n${itemsList}\n\nTotal estimado: R$${total.toFixed(2).replace('.', ',')}\n\nEstou ciente que valores podem variar conforme avaliação presencial.`;
+    const message = `Olá! Gostaria de agendar os seguintes serviços:\n\n${itemsList}\n\nTotal estimado: R$${total.toFixed(2).replace('.', ',')}\n\n*Valores sujeitos a avaliação presencial conforme volume e tamanho do cabelo.`;
     
     window.open(`https://wa.me/5522988335171?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -361,28 +358,11 @@ export default function App() {
                       <span className="text-2xl font-bold text-[#C5A059]">R$ {calculateTotal().toFixed(2).replace('.', ',')}</span>
                     </div>
 
-                    <label className="flex gap-4 p-4 bg-white rounded-2xl border border-[#C5A059]/20 cursor-pointer group">
-                      <input 
-                        type="checkbox" 
-                        checked={isAware} 
-                        onChange={() => setIsAware(!isAware)}
-                        className="hidden"
-                      />
-                      <div className={`w-6 h-6 rounded border flex-shrink-0 flex items-center justify-center transition-all ${isAware ? 'bg-[#C5A059] border-[#C5A059] text-white' : 'border-[#C5A059]/30'}`}>
-                        {isAware && <Check weight="bold" size={14} />}
-                      </div>
-                      <p className="text-[11px] leading-relaxed text-[#333333]/80 font-medium">
-                        <span className="font-bold text-[#C5A059]">ESTOU CIENTE:</span> Tratamentos de cabelos os itens são valores "a partir de" pois conta volume e tamanho do cabelo e pode haver uma taxa, consultar a recepcionista.
-                      </p>
-                    </label>
                   </div>
 
                   <button 
-                    disabled={!isAware}
                     onClick={handleWhatsAppRedirect}
-                    className={`w-full py-5 rounded-full font-sans font-semibold text-base tracking-[0.2em] shadow-lg flex items-center justify-center gap-4 transition-all ${
-                      isAware ? 'bg-[#333333] text-white hover:bg-black' : 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                    }`}
+                    className="w-full py-5 rounded-full font-sans font-semibold text-base tracking-[0.2em] shadow-lg flex items-center justify-center gap-4 transition-all bg-[#333333] text-white hover:bg-black"
                   >
                     FINALIZAR NO WHATSAPP
                     <WhatsappLogo size={24} weight="fill" />
