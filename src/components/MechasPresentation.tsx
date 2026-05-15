@@ -58,7 +58,7 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex justify-between items-center text-left transition-all px-2"
       >
-        <span className="font-sans text-[17px] md:text-[19px] font-medium text-[#4A4A4A] pr-6 leading-snug group-hover:text-[#D9A07E] transition-colors">
+        <span className="font-sans text-[15px] font-medium text-[#4A4A4A] pr-6 leading-snug group-hover:text-[#D9A07E] transition-colors">
           {question}
         </span>
         <div className={`w-8 h-8 rounded-full border border-[#D9A07E]/20 flex items-center justify-center transition-all ${isOpen ? 'bg-[#D9A07E] border-[#D9A07E]' : ''}`}>
@@ -71,8 +71,8 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
         transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
         className="overflow-hidden"
       >
-        <div className="px-2 pb-10">
-           <p className="font-sans text-[16px] text-[#4A4A4A]/70 leading-relaxed max-w-2xl">{answer}</p>
+        <div className="px-2 pb-8">
+           <p className="font-sans text-[14px] text-[#4A4A4A]/70 leading-relaxed max-w-2xl">{answer}</p>
         </div>
       </motion.div>
     </div>
@@ -89,22 +89,22 @@ const PriceItem: React.FC<{
   const isSelected = cart.find(item => item.name === name && item.category === category);
   
   return (
-    <div className="flex items-center gap-2 md:gap-5 py-3 md:py-4 group">
+    <div className="flex items-center gap-2 md:gap-4 py-2 md:py-2.5 group">
       <button 
         onClick={() => onToggle({ name, price }, category)}
-        className={`w-7 h-7 rounded-md border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
+        className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
           isSelected
             ? 'bg-[#D9A07E] border-[#D9A07E] text-white shadow-[0_2px_10px_rgba(217,160,126,0.3)]'
             : 'border-[#D9A07E]/40 text-transparent hover:border-[#D9A07E] hover:bg-[#D9A07E]/5'
         }`}
       >
-        <Check className="w-4 h-4" weight="bold" />
+        <Check className="w-3.5 h-3.5" weight="bold" />
       </button>
-      <span className="font-sans text-[14px] md:text-[17px] text-[#4A4A4A] tracking-wider uppercase font-medium truncate">{name}</span>
-      <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-4"></div>
+      <span className="font-sans text-[12.5px] md:text-[15px] text-[#4A4A4A] tracking-wider uppercase font-light truncate">{name}</span>
+      <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-3"></div>
       <div className="flex flex-col items-end flex-shrink-0">
-        <span className="font-sans text-[10px] md:text-[11px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
-        <span className="font-sans text-[18px] md:text-[22px] text-[#D9A07E] font-bold">R${price}</span>
+        <span className="font-sans text-[9px] md:text-[10px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
+        <span className="font-sans text-[16px] md:text-[18px] text-[#D9A07E] font-semibold">R${price}</span>
       </div>
     </div>
   );
@@ -133,8 +133,8 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
             <Sparkle className="mx-4 w-6 h-6 text-[#D9A07E]" weight="light" />
             <div className="w-20 h-px bg-[#D9A07E]/40 self-center"></div>
           </div>
-          <h1 className="font-serif text-6xl md:text-8xl text-[#4A4A4A] mb-4">Catálogo de Mechas</h1>
-          <p className="font-sans text-[13px] md:text-lg tracking-[0.5em] text-[#D9A07E] uppercase font-light">Expertise & Sofisticação</p>
+          <h1 className="font-serif text-5xl md:text-7xl text-[#4A4A4A] mb-4">Catálogo de Mechas</h1>
+          <p className="font-sans text-[11px] md:text-sm tracking-[0.5em] text-[#D9A07E] uppercase font-light">Expertise & Sofisticação</p>
 
           <motion.div 
             animate={{ y: [0, 10, 0] }}
@@ -221,33 +221,26 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
             </span>
           </div>
 
-          <div className="flex flex-col md:flex-row h-full w-full z-10 pt-20 md:pt-20">
+          <div className="flex flex-col md:flex-row h-full w-full z-10 pt-10 md:pt-20">
             {/* Left Image Section */}
-            <div className="w-full md:w-1/2 h-[40%] md:h-full p-8 md:p-32 flex flex-col justify-center">
-              <div className="relative">
-                {/* Clean Rounded Frame - Smaller padding and tighter rounding */}
-                <div className="relative p-1.5 bg-white border border-[#D9A07E]/15 shadow-lg rounded-[1.5rem] overflow-hidden">
-                  <div className="relative aspect-square md:aspect-auto md:h-[45vh] overflow-hidden rounded-[1rem] bg-[#FAF9F6]">
-                    <img src={cat.image} className="w-full h-full object-contain relative z-0" alt={cat.title} />
-                    <div className="absolute inset-0 bg-[#D9A07E]/5 mix-blend-overlay"></div>
-                  </div>
-                </div>
-                {/* Subtle outer glow */}
-                <div className="absolute -inset-2 bg-[#D9A07E]/5 blur-xl -z-10 opacity-30"></div>
+            <div className="w-full md:w-1/2 h-[35%] md:h-full p-2 md:p-16 flex flex-col justify-center">
+              <div className="relative w-full h-full overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
+                <img src={cat.image} className="w-full h-full object-cover object-[center_15%]" alt={cat.title} />
+                <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
             </div>
 
             {/* Right List Section */}
-            <div className="w-full md:w-1/2 h-[60%] md:h-full px-6 md:px-20 pb-4 flex flex-col justify-start md:justify-center pt-8 md:pt-0">
+            <div className="w-full md:w-1/2 h-[65%] md:h-full px-6 md:px-20 pb-4 flex flex-col justify-start md:justify-center pt-1 md:pt-0">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="font-serif text-4xl md:text-5xl text-[#4A4A4A] mb-2">{cat.title}</h2>
-                <p className="font-sans text-[12px] tracking-[0.4em] text-[#D9A07E] uppercase mb-4 md:mb-10">Expertise & Arte</p>
+                <h2 className="font-serif text-3xl md:text-4xl text-[#4A4A4A] mb-1">{cat.title}</h2>
+                <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-1 md:mb-8">Expertise & Arte</p>
                 
-                <div className="space-y-1 md:space-y-2">
+                <div className="space-y-0 md:space-y-1">
                   {cat.services.map((svc, i) => (
                     <PriceItem 
                       key={i} 
@@ -274,13 +267,9 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
           <h2 className="font-serif text-4xl text-[#4A4A4A] mb-4">Produtos Premium</h2>
           <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-12">Performance & Cuidado</p>
           
-          <div className="relative px-4 max-w-2xl mx-auto">
-             <div className="p-1.5 bg-white border border-[#D9A07E]/15 shadow-md rounded-[1.5rem] mb-12">
-               <div className="relative overflow-hidden aspect-video rounded-[1rem] bg-[#FAF9F6]">
-                  <img src="https://lh3.googleusercontent.com/d/1TLOZ7XfuqkDmHdQCUwEDrvC6hwVNjwuX" className="w-full h-full object-contain" alt="Premium Products" />
-                  <div className="absolute inset-0 bg-black/5"></div>
-               </div>
-             </div>
+          <div className="relative aspect-video overflow-hidden mb-12 border border-[#D9A07E]/20 shadow-xl">
+             <img src="https://lh3.googleusercontent.com/d/1TLOZ7XfuqkDmHdQCUwEDrvC6hwVNjwuX" className="w-full h-full object-cover" alt="Premium Products" />
+             <div className="absolute inset-0 bg-black/5"></div>
           </div>
 
           <div className="flex justify-center gap-10 opacity-60 transition-all duration-700">
