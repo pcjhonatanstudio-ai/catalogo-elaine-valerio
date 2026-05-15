@@ -262,7 +262,7 @@ const CATEGORIES = [
     id: 'limpeza-pele',
     title: 'Limpeza de Pele',
     icon: Drop,
-    image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc2069?q=80&w=1600&auto=format&fit=crop',
+    image: 'https://drive.google.com/thumbnail?id=1odP9L99iUY1uiTRQmky3etkDXFnmiPpw&sz=w1600',
     services: [
       { name: 'ADCOS', price: 250 },
       { name: 'REVITALIZAÇÃO ADCOS\n(MANUTENÇÃO)', price: 198 },
@@ -289,6 +289,46 @@ const CATEGORIES = [
     services: []
   }
 ];
+
+const PENTEADOS_IMAGES = [
+  '1tWM7Dusnqfaq5HVKJz1Ds6XQs4v0nVX9',
+  '1HsD3Dci2nwL_dUP_9eRfvyDAk0o0JrND',
+  '1XuzTvLayM2x5UcSqZkU9PFoaF21jVYCE',
+  '18yHbre68xpCzQF7ym95-1PSGYP3FQpsF',
+  '11Dq74gxUdaevnsuQdL8-okxp4Rj_JjQv',
+  '1AHoAvtjE9LQmcOsxiHxsB2eHKAe1Nnnc',
+  '1PWHViuRJxdv-mGyJDfS--CWyT5Kf7u3e',
+  '1_aRlaPSAyO72O-wsVz_1NPRCCw6bYIAU',
+  '1wKzX_5kqklFsa58fPVW5VN3ynfEvQls3'
+];
+
+const CategoryHeaderCarousel = ({ images }: { images: string[] }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="w-full h-full relative">
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          src={`https://drive.google.com/thumbnail?id=${images[currentIndex]}&sz=w1600`}
+          className="w-full h-full object-cover object-[center_15%] absolute inset-0"
+          alt=""
+        />
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<typeof CATEGORIES[number] | null>(null);
@@ -542,11 +582,15 @@ export default function App() {
                   transition={{ duration: 1.5, ease: "easeOut" }}
                   className="w-full h-full absolute inset-0 rounded-b-[40px] md:rounded-b-[80px] overflow-hidden"
                 >
-                  <img 
-                    src={selectedCategory.image} 
-                    className="w-full h-full object-cover" 
-                    alt="" 
-                  />
+                  {selectedCategory.id === 'penteados' ? (
+                    <CategoryHeaderCarousel images={PENTEADOS_IMAGES} />
+                  ) : (
+                    <img 
+                      src={selectedCategory.image} 
+                      className="w-full h-full object-cover object-[center_15%]" 
+                      alt="" 
+                    />
+                  )}
                   <div className="absolute inset-0 bg-black/20"></div>
                   
                   {/* Refined Inset Frame from Photo Reference */}
@@ -573,14 +617,35 @@ export default function App() {
 
               {/* Tabela Header */}
               <div className="px-6 mt-16 mb-12 text-center relative z-10">
-                 <h3 className="font-serif text-[36px] text-[#C5A059] tracking-tight leading-tight">Tabela de Valores</h3>
-                 <p className="text-[11px] uppercase font-sans font-medium tracking-[0.5em] text-[#333333]/40 mt-1">CATÁLOGO 2026</p>
+                 {selectedCategory.id === 'penteados' ? (
+                   <div className="max-w-md mx-auto px-4">
+                     <p className="text-[14px] text-[#333333] leading-relaxed font-light uppercase tracking-[0.1em]">
+                       A produção é feita por profissionais com <span className="text-[#C5A059] font-bold">ESPECIALIZAÇÃO</span> na área de penteado e maquiagem. A maquiagem e a finalização totalizam em média de <span className="text-[#C5A059] font-bold">3h de PRODUÇÃO</span>.
+                     </p>
+                     <div className="flex items-center justify-center gap-3 my-6">
+                        <div className="w-12 h-px bg-[#C5A059]/30"></div>
+                        <FlowerLotus className="w-5 h-5 text-[#C5A059] opacity-60" weight="light" />
+                        <div className="w-12 h-px bg-[#C5A059]/30"></div>
+                     </div>
+                     <p className="text-[11px] text-[#333333]/60 leading-relaxed uppercase tracking-[0.1em] font-medium">
+                       Nossos profissionais trabalham com os melhores produtos do mercado <br/>
+                       <span className="text-[#C5A059] font-bold">(DIOR, MAC, KATHERINE HELL, SEBASTIAN, WELLA)</span>
+                     </p>
+                   </div>
+                 ) : (
+                   <>
+                     <h3 className="font-serif text-[36px] text-[#C5A059] tracking-tight leading-tight">Tabela de Valores</h3>
+                     <p className="text-[11px] uppercase font-sans font-medium tracking-[0.5em] text-[#333333]/40 mt-1">CATÁLOGO 2026</p>
+                   </>
+                 )}
                  
-                 <div className="flex items-center justify-center gap-4 mt-8">
-                    <div className="w-20 h-px bg-[#C5A059]/40"></div>
-                    <FlowerLotus className="w-6 h-6 text-[#C5A059]" weight="light" />
-                    <div className="w-20 h-px bg-[#C5A059]/40"></div>
-                 </div>
+                 {selectedCategory.id !== 'penteados' && (
+                   <div className="flex items-center justify-center gap-4 mt-8">
+                      <div className="w-20 h-px bg-[#C5A059]/40"></div>
+                      <FlowerLotus className="w-6 h-6 text-[#C5A059]" weight="light" />
+                      <div className="w-20 h-px bg-[#C5A059]/40"></div>
+                   </div>
+                 )}
               </div>
 
               {/* Service Cards List */}

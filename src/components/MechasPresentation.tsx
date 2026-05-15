@@ -203,7 +203,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
         {
           id: 'blond-iluminar',
           title: 'Blond Iluminar',
-          image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt', 
+          image: 'https://drive.google.com/thumbnail?id=1aWsd1tYh6oQvH7adkDrpwuKDMLlM_uZb&sz=w1000', 
           services: [
             { name: 'CURTO - NUCA', price: '959' },
             { name: 'MÉDIO - PESCOÇO', price: '1.179' },
@@ -225,7 +225,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
             {/* Left Image Section */}
             <div className="w-full md:w-1/2 h-[35%] md:h-full p-2 md:p-16 flex flex-col justify-center">
               <div className="relative w-full h-full rounded-b-[40px] md:rounded-b-[150px] overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
-                <img src={cat.image} className="w-full h-full object-cover object-center" alt={cat.title} />
+                <img src={cat.image} className="w-full h-full object-cover object-[center_15%]" alt={cat.title} />
                 <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
             </div>
