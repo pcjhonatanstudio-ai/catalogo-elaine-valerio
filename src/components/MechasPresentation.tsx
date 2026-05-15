@@ -7,11 +7,14 @@ import {
   Heart, 
   Sparkle, 
   CaretDown,
-  CaretLeft
+  CaretLeft,
+  Check
 } from '@phosphor-icons/react';
 
 interface MechasPresentationProps {
   onClose: () => void;
+  cart: any[];
+  toggleCartItem: (service: any, categoryName: string) => void;
 }
 
 const MandalaBg = () => (
@@ -76,18 +79,38 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
   );
 };
 
-const PriceItem: React.FC<{ name: string; price: string | number }> = ({ name, price }) => (
-  <div className="flex items-center gap-2 md:gap-4 py-2 md:py-2.5 group">
-    <span className="font-sans text-[12.5px] md:text-[15px] text-[#4A4A4A] tracking-wider uppercase font-light">{name}</span>
-    <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-3"></div>
-    <div className="flex flex-col items-end">
-      <span className="font-sans text-[9px] md:text-[10px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
-      <span className="font-sans text-[16px] md:text-[18px] text-[#D9A07E] font-semibold">R${price}</span>
+const PriceItem: React.FC<{ 
+  name: string; 
+  price: string | number; 
+  category: string;
+  cart: any[];
+  onToggle: (service: any, category: string) => void;
+}> = ({ name, price, category, cart, onToggle }) => {
+  const isSelected = cart.find(item => item.name === name && item.category === category);
+  
+  return (
+    <div className="flex items-center gap-2 md:gap-4 py-2 md:py-2.5 group">
+      <button 
+        onClick={() => onToggle({ name, price }, category)}
+        className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
+          isSelected
+            ? 'bg-[#D9A07E] border-[#D9A07E] text-white shadow-[0_2px_10px_rgba(217,160,126,0.3)]'
+            : 'border-[#D9A07E]/40 text-transparent hover:border-[#D9A07E] hover:bg-[#D9A07E]/5'
+        }`}
+      >
+        <Check className="w-3.5 h-3.5" weight="bold" />
+      </button>
+      <span className="font-sans text-[12.5px] md:text-[15px] text-[#4A4A4A] tracking-wider uppercase font-light truncate">{name}</span>
+      <div className="flex-1 border-b border-dotted border-[#D9A07E]/30 h-3"></div>
+      <div className="flex flex-col items-end flex-shrink-0">
+        <span className="font-sans text-[9px] md:text-[10px] text-[#D9A07E] uppercase tracking-tighter opacity-70">A PARTIR DE</span>
+        <span className="font-sans text-[16px] md:text-[18px] text-[#D9A07E] font-semibold">R${price}</span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
+const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, toggleCartItem }) => {
   return (
     <div className="fixed inset-0 z-[100] bg-black overflow-y-auto scroll-smooth snap-y snap-mandatory h-screen no-scrollbar">
       {/* Global Close Button */}
@@ -219,7 +242,13 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
                 
                 <div className="space-y-0 md:space-y-1">
                   {cat.services.map((svc, i) => (
-                    <PriceItem key={i} {...svc} />
+                    <PriceItem 
+                      key={i} 
+                      {...svc} 
+                      category={`MECHAS: ${cat.title}`}
+                      cart={cart}
+                      onToggle={toggleCartItem}
+                    />
                   ))}
                 </div>
               </motion.div>

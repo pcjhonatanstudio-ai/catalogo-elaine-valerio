@@ -333,7 +333,11 @@ export default function App() {
           />
         )}
         {selectedCategory?.id === 'mechas' && (
-          <MechasPresentation onClose={() => setSelectedCategory(null)} />
+          <MechasPresentation 
+            cart={cart}
+            toggleCartItem={toggleCartItem}
+            onClose={() => setSelectedCategory(null)} 
+          />
         )}
         {selectedCategory?.id === 'inspire-se' && (
           <InspirationGallery onClose={() => setSelectedCategory(null)} />
