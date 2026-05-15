@@ -435,7 +435,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsCartOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99]"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150]"
             />
             <motion.div 
               key="cart-drawer"
@@ -443,7 +443,7 @@ export default function App() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 max-w-xl mx-auto bg-[#F9F6F1] rounded-t-[40px] z-[100] shadow-2xl p-8 max-h-[85vh] overflow-y-auto"
+              className="fixed bottom-0 left-0 right-0 max-w-xl mx-auto bg-[#F9F6F1] rounded-t-[40px] z-[160] shadow-2xl p-8 max-h-[85vh] overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-8">
                 <div>
@@ -519,7 +519,7 @@ export default function App() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setIsCartOpen(true)}
-            className="fixed bottom-24 right-6 w-16 h-16 rounded-full bg-[#C5A059] text-white shadow-2xl z-[80] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+            className="fixed bottom-24 right-6 w-16 h-16 rounded-full bg-[#C5A059] text-white shadow-2xl z-[150] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
           >
             <div className="relative">
               <ShoppingBag size={32} weight="light" />
