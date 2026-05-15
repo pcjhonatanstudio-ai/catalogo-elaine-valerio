@@ -219,7 +219,7 @@ const CATEGORIES = [
     id: 'sobrancelha',
     title: 'Sobrancelha',
     icon: MagicWand,
-    image: 'https://images.unsplash.com/photo-1522337621168-3e4776034173?q=80&w=800&auto=format&fit=crop',
+    image: 'https://drive.google.com/thumbnail?id=1IFSvKfQL-Dz8uRyz_Jpqgu7oFwRnZpTz&sz=w1600',
     services: [
       { name: 'DESIGN', price: 55 },
       { name: 'LIMPEZA SIMPLES', price: 45 },
@@ -237,6 +237,48 @@ const CATEGORIES = [
     services: [
       { name: 'SOCIAL', price: '200 CARTÃO | 190 DINHEIRO' },
       { name: 'NOIVA', price: 'SOB AVALIAÇÃO' },
+    ]
+  },
+  {
+    id: 'cilios',
+    title: 'Cílios',
+    icon: Sparkle,
+    image: 'https://drive.google.com/thumbnail?id=1fUZPEpqSlXpnaJ6Zzs6nMr2eQaNKWCGl&sz=w1600',
+    services: [
+      { name: 'FIO A FIO', isTitle: true },
+      { name: 'COLOCAÇÃO', price: 132 },
+      { name: 'MANUTENÇÃO', price: 77 },
+      { name: 'VOLUME BRASILEIRO', isTitle: true },
+      { name: 'COLOCAÇÃO', price: 175 },
+      { name: 'MANUTENÇÃO', price: 99 },
+      { name: 'TÉCNICA STUDIO ELAINE VALERIO', isTitle: true },
+      { name: 'COLOCAÇÃO', price: 187 },
+      { name: 'MANUTENÇÃO', price: 105 },
+      { name: 'LASH LIFTING', isTitle: true },
+      { name: 'LASH LIFTING\n(40 DIAS RETORNO)', price: 175 },
+    ]
+  },
+  {
+    id: 'limpeza-pele',
+    title: 'Limpeza de Pele',
+    icon: Drop,
+    image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc2069?q=80&w=1600&auto=format&fit=crop',
+    services: [
+      { name: 'ADCOS', price: 250 },
+      { name: 'REVITALIZAÇÃO ADCOS\n(MANUTENÇÃO)', price: 198 },
+      { name: 'PACOTE PELE RENOVADA ADCOS\n(1 LIMPEZA DE PELE + 2 MANUTENÇÕES, BONUS SPA LABIAL)', price: 510 },
+      { name: 'HIDRA GLOSS\n(BONUS SPA DOS LÁBIOS)', price: 180 },
+    ]
+  },
+  {
+    id: 'corporal',
+    title: 'Corporal',
+    icon: Sparkle,
+    image: 'https://drive.google.com/thumbnail?id=1HYBolxWiTX0Mm5S_R01-TpvY0pz7dl3O&sz=w1600',
+    services: [
+      { name: 'RITUAL RELAXANTE "PERNAS E PÉS"\n(45MIN)', price: 100 },
+      { name: 'MASSAGEM', isTitle: true },
+      { name: 'PACOTE RELAXANTE\n(DETOX COM MASSAGEM epicrânia E RITUAL RELAXANTE PERNAS E PÉS COM SAIS E ÓLEOS AROMATICOS)', price: 200 },
     ]
   },
   {
@@ -496,7 +538,11 @@ export default function App() {
                   transition={{ duration: 1.5, ease: "easeOut" }}
                   className="w-full h-full absolute inset-0 rounded-b-[40px] md:rounded-b-[80px] overflow-hidden"
                 >
-                  <img src={selectedCategory.image} className="w-full h-full object-cover" alt="" />
+                  <img 
+                    src={selectedCategory.image} 
+                    className="w-full h-full object-cover" 
+                    alt="" 
+                  />
                   <div className="absolute inset-0 bg-black/20"></div>
                   
                   {/* Refined Inset Frame from Photo Reference */}
@@ -585,7 +631,7 @@ export default function App() {
                           >
                             <Check className="w-3.5 h-3.5" weight="bold" />
                           </button>
-                          <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase">
+                          <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase whitespace-pre-line">
                             {svc.name}
                           </span>
                         </div>
@@ -600,7 +646,7 @@ export default function App() {
 
                       {!(selectedCategory.id === 'penteados' && svc.name === 'SOCIAL') && (
                         <div className="flex flex-col items-end flex-shrink-0">
-                          {!['esmalteria', 'sobrancelha', 'penteados'].includes(selectedCategory.id) && 
+                          {!['esmalteria', 'sobrancelha', 'penteados', 'cilios', 'limpeza-pele', 'corporal'].includes(selectedCategory.id) && 
                            svc.price !== 'SOB AVALIAÇÃO' && (
                             <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#C5A059]/60 leading-none mb-0.5">A PARTIR DE</span>
                           )}

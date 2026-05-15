@@ -41,7 +41,7 @@ export default function ScheduleCatalog({
       id: 'anamnese',
       type: 'content',
       title: 'Anamnese Personalizada',
-      image: 'https://drive.google.com/thumbnail?id=1vfZPDA-F68CDGfDU6G4QUaI8XSC_MEBC&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1lgq49DzibvfWksYVR1ZGOZcwgpq9tFL1&sz=w1000',
       description: 'Cada diagnóstico é único. Realizamos análise microscópica profunda para identificar as reais necessidades do seu fio.',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -49,40 +49,56 @@ export default function ScheduleCatalog({
       id: 'truss',
       type: 'price',
       brand: 'Truss Infusion',
-      title: 'Protocolo Truss',
+      title: 'PROTOCOLO TRUSS',
       image: 'https://drive.google.com/thumbnail?id=1sUVOtt5CNMVgxLwzoxffl7KerLCFU97T&sz=w1000',
-      schedulePrice: '720',
-      singlePrice: '150',
+      scheduleLabel: 'CRONOGRAMA TRUSS',
+      schedulePrice: '748',
+      singleLabel: 'AVULSO',
+      singlePrice: '176',
+      benefits: '2 SESSÕES OZÔNIO, 1 ÓLEO REPARADOR USO OBRIGATÓRIO, 2 SESSOES LED TERAPIA',
+      singleBenefit: 'TRATAMENTO COM LED',
       icon: <Crown className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {
       id: 'wella',
       type: 'price',
       brand: 'Wella Professionals',
-      title: 'Luxury Care Wella',
+      title: 'PROTOCOLO WELLA',
       image: 'https://drive.google.com/thumbnail?id=11KJa31i89js-8iN4LeAk7UHeInJuVQpZ&sz=w1000',
-      schedulePrice: '570',
-      singlePrice: '143',
+      scheduleLabel: 'CRONOGRAMA WELLA',
+      schedulePrice: '660',
+      singleLabel: 'AVULSO',
+      singlePrice: '165',
+      benefits: '2 SESSÕES OZONIO, 2 SESSÕES LED TERAPIA, 1 REVITALIZAÇÃO',
+      singleBenefit: 'TRATAMENTO COM LED',
       icon: <Diamond className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {
       id: 'alfaparf',
       type: 'price',
       brand: 'Alfaparf Milano',
-      title: 'Excellence Alfaparf',
+      title: 'PROTOCOLO ALFAPARF',
       image: 'https://drive.google.com/thumbnail?id=1J5FdaKQhhURl5iCgVu7psfVsxBoXRKM_&sz=w1000',
-      schedulePrice: '450',
-      singlePrice: '130',
+      scheduleLabel: 'CRONOGRAMA ALFAPARF',
+      schedulePrice: '638',
+      singleLabel: 'AVULSO',
+      singlePrice: '159',
+      benefits: '2 SESSOES OZONIO, 2 SESSOES LED TERAPIA, 1 SESSAO DETOX, 1 SESSAO DETOX COURO CABELUDO ASSOCIADO COM MASSAGEM TERAPEUTICA',
+      singleBenefit: 'EXPERIÊNCIA ÚNICA',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
     {
       id: 'aneethun',
       type: 'price',
       brand: 'Aneethun',
-      title: 'Essential Aneethun',
+      title: 'PROTOCOLO ANETHUN',
       image: 'https://drive.google.com/thumbnail?id=1khESMmmezgAZzyj-dVM6EU7a1hUtE71q&sz=w1000',
-      schedulePrice: '400',
-      singlePrice: '108',
+      scheduleLabel: 'CRONOGRAMA ANETHUN',
+      schedulePrice: '528',
+      singleLabel: 'AVULSO',
+      singlePrice: '132',
+      benefits: '2 SESSOES LED TERAPIA, 2 SESSOES OZONIO, MINI KIT HOME CARE ELAINE VALERIO',
+      singleBenefit: 'EXPERIÊNCIA ÚNICA RESTAURADORA',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
     }
   ];
@@ -249,7 +265,7 @@ export default function ScheduleCatalog({
                   
                   {/* Tabela de Preços */}
                   <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center gap-4 md:gap-8 border-t md:border-t-0 md:border-l border-[#C5A059]/10">
-                    <div className="flex flex-col gap-1 md:gap-2">
+                    <div className="flex flex-col gap-1 md:gap-2 text-left">
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
                           <div className="flex items-center gap-3">
                             <button 
@@ -262,21 +278,25 @@ export default function ScheduleCatalog({
                             >
                               <Check className="w-3.5 h-3.5" weight="bold" />
                             </button>
-                            <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Cronograma 2026</span>
+                            <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest leading-none">{(slide as any).scheduleLabel}</span>
                           </div>
                           <div className="flex flex-col items-end">
                              <span className="text-[8px] md:text-[10px] text-[#C5A059]/60 uppercase tracking-tighter leading-none mb-1">A PARTIR DE</span>
                              <span className="text-[#C5A059] font-serif text-xl md:text-3xl leading-none transition-all">R$ {slide.schedulePrice}</span>
                            </div>
                        </div>
-                       <p className="text-[10px] text-[#E5E5E5]/40 text-left mt-1 italic tracking-wider">Protocolo Premium com 4 sessões</p>
+                       {(slide as any).benefits && (
+                         <p className="text-[10px] text-[#E5E5E5]/60 mt-1 italic tracking-wider leading-relaxed">
+                            {(slide as any).benefits}
+                         </p>
+                       )}
                     </div>
 
-                    <div className="flex flex-col gap-1 md:gap-2">
+                    <div className="flex flex-col gap-1 md:gap-2 text-left">
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
                           <div className="flex items-center gap-3">
                             <button 
-                              onClick={() => toggleCartItem({ name: `Sessão Avulsa ${slide.title}`, price: slide.singlePrice }, 'Cronograma')}
+                              onClick={() => toggleCartItem({ name: `Sessão Avulsa ${slide.title}`, price: (slide as any).singlePrice }, 'Cronograma')}
                               className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
                                 cart.find(item => item.name === `Sessão Avulsa ${slide.title}`)
                                   ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
@@ -285,14 +305,16 @@ export default function ScheduleCatalog({
                             >
                               <Check className="w-3.5 h-3.5" weight="bold" />
                             </button>
-                            <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Sessão Avulsa</span>
+                            <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest leading-none">{(slide as any).singleLabel}</span>
                           </div>
                           <div className="flex flex-col items-end">
                              <span className="text-[8px] md:text-[10px] text-[#E5E5E5]/40 uppercase tracking-tighter leading-none mb-1">A PARTIR DE</span>
-                             <span className="text-[#E5E5E5] font-serif text-xl md:text-3xl leading-none transition-all">R$ {slide.singlePrice}</span>
+                             <span className="text-[#E5E5E5] font-serif text-xl md:text-3xl leading-none transition-all">R$ {(slide as any).singlePrice}</span>
                            </div>
                        </div>
-                       <p className="text-[10px] text-[#E5E5E5]/40 text-left mt-1 italic tracking-wider">Experiência única restauradora</p>
+                       {(slide as any).singleBenefit && (
+                         <p className="text-[10px] text-[#E5E5E5]/40 mt-1 italic tracking-wider">{(slide as any).singleBenefit}</p>
+                       )}
                     </div>
 
                     <p className="text-[9px] text-[#C5A059]/50 uppercase tracking-[0.2em] font-medium text-left mt-2 md:mt-4 border-l-2 border-[#C5A059] pl-3">
