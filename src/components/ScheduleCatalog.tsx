@@ -5,12 +5,21 @@ import {
   Crown, 
   Diamond, 
   CheckCircle, 
+  Check,
   CaretDown,
   CaretLeft,
   Sparkle
 } from '@phosphor-icons/react';
 
-export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
+export default function ScheduleCatalog({ 
+  onClose,
+  cart,
+  toggleCartItem 
+}: { 
+  onClose: () => void,
+  cart: any[],
+  toggleCartItem: (service: any, categoryName: string) => void
+}) {
   const slides = [
     {
       id: 'capa',
@@ -112,6 +121,14 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex flex-col items-center w-full"
               >
+                <span className="text-[#C5A059] tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs font-semibold mb-2 md:mb-4 uppercase shrink-0">Experience Luxury</span>
+                <h1 className="font-serif text-5xl md:text-8xl text-white mb-1 md:mb-2 tracking-tight shrink-0">
+                  {slide.title}
+                </h1>
+                <h2 className="font-serif italic text-6xl md:text-9xl text-[#C5A059] -mt-2 md:-mt-4 drop-shadow-2xl shrink-0">
+                  {slide.subtitle}
+                </h2>
+
                 <div className="w-full max-w-[260px] md:max-w-sm mt-6 md:mt-10 aspect-video relative group">
                   <div className="absolute inset-0 border border-[#C5A059]/40 rounded-2xl -z-10 shadow-[0_0_20px_rgba(197,160,89,0.1)]"></div>
                   <div className="w-full h-full bg-black/20 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 flex items-center justify-center">
@@ -234,7 +251,19 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
                   <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center gap-4 md:gap-8 border-t md:border-t-0 md:border-l border-[#C5A059]/10">
                     <div className="flex flex-col gap-1 md:gap-2">
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
-                          <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Cronograma 2026</span>
+                          <div className="flex items-center gap-3">
+                            <button 
+                              onClick={() => toggleCartItem({ name: `Protocolo ${slide.title} (4 sessões)`, price: slide.schedulePrice }, 'Cronograma')}
+                              className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
+                                cart.find(item => item.name === `Protocolo ${slide.title} (4 sessões)`)
+                                  ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
+                                  : 'border-[#C5A059]/40 text-transparent hover:border-[#C5A059] hover:bg-[#C5A059]/5'
+                              }`}
+                            >
+                              <Check className="w-3.5 h-3.5" weight="bold" />
+                            </button>
+                            <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Cronograma 2026</span>
+                          </div>
                           <div className="flex flex-col items-end">
                              <span className="text-[8px] md:text-[10px] text-[#C5A059]/60 uppercase tracking-tighter leading-none mb-1">A PARTIR DE</span>
                              <span className="text-[#C5A059] font-serif text-xl md:text-3xl leading-none transition-all">R$ {slide.schedulePrice}</span>
@@ -245,7 +274,19 @@ export default function ScheduleCatalog({ onClose }: { onClose: () => void }) {
 
                     <div className="flex flex-col gap-1 md:gap-2">
                        <div className="flex justify-between items-end border-b border-[#C5A059]/10 pb-2 md:pb-4">
-                          <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Sessão Avulsa</span>
+                          <div className="flex items-center gap-3">
+                            <button 
+                              onClick={() => toggleCartItem({ name: `Sessão Avulsa ${slide.title}`, price: slide.singlePrice }, 'Cronograma')}
+                              className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
+                                cart.find(item => item.name === `Sessão Avulsa ${slide.title}`)
+                                  ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
+                                  : 'border-[#E5E5E5]/20 text-transparent hover:border-[#E5E5E5]/40 hover:bg-white/5'
+                              }`}
+                            >
+                              <Check className="w-3.5 h-3.5" weight="bold" />
+                            </button>
+                            <span className="text-[#E5E5E5]/60 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Sessão Avulsa</span>
+                          </div>
                           <div className="flex flex-col items-end">
                              <span className="text-[8px] md:text-[10px] text-[#E5E5E5]/40 uppercase tracking-tighter leading-none mb-1">A PARTIR DE</span>
                              <span className="text-[#E5E5E5] font-serif text-xl md:text-3xl leading-none transition-all">R$ {slide.singlePrice}</span>

@@ -105,6 +105,14 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose }) => {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center z-10"
         >
+          <div className="mb-6 flex justify-center">
+            <div className="w-20 h-px bg-[#D9A07E]/40 self-center"></div>
+            <Sparkle className="mx-4 w-6 h-6 text-[#D9A07E]" weight="light" />
+            <div className="w-20 h-px bg-[#D9A07E]/40 self-center"></div>
+          </div>
+          <h1 className="font-serif text-5xl md:text-7xl text-[#4A4A4A] mb-4">Catálogo de Mechas</h1>
+          <p className="font-sans text-[11px] md:text-sm tracking-[0.5em] text-[#D9A07E] uppercase font-light">Expertise & Sofisticação</p>
+
           <motion.div 
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}

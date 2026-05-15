@@ -58,6 +58,18 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
           transition={{ duration: 1 }}
           className="relative z-10 flex flex-col items-center text-center"
         >
+          <h1 className="font-serif text-6xl md:text-9xl text-white mb-2 tracking-tight">
+            Inspire-se
+          </h1>
+          <div className="flex items-center gap-4 my-6">
+            <div className="w-12 md:w-20 h-px bg-[#C5A059]/40"></div>
+            <Sparkle className="w-6 h-6 text-[#C5A059]" weight="light" />
+            <div className="w-12 md:w-20 h-px bg-[#C5A059]/40"></div>
+          </div>
+          <p className="font-serif italic text-xl md:text-3xl text-[#C5A059]/80 max-w-md">
+            Transformações que traduzem a sua melhor versão.
+          </p>
+          
           <motion.div 
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}

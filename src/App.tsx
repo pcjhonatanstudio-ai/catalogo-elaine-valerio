@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, 
@@ -28,7 +28,10 @@ import {
   Diamond,
   InstagramLogo,
   WhatsappLogo,
-  MapPin
+  MapPin,
+  Trash,
+  ShoppingBag,
+  Check
 } from '@phosphor-icons/react';
 import ScheduleCatalog from './components/ScheduleCatalog';
 import MechasPresentation from './components/MechasPresentation';
@@ -248,18 +251,165 @@ const CATEGORIES = [
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<typeof CATEGORIES[number] | null>(null);
   const [view, setView] = useState<'catalogue' | 'cronograma'>('catalogue');
+  const [cart, setCart] = useState<any[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAware, setIsAware] = useState(false);
+
+  const toggleCartItem = (service: any, categoryName: string) => {
+    setCart(prev => {
+      const exists = prev.find(item => item.name === service.name && item.category === categoryName);
+      if (exists) {
+        return prev.filter(item => !(item.name === service.name && item.category === categoryName));
+      }
+      return [...prev, { ...service, category: categoryName }];
+    });
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => {
+      const priceStr = item.price.toString().split('|')[0].trim();
+      const priceNum = parseFloat(priceStr.replace('.', '').replace(',', '.'));
+      return isNaN(priceNum) ? total : total + priceNum;
+    }, 0);
+  };
+
+  const handleWhatsAppRedirect = () => {
+    if (!isAware) return;
+
+    const itemsList = cart.map(item => `- ${item.category}: ${item.name} (${typeof item.price === 'number' ? `R$${item.price}` : item.price})`).join('\n');
+    const total = calculateTotal();
+    const message = `Olá! Gostaria de agendar os seguintes serviços:\n\n${itemsList}\n\nTotal estimado: R$${total.toFixed(2).replace('.', ',')}\n\nEstou ciente que valores podem variar conforme avaliação presencial.`;
+    
+    window.open(`https://wa.me/5522988335171?text=${encodeURIComponent(message)}`, '_blank');
+  };
 
   return (
     <div className="min-h-[100dvh] bg-[#F9F6F1] text-[#333333] font-sans flex flex-col selection:bg-[#C5A059]/20 relative overflow-x-hidden pb-24">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {view === 'cronograma' && (
-          <ScheduleCatalog onClose={() => setView('catalogue')} />
+          <ScheduleCatalog 
+            cart={cart} 
+            toggleCartItem={toggleCartItem} 
+            onClose={() => setView('catalogue')} 
+          />
         )}
         {selectedCategory?.id === 'mechas' && (
           <MechasPresentation onClose={() => setSelectedCategory(null)} />
         )}
         {selectedCategory?.id === 'inspire-se' && (
           <InspirationGallery onClose={() => setSelectedCategory(null)} />
+        )}
+        {isCartOpen && (
+          <>
+            <motion.div 
+              key="cart-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCartOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99]"
+            />
+            <motion.div 
+              key="cart-drawer"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed bottom-0 left-0 right-0 max-w-xl mx-auto bg-[#F9F6F1] rounded-t-[40px] z-[100] shadow-2xl p-8 max-h-[85vh] overflow-y-auto"
+            >
+              <div className="flex justify-between items-center mb-8">
+                <div>
+                  <h2 className="font-serif text-3xl text-[#C5A059]">Seu Carrinho</h2>
+                  <p className="text-[10px] uppercase tracking-widest text-[#333333]/50 font-medium">{cart.length} itens selecionados</p>
+                </div>
+                <button onClick={() => setIsCartOpen(false)} className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#333333]">
+                  <X size={20} />
+                </button>
+              </div>
+
+              {cart.length === 0 ? (
+                <div className="py-12 text-center">
+                  <ShoppingBag size={48} weight="light" className="mx-auto text-[#C5A059]/30 mb-4" />
+                  <p className="text-sm text-[#333333]/40 uppercase tracking-widest">Nenhum serviço selecionado</p>
+                </div>
+              ) : (
+                <div className="space-y-4 mb-8">
+                  {cart.map((item, idx) => (
+                    <div key={idx} className="bg-white p-4 rounded-xl shadow-sm border border-black/5 flex justify-between items-center">
+                      <div>
+                        <p className="text-[10px] text-[#C5A059] font-bold uppercase tracking-tighter mb-0.5">{item.category}</p>
+                        <p className="text-sm font-semibold text-[#333333] uppercase">{item.name}</p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <span className="font-bold text-[#C5A059]">
+                          {typeof item.price === 'number' ? `R$${item.price}` : item.price}
+                        </span>
+                        <button onClick={() => toggleCartItem(item, item.category)} className="text-red-400 p-1">
+                          <Trash size={18} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {cart.length > 0 && (
+                <>
+                  <div className="border-t border-black/5 pt-6 mb-8">
+                    <div className="flex justify-between items-center mb-6">
+                      <span className="text-sm uppercase tracking-widest font-semibold text-[#333333]/60">Total Estimado</span>
+                      <span className="text-2xl font-bold text-[#C5A059]">R$ {calculateTotal().toFixed(2).replace('.', ',')}</span>
+                    </div>
+
+                    <label className="flex gap-4 p-4 bg-white rounded-2xl border border-[#C5A059]/20 cursor-pointer group">
+                      <input 
+                        type="checkbox" 
+                        checked={isAware} 
+                        onChange={() => setIsAware(!isAware)}
+                        className="hidden"
+                      />
+                      <div className={`w-6 h-6 rounded border flex-shrink-0 flex items-center justify-center transition-all ${isAware ? 'bg-[#C5A059] border-[#C5A059] text-white' : 'border-[#C5A059]/30'}`}>
+                        {isAware && <Check weight="bold" size={14} />}
+                      </div>
+                      <p className="text-[11px] leading-relaxed text-[#333333]/80 font-medium">
+                        <span className="font-bold text-[#C5A059]">ESTOU CIENTE:</span> Tratamentos de cabelos os itens são valores "a partir de" pois conta volume e tamanho do cabelo e pode haver uma taxa, consultar a recepcionista.
+                      </p>
+                    </label>
+                  </div>
+
+                  <button 
+                    disabled={!isAware}
+                    onClick={handleWhatsAppRedirect}
+                    className={`w-full py-5 rounded-full font-sans font-semibold text-base tracking-[0.2em] shadow-lg flex items-center justify-center gap-4 transition-all ${
+                      isAware ? 'bg-[#333333] text-white hover:bg-black' : 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                    }`}
+                  >
+                    FINALIZAR NO WHATSAPP
+                    <WhatsappLogo size={24} weight="fill" />
+                  </button>
+                </>
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {cart.length > 0 && !isCartOpen && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            onClick={() => setIsCartOpen(true)}
+            className="fixed bottom-24 right-6 w-16 h-16 rounded-full bg-[#C5A059] text-white shadow-2xl z-[80] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+          >
+            <div className="relative">
+              <ShoppingBag size={32} weight="light" />
+              <div className="absolute -top-1 -right-1 bg-[#333333] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#C5A059]">
+                {cart.length}
+              </div>
+            </div>
+          </motion.button>
         )}
       </AnimatePresence>
 
@@ -444,11 +594,23 @@ export default function App() {
                       className="bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-black/[0.03] rounded-[15px] p-5 flex items-center gap-4"
                     >
                       <div className={`flex-1 min-w-0 ${selectedCategory.id === 'penteados' && svc.name === 'SOCIAL' ? 'flex flex-col' : 'flex items-center'}`}>
-                        <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase">
-                          {svc.name}
-                        </span>
+                        <div className="flex items-center gap-3 w-full">
+                          <button 
+                            onClick={() => toggleCartItem(svc, selectedCategory.title)}
+                            className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
+                              cart.find(item => item.name === svc.name && item.category === selectedCategory.title)
+                                ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
+                                : 'border-[#C5A059]/40 text-transparent hover:border-[#C5A059] hover:bg-[#C5A059]/5'
+                            }`}
+                          >
+                            <Check className="w-3.5 h-3.5" weight="bold" />
+                          </button>
+                          <span className="text-[13px] md:text-[15px] font-sans font-medium text-[#333333] tracking-tight leading-snug uppercase">
+                            {svc.name}
+                          </span>
+                        </div>
                         {selectedCategory.id === 'penteados' && svc.name === 'SOCIAL' ? (
-                          <div className="mt-1 text-[16px] font-sans font-bold text-[#C5A059]">
+                          <div className="mt-1 ml-9 text-[16px] font-sans font-bold text-[#C5A059]">
                             {svc.price}
                           </div>
                         ) : (
