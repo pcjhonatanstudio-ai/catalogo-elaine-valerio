@@ -235,16 +235,19 @@ const CATEGORIES = [
     icon: Crown,
     image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop',
     services: [
-      { name: 'SOCIAL', cashPrice: 170, cardPrice: 187 },
-      { name: 'NOIVA COM PRÉVIA', cashPrice: 430, cardPrice: 465 },
-      { name: 'NOIVA SEM PRÉVIA', cashPrice: 320, cardPrice: 345 },
-      { name: 'DEBUTANTES COM PRÉVIA', cashPrice: 320, cardPrice: 345 },
-      { name: 'DEBUTANTES SEM PRÉVIA', cashPrice: 215, cardPrice: 230 },
+      { name: 'PENTEADOS', isTitle: true },
+      { name: 'SOCIAL', price: 210 },
+      { name: 'NOIVA COM PRÉVIA', price: 550 },
+      { name: 'NOIVA SEM PRÉVIA', price: 440 },
+      { name: 'DEBUTANTES C/ PRÉVIA', price: 495 },
+      { name: 'DEBUTANTES S/ PRÉVIA', price: 330 },
       { name: 'MAQUIAGEM', isTitle: true },
-      { name: 'SOCIAL', cashPrice: 170, cardPrice: 187 },
-      { name: 'NOIVA COM PRÉVIA', cashPrice: 780, cardPrice: 800 },
-      { name: 'NOIVA SEM PRÉVIA', cashPrice: 370, cardPrice: 390 },
-      { name: 'ESCOVA COM ONDAS + MAQUIAGEM', cashPrice: 265, cardPrice: 291 },
+      { name: 'SOCIAL', price: 210 },
+      { name: 'DEBUTANTES S/PRÉVIA', price: 275 },
+      { name: 'DEBUTANTES C/ PRÉVIA', price: 550 },
+      { name: 'NOIVA COM PRÉVIA', price: 550 },
+      { name: 'NOIVA SEM PRÉVIA', price: 330 },
+      { name: 'ESCOVA COM ONDAS + MAQUIAGEM', price: 330 },
     ]
   },
   {
@@ -674,7 +677,7 @@ export default function App() {
                      </div>
                      <p className="text-[11px] text-[#333333]/60 leading-relaxed uppercase tracking-[0.1em] font-medium">
                        Nossos profissionais trabalham com os melhores produtos do mercado <br/>
-                       <span className="text-[#C5A059] font-bold">(DIOR, MAC, KATHERINE HELL, SEBASTIAN, WELLA)</span>
+                       <span className="text-[#C5A059] font-bold">(DIOR, MAC, KATHERINE HELL, SEBASTIAN, WELLA, RIGOLIM)</span>
                      </p>
                    </div>
                  ) : selectedCategory.id === 'cilios' ? (
@@ -785,64 +788,20 @@ export default function App() {
                         )}
                       </div>
 
-                      {selectedCategory.id === 'penteados' ? (
-                        <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-                           {(() => {
-                              const itemKey = `${selectedCategory.title}-${svc.name}`;
-                              const currentMode = itemPaymentModes[itemKey] || 'cash';
-                              
-                              const handleModeSwitch = (mode: 'cash' | 'card') => {
-                                setItemPaymentModes(prev => ({ ...prev, [itemKey]: mode }));
-                                // If the item is already in the cart, update its mode in the cart too
-                                setCart(prevCart => prevCart.map(cartItem => 
-                                  (cartItem.name === svc.name && cartItem.category === selectedCategory.title)
-                                    ? { ...cartItem, selectedPaymentMode: mode }
-                                    : cartItem
-                                ));
-                              };
-
-                              return (
-                                <>
-                                  <button 
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleModeSwitch('cash');
-                                    }}
-                                    className={`border rounded-lg px-3 py-1 flex flex-col items-end min-w-[100px] transition-all duration-300 ${currentMode === 'cash' ? 'bg-[#F9F6F1] border-[#C5A059] shadow-sm' : 'bg-transparent border-[#C5A059]/10 opacity-40'}`}
-                                  >
-                                      <span className="text-[14px] font-sans font-bold text-[#C5A059]">R${svc.cashPrice}</span>
-                                      <span className="text-[8px] uppercase tracking-wider font-bold text-[#333333]/40 leading-none pb-0.5">À VISTA</span>
-                                  </button>
-                                  <button 
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleModeSwitch('card');
-                                    }}
-                                    className={`border rounded-lg px-3 py-1 flex flex-col items-end min-w-[100px] transition-all duration-300 ${currentMode === 'card' ? 'bg-[#F9F6F1] border-[#C5A059] shadow-sm' : 'bg-transparent border-[#C5A059]/10 opacity-40'}`}
-                                  >
-                                      <span className="text-[12px] font-sans font-bold text-[#C5A059]/70">R${svc.cardPrice}</span>
-                                      <span className="text-[8px] uppercase tracking-wider font-bold text-[#333333]/40 leading-none pb-0.5">CARTÃO</span>
-                                  </button>
-                                </>
-                              );
-                           })()}
+                      <div className="flex flex-col items-end flex-shrink-0">
+                        {!(selectedCategory.id === 'penteados') && !['esmalteria', 'sobrancelha', 'cilios', 'limpeza-pele', 'corporal'].includes(selectedCategory.id) && 
+                         svc.price !== 'SOB AVALIAÇÃO' && (
+                          <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#C5A059]/60 leading-none mb-0.5">A PARTIR DE</span>
+                        )}
+                        <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] leading-none`}>
+                          { svc.price === 'SOB AVALIAÇÃO' 
+                            ? svc.price 
+                            : typeof svc.price === 'number' || !isNaN(Number(svc.price.toString().replace(',','.'))) 
+                              ? `R$${svc.price}` 
+                              : svc.price 
+                          }
                         </div>
-                      ) : (
-                        <div className="flex flex-col items-end flex-shrink-0">
-                          {!['esmalteria', 'sobrancelha', 'penteados', 'cilios', 'limpeza-pele', 'corporal'].includes(selectedCategory.id) && 
-                           svc.price !== 'SOB AVALIAÇÃO' && (
-                            <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#C5A059]/60 leading-none mb-0.5">A PARTIR DE</span>
-                          )}
-                          <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] leading-none`}>
-                            { svc.price === 'SOB AVALIAÇÃO' 
-                              ? svc.price 
-                              : typeof svc.price === 'number' || !isNaN(Number(svc.price.toString().replace(',','.'))) 
-                                ? `R$${svc.price}` 
-                                : svc.price 
-                            }
-                          </div>
-                        </div>
-                      )}
+                      </div>
                     </motion.div>
                   )
                 ))}
