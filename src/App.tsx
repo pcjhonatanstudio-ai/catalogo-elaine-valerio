@@ -197,7 +197,7 @@ const CATEGORIES = [
       { name: 'ANETHUN', price: 132 },
       { name: 'ERIK KENED', price: 165 },
       { name: 'SPA DETOX ERIK KENED', price: 230 },
-      { name: 'LOREAL (ABSOLUT REPER)', price: 215 },
+      { name: "L'Oréal (ABSOLUT REPER)", price: 250 },
     ]
   },
   {
