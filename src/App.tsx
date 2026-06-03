@@ -349,6 +349,15 @@ const CategoryHeaderCarousel = ({ images }: { images: string[] }) => {
   );
 };
 
+// Atribui IDs únicos a todos os serviços de CATEGORIES para garantir seleção precisa e evitar duplicidade de preços
+CATEGORIES.forEach((cat) => {
+  (cat.services as any[]).forEach((svc: any, idx: number) => {
+    if (!svc.isTitle) {
+      svc.id = `${cat.id}-${idx}`;
+    }
+  });
+});
+
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<typeof CATEGORIES[number] | null>(null);
   const [view, setView] = useState<'catalogue' | 'cronograma'>('catalogue');
@@ -357,15 +366,25 @@ export default function App() {
   const [itemPaymentModes, setItemPaymentModes] = useState<Record<string, 'cash' | 'card'>>({});
 
   const toggleCartItem = (service: any, categoryName: string) => {
-    const itemKey = `${categoryName}-${service.name}`;
-    const currentMode = itemPaymentModes[itemKey] || 'cash';
+    const itemKey = `${categoryName}-${service.name}-${service.id || ''}`;
+    const currentMode = itemPaymentModes[itemKey] || itemPaymentModes[`${categoryName}-${service.name}`] || 'cash';
     
     setCart(prev => {
-      const exists = prev.find(item => item.name === service.name && item.category === categoryName);
+      const exists = prev.find(item => {
+        if (service.id && item.id) {
+          return item.id === service.id;
+        }
+        return item.name === service.name && item.category === categoryName;
+      });
       if (exists) {
-        return prev.filter(item => !(item.name === service.name && item.category === categoryName));
+        return prev.filter(item => {
+          if (service.id && item.id) {
+            return item.id !== service.id;
+          }
+          return !(item.name === service.name && item.category === categoryName);
+        });
       }
-      return [...prev, { ...service, category: categoryName, selectedPaymentMode: currentMode }];
+      return [...prev, { ...service, category: categoryName, id: service.id, selectedPaymentMode: currentMode }];
     });
   };
 
@@ -373,7 +392,9 @@ export default function App() {
     return cart.reduce((total, item) => {
       // Find the original service to handle dynamic pricing based on the item's stored selectedPaymentMode
       const cat = CATEGORIES.find(c => c.title === item.category);
-      const svc = cat?.services.find(s => s.name === item.name);
+      const svc = item.id 
+        ? cat?.services.find(s => (s as any).id === item.id)
+        : cat?.services.find(s => s.name === item.name);
       
       const priceVal = (svc as any)?.cashPrice 
         ? (item.selectedPaymentMode === 'card' ? (svc as any).cardPrice : (svc as any).cashPrice)
@@ -390,7 +411,9 @@ export default function App() {
   const handleWhatsAppRedirect = () => {
     const itemsList = cart.map(item => {
       const cat = CATEGORIES.find(c => c.title === item.category);
-      const svc = cat?.services.find(s => s.name === item.name);
+      const svc = item.id 
+        ? cat?.services.find(s => (s as any).id === item.id)
+        : cat?.services.find(s => s.name === item.name);
       
       let priceDisplay = '';
       if ((svc as any)?.cashPrice) {
@@ -475,7 +498,9 @@ export default function App() {
                         <span className="font-bold text-[#C5A059]">
                           {(() => {
                             const cat = CATEGORIES.find(c => c.title === item.category);
-                            const svc = cat?.services.find(s => s.name === item.name);
+                            const svc = item.id 
+                              ? cat?.services.find(s => (s as any).id === item.id)
+                              : cat?.services.find(s => s.name === item.name);
                             if ((svc as any)?.cashPrice) {
                               return item.selectedPaymentMode === 'card' ? `R$${(svc as any).cardPrice}` : `R$${(svc as any).cashPrice}`;
                             }
@@ -767,7 +792,12 @@ export default function App() {
                           <button 
                             onClick={() => toggleCartItem(svc, selectedCategory.title)}
                             className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
-                              cart.find(item => item.name === svc.name && item.category === selectedCategory.title)
+                              cart.find(item => {
+                                if (svc.id && item.id) {
+                                  return item.id === svc.id;
+                                }
+                                return item.name === svc.name && item.category === selectedCategory.title;
+                              })
                                 ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
                                 : 'border-[#C5A059]/40 text-transparent hover:border-[#C5A059] hover:bg-[#C5A059]/5'
                             }`}
