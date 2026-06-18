@@ -163,8 +163,8 @@ const CATEGORIES = [
     image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt',
       services: [
         { name: 'Corte', isTitle: true },
-        { name: 'CORTE TESOURA ELAINE', price: 180 },
-        { name: 'CORTE TESOURA EQUIPE', price: 120 },
+        { name: 'CORTE TESOURA ELAINE', price: 180, hidePrefix: true },
+        { name: 'CORTE TESOURA EQUIPE', price: 120, hidePrefix: true },
         { name: 'London', isTitle: true },
         { name: 'CURTO', price: 330 },
         { name: 'CHANEL', price: 356 },
@@ -820,7 +820,7 @@ export default function App() {
 
                       <div className="flex flex-col items-end flex-shrink-0">
                         {!(selectedCategory.id === 'penteados') && !['esmalteria', 'sobrancelha', 'cilios', 'limpeza-pele', 'corporal'].includes(selectedCategory.id) && 
-                         svc.price !== 'SOB AVALIAÇÃO' && (
+                         svc.price !== 'SOB AVALIAÇÃO' && !svc.hidePrefix && (
                           <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#C5A059]/60 leading-none mb-0.5">A PARTIR DE</span>
                         )}
                         <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] leading-none`}>
