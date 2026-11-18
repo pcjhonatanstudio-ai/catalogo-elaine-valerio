@@ -576,7 +576,7 @@ export default function App() {
                   <div className="absolute inset-0 border border-[#C5A059]/30 rounded-[100px] transform translate-x-3 translate-y-3 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
                   <div className="w-full h-full rounded-[100px] overflow-hidden border-2 border-white shadow-2xl relative">
                     <img 
-                      src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w480" 
+                      src="/hero-elaine.webp" 
                       alt="Elaine Valerio Studio de Beleza - Salão de Beleza em Coqueiral, Araruama, RJ" 
                       width={176}
                       height={240}
@@ -584,7 +584,6 @@ export default function App() {
                       loading="eager"
                       decoding="sync"
                       className="w-full h-full object-cover scale-110 object-[center_30%] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
-                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
