@@ -365,6 +365,36 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [itemPaymentModes, setItemPaymentModes] = useState<Record<string, 'cash' | 'card'>>({});
 
+  useEffect(() => {
+    const currentUrl = window.location.origin + window.location.pathname;
+
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = currentUrl;
+
+    let ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    if (!ogUrl) {
+      ogUrl = document.createElement('meta');
+      ogUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.content = currentUrl;
+
+    const baseTitle = 'ELAINE VALERIO – Salão de Beleza em Araruama, RJ';
+    const activeTitle =
+      view === 'cronograma'
+        ? 'Cronograma Capilar em Araruama | ELAINE VALERIO'
+        : selectedCategory
+          ? `${selectedCategory.title} em Araruama | ELAINE VALERIO`
+          : baseTitle;
+
+    document.title = activeTitle;
+  }, [selectedCategory, view]);
+
   const toggleCartItem = (service: any, categoryName: string) => {
     const itemKey = `${categoryName}-${service.name}-${service.id || ''}`;
     const currentMode = itemPaymentModes[itemKey] || itemPaymentModes[`${categoryName}-${service.name}`] || 'cash';
@@ -580,7 +610,7 @@ export default function App() {
                   <div className="w-full h-full rounded-[100px] overflow-hidden border-2 border-white shadow-2xl relative">
                     <img 
                       src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w1000" 
-                      alt="ELAINE VALERIO" 
+                      alt="Elaine Valerio Studio de Beleza - Salão de Beleza em Coqueiral, Araruama, RJ" 
                       className="w-full h-full object-cover scale-110 object-[center_30%] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
@@ -668,7 +698,7 @@ export default function App() {
                     <img 
                       src={selectedCategory.image} 
                       className="w-full h-full object-cover object-[center_15%]" 
-                      alt="" 
+                      alt={`${selectedCategory.title} no Studio Elaine Valerio em Araruama, RJ`} 
                     />
                   )}
                   <div className="absolute inset-0 bg-black/20"></div>
@@ -872,6 +902,31 @@ export default function App() {
             </motion.section>
           )}
         </AnimatePresence>
+
+        {/* Conteúdo semântico oculto visualmente para indexação local e acessibilidade */}
+        <section className="sr-only" aria-label="Elaine Valerio Studio de Beleza em Araruama">
+          <h2>Elaine Valerio Studio de Beleza – Salão de Beleza em Araruama, RJ</h2>
+          <p>
+            Salão de beleza referência em Coqueiral, Araruama - RJ e na Região dos Lagos, oferecendo atendimento especializado
+            em cabelos, unhas, cílios, sobrancelhas, maquiagem, penteados e estética facial e corporal.
+          </p>
+          <h3>Serviços de Beleza em Araruama</h3>
+          <ul>
+            <li>Mechas em Araruama: mechas iluminar, contraste, camuflar, super blond, blond iluminar, loiro perfeito e morena iluminada.</li>
+            <li>Cortes e Escovas em Araruama: corte feminino na tesoura, corte London, tratamento antifrizz, escova modelada e secagem.</li>
+            <li>Cronograma Capilar e Tratamentos em Araruama: hidratação, nutrição, alinhamento, reconstrução capilar, spa detox e linhas profissionais Truss, Wella, Alfaparf, Aneethun, Erik Kened e L'Oréal Absolut Repair.</li>
+            <li>Coloração em Araruama: coloração completa, retoque de raiz e coloração com tratamento.</li>
+            <li>Esmalteria em Araruama: manicure e pedicure, pé e mão, banho de gel, esmaltação em gel, blindagem de unhas, remoção de alongamento, plástica dos pés e spa dos pés.</li>
+            <li>Sobrancelhas em Araruama: design de sobrancelhas, limpeza simples, sobrancelha com henna, coloração e brow lamination.</li>
+            <li>Cílios em Araruama: extensão de cílios fio a fio, volume brasileiro, técnica Studio Elaine Valerio e lash lifting.</li>
+            <li>Penteados e Maquiagem em Araruama: penteado social, maquiagem social, dia da noiva, noivas com e sem prévia e debutantes.</li>
+            <li>Estética Facial e Corporal em Araruama: limpeza de pele Adcos, revitalização facial, spa labial, hidra gloss, massagem relaxante, massagem epicraniana e ritual relaxante para pernas e pés.</li>
+          </ul>
+          <address>
+            Elaine Valerio Studio de Beleza – Rua Capitão Vergara, 43, Coqueiral, Araruama - RJ, CEP 28982-335.
+            Atendimento para Araruama, Iguaba Grande, Saquarema, Praia Seca e Região dos Lagos. WhatsApp: (22) 98833-5171.
+          </address>
+        </section>
       </main>
 
       {/* Bottom Navigation */}
