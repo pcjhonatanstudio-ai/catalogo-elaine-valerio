@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
-  X, 
   WhatsappLogo, 
   Info, 
   Heart, 
@@ -92,6 +91,8 @@ const PriceItem: React.FC<{
     <div className="flex items-center gap-2 md:gap-4 py-2 md:py-2.5 group">
       <button 
         onClick={() => onToggle({ name, price }, category)}
+        aria-label={`Selecionar ${category} ${name}`}
+        aria-pressed={Boolean(isSelected)}
         className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
           isSelected
             ? 'bg-[#D9A07E] border-[#D9A07E] text-white shadow-[0_2px_10px_rgba(217,160,126,0.3)]'
@@ -116,6 +117,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
       {/* Global Close Button */}
       <button 
         onClick={onClose}
+        aria-label="Voltar para o menu de serviços"
         className="fixed top-6 left-6 z-[110] w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(197,160,89,0.4)] border-2 border-[#D9A07E] flex items-center justify-center text-[#D9A07E] hover:scale-110 active:scale-95 transition-all group"
       >
         <CaretLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" weight="bold" />
@@ -152,7 +154,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
         {
           id: 'iluminar',
           title: 'Iluminar',
-          image: 'https://lh3.googleusercontent.com/d/10ZyFi-WdgBx7k0XOajdBicLUaXFWdgiT',
+          image: 'https://lh3.googleusercontent.com/d/10ZyFi-WdgBx7k0XOajdBicLUaXFWdgiT=w900',
           services: [
             { name: 'CURTO - PIXIE CUT', price: '544,50' },
             { name: 'CURTO - NUCA', price: '654,50' },
@@ -165,7 +167,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
         {
           id: 'contraste',
           title: 'Contraste',
-          image: 'https://lh3.googleusercontent.com/d/1kssz8lXblrQPU0gwqNko8E-7Kubyy8_n',
+          image: 'https://lh3.googleusercontent.com/d/1kssz8lXblrQPU0gwqNko8E-7Kubyy8_n=w900',
           services: [
             { name: 'CURTO - PIXIE CUT', price: '544,50' },
             { name: 'CURTO - NUCA', price: '654,50' },
@@ -178,7 +180,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
         {
           id: 'camuflar',
           title: 'Camuflar',
-          image: 'https://lh3.googleusercontent.com/d/1QiUmD8jrcJmEgzoSH5NDVvDMpVGMNJup',
+          image: 'https://lh3.googleusercontent.com/d/1QiUmD8jrcJmEgzoSH5NDVvDMpVGMNJup=w900',
           services: [
             { name: 'CURTO - PIXIE CUT', price: '544,50' },
             { name: 'CURTO - NUCA', price: '654,50' },
@@ -191,7 +193,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
         {
           id: 'super-blond',
           title: 'Super Blond',
-          image: 'https://lh3.googleusercontent.com/d/1vNXCDTOUWIIZwvd9DDLL9bV--TG1EfBF',
+          image: 'https://lh3.googleusercontent.com/d/1vNXCDTOUWIIZwvd9DDLL9bV--TG1EfBF=w900',
           services: [
             { name: 'CURTO - NUCA', price: '759' },
             { name: 'MÉDIO - PESCOÇO', price: '979' },
@@ -203,7 +205,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
         {
           id: 'blond-lumiere',
           title: 'Blond Lumière',
-          image: 'https://drive.google.com/thumbnail?id=1aWsd1tYh6oQvH7adkDrpwuKDMLlM_uZb&sz=w1000', 
+          image: 'https://drive.google.com/thumbnail?id=1aWsd1tYh6oQvH7adkDrpwuKDMLlM_uZb&sz=w900', 
           services: [
             { name: 'CURTO - NUCA', price: '959' },
             { name: 'MÉDIO - PESCOÇO', price: '1.179' },
@@ -225,7 +227,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
             {/* Left Image Section */}
             <div className="w-full md:w-1/2 h-[35%] md:h-full p-2 md:p-16 flex flex-col justify-center">
               <div className="relative w-full h-full overflow-hidden border border-[#D9A07E]/20 shadow-2xl">
-                <img src={cat.image} className="w-full h-full object-cover object-[center_15%]" alt={cat.title} />
+                <img src={cat.image} loading="lazy" decoding="async" referrerPolicy="no-referrer" className="w-full h-full object-cover object-[center_15%]" alt={`${cat.title} - Mechas Elaine Valerio em Araruama`} />
                 <div className="absolute inset-0 bg-[#D9A07E]/10 mix-blend-overlay"></div>
               </div>
             </div>
@@ -268,7 +270,7 @@ const MechasPresentation: React.FC<MechasPresentationProps> = ({ onClose, cart, 
           <p className="font-sans text-[10px] tracking-[0.4em] text-[#D9A07E] uppercase mb-12">Performance & Cuidado</p>
           
           <div className="relative aspect-video overflow-hidden mb-12 border border-[#D9A07E]/20 shadow-xl">
-             <img src="https://lh3.googleusercontent.com/d/1TLOZ7XfuqkDmHdQCUwEDrvC6hwVNjwuX" className="w-full h-full object-cover" alt="Premium Products" />
+             <img src="https://lh3.googleusercontent.com/d/1TLOZ7XfuqkDmHdQCUwEDrvC6hwVNjwuX=w900" loading="lazy" decoding="async" referrerPolicy="no-referrer" className="w-full h-full object-cover" alt="Produtos profissionais Wella, Alfaparf e Truss no Studio Elaine Valerio" />
              <div className="absolute inset-0 bg-black/5"></div>
           </div>
 

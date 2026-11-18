@@ -3,29 +3,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, 
   ArrowRight, 
-  CalendarBlank, 
-  UserCircle, 
   CaretLeft, 
   Sparkle, 
   Heart, 
-  Clock, 
-  Scissors, 
   FlowerLotus, 
-  HandWaving, 
   Drop, 
-  PaintBrush, 
-  Flower, 
   MagicWand, 
-  ShieldCheck, 
-  Jar,
-  Fingerprint,
   Crown,
-  Diamond,
   InstagramLogo,
   WhatsappLogo,
   MapPin,
@@ -33,25 +22,10 @@ import {
   ShoppingBag,
   Check
 } from '@phosphor-icons/react';
-import ScheduleCatalog from './components/ScheduleCatalog';
-import MechasPresentation from './components/MechasPresentation';
-import InspirationGallery from './components/InspirationGallery';
 
-const DecorationDivider = () => (
-  <div className="flex items-center justify-center gap-2 my-2 opacity-60">
-    <div className="w-12 h-px bg-[#D4AF37]"></div>
-    <FlowerLotus className="w-4 h-4 text-[#D4AF37]" weight="light" />
-    <div className="w-12 h-px bg-[#D4AF37]"></div>
-  </div>
-);
-
-const WaveDivider = () => (
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180 z-20">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[200%] h-[40px] text-[#F9F6F1]">
-      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.4,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,0,1200,0H0Z" fill="currentColor"></path>
-    </svg>
-  </div>
-);
+const ScheduleCatalog = lazy(() => import('./components/ScheduleCatalog'));
+const MechasPresentation = lazy(() => import('./components/MechasPresentation'));
+const InspirationGallery = lazy(() => import('./components/InspirationGallery'));
 
 const BotanicalDecor = () => (
   <div className="absolute top-1/2 right-[-20px] opacity-[0.2] pointer-events-none z-0">
@@ -70,24 +44,12 @@ const BotanicalDecor = () => (
   </div>
 );
 
-const MãoEstrelaIcon = ({ className }: { className?: string }) => (
-  <MagicWand className={className} weight="light" />
-);
-
-const ShieldDropIcon = ({ className }: { className?: string }) => (
-  <ShieldCheck className={className} weight="light" />
-);
-
-const NetNailIcon = ({ className }: { className?: string }) => (
-  <Fingerprint className={className} weight="light" />
-);
-
 const CATEGORIES = [
   {
     id: 'cronograma',
     title: 'Cronograma 2026',
-    icon: 'https://lh3.googleusercontent.com/d/1AaXoINaO4LShCuoESEJbAxcVrM3WyoOp',
-    image: 'https://lh3.googleusercontent.com/d/1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku',
+    icon: 'https://lh3.googleusercontent.com/d/1AaXoINaO4LShCuoESEJbAxcVrM3WyoOp=w128',
+    image: 'https://lh3.googleusercontent.com/d/1jV2OGJHmAzzKn_0_gYWgoLiRM_PKA9ku=w900',
     services: [
       { name: 'Crono (Alinhamento)', price: 350 },
       { name: 'Crono (Nutrição)', price: 180 },
@@ -99,8 +61,8 @@ const CATEGORIES = [
   {
     id: 'esmalteria',
     title: 'Esmalteria',
-    icon: 'https://lh3.googleusercontent.com/d/1r7r7-ZPTym7Bq6pd_XI3vAc-JMO4G9Wr',
-    image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop',
+    icon: 'https://lh3.googleusercontent.com/d/1r7r7-ZPTym7Bq6pd_XI3vAc-JMO4G9Wr=w128',
+    image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=75&w=800&auto=format&fit=crop&fm=webp',
     services: [
       { name: 'PÉ E MÃO', price: 55 },
       { name: 'PÉ', price: 38 },
@@ -119,7 +81,7 @@ const CATEGORIES = [
     id: 'mechas',
     title: 'Catálogo de Mechas',
     icon: Sparkle,
-    image: 'https://images.unsplash.com/photo-1560869713-7d0a29430863?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1560869713-7d0a29430863?q=75&w=800&auto=format&fit=crop&fm=webp',
     services: [
       { name: "ILUMINAR\nA PARTIR DE:", isTitle: true },
       { name: 'CURTO - PIXIE CUT', price: '544,50' },
@@ -159,8 +121,8 @@ const CATEGORIES = [
   {
     id: 'cortes',
     title: 'Cortes e Escovas',
-    icon: 'https://lh3.googleusercontent.com/d/1UxIS8fOztbkRpz7MQnXajw-mnTrysj9f',
-    image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt',
+    icon: 'https://lh3.googleusercontent.com/d/1UxIS8fOztbkRpz7MQnXajw-mnTrysj9f=w128',
+    image: 'https://lh3.googleusercontent.com/d/10jt0RxQGTxWIAk_kMv3DUHKqQ8yqzLkt=w900',
       services: [
         { name: 'Corte', isTitle: true },
         { name: 'CORTE TESOURA ELAINE', price: 180, hidePrefix: true },
@@ -187,8 +149,8 @@ const CATEGORIES = [
   {
     id: 'tratamentos',
     title: 'Tratamentos',
-    icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U',
-    image: 'https://lh3.googleusercontent.com/d/1FUxuHlt_2W4F8QETGqZBrHvm4t4PVDd2',
+    icon: 'https://lh3.googleusercontent.com/d/1LtkDoX56yK3Dv4XkU29eLVwE9icGob8U=w128',
+    image: 'https://lh3.googleusercontent.com/d/1FUxuHlt_2W4F8QETGqZBrHvm4t4PVDd2=w900',
     services: [
       { name: "TRATAMENTO AVANÇADO INDIVIDUALIZADO\n(SESSÕES INDIVIDUAIS)\nA PARTIR DE:", isTitle: true },
       { name: 'TRUSS', price: 176 },
@@ -203,8 +165,8 @@ const CATEGORIES = [
   {
     id: 'cor',
     title: 'Coloração',
-    icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV',
-    image: 'https://lh3.googleusercontent.com/d/15l6uCMz04lseHMg5CvC8k6hn3FCrPXDU',
+    icon: 'https://lh3.googleusercontent.com/d/1wyJa2nIcF_f5TukpyoIJJHOKiXFwT0AV=w128',
+    image: 'https://lh3.googleusercontent.com/d/15l6uCMz04lseHMg5CvC8k6hn3FCrPXDU=w900',
     services: [
       { name: "COLORAÇÕES\nA PARTIR DE:", isTitle: true },
       { name: 'RETOQUE', price: 109 },
@@ -219,7 +181,7 @@ const CATEGORIES = [
     id: 'sobrancelha',
     title: 'Sobrancelha',
     icon: MagicWand,
-    image: 'https://drive.google.com/thumbnail?id=1IFSvKfQL-Dz8uRyz_Jpqgu7oFwRnZpTz&sz=w1600',
+    image: 'https://drive.google.com/thumbnail?id=1IFSvKfQL-Dz8uRyz_Jpqgu7oFwRnZpTz&sz=w900',
     services: [
       { name: 'DESIGN', price: 55 },
       { name: 'LIMPEZA SIMPLES', price: 45 },
@@ -233,7 +195,7 @@ const CATEGORIES = [
     id: 'penteados',
     title: 'Penteados',
     icon: Crown,
-    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=75&w=800&auto=format&fit=crop&fm=webp',
     services: [
       { name: 'PENTEADOS', isTitle: true },
       { name: 'SOCIAL', price: 210 },
@@ -254,7 +216,7 @@ const CATEGORIES = [
     id: 'cilios',
     title: 'Cílios',
     icon: Sparkle,
-    image: 'https://drive.google.com/thumbnail?id=1fUZPEpqSlXpnaJ6Zzs6nMr2eQaNKWCGl&sz=w1600',
+    image: 'https://drive.google.com/thumbnail?id=1fUZPEpqSlXpnaJ6Zzs6nMr2eQaNKWCGl&sz=w900',
     services: [
       { name: 'FIO A FIO', isTitle: true },
       { name: 'COLOCAÇÃO', price: 132 },
@@ -281,7 +243,7 @@ const CATEGORIES = [
     id: 'limpeza-pele',
     title: 'Limpeza de Pele',
     icon: Drop,
-    image: 'https://drive.google.com/thumbnail?id=1odP9L99iUY1uiTRQmky3etkDXFnmiPpw&sz=w1600',
+    image: 'https://drive.google.com/thumbnail?id=1odP9L99iUY1uiTRQmky3etkDXFnmiPpw&sz=w900',
     services: [
       { name: 'ADCOS', price: 250 },
       { name: 'REVITALIZAÇÃO ADCOS\n(MANUTENÇÃO)', price: 198 },
@@ -293,7 +255,7 @@ const CATEGORIES = [
     id: 'corporal',
     title: 'Corporal',
     icon: Sparkle,
-    image: 'https://drive.google.com/thumbnail?id=1HYBolxWiTX0Mm5S_R01-TpvY0pz7dl3O&sz=w1600',
+    image: 'https://drive.google.com/thumbnail?id=1HYBolxWiTX0Mm5S_R01-TpvY0pz7dl3O&sz=w900',
     services: [
       { name: 'RITUAL RELAXANTE "PERNAS E PÉS"\n(45MIN)', price: 100 },
       { name: 'MASSAGEM', isTitle: true },
@@ -304,7 +266,7 @@ const CATEGORIES = [
     id: 'inspire-se',
     title: 'Inspire-se',
     icon: Sparkle,
-    image: 'https://drive.google.com/thumbnail?id=1_Ob8nVE13ni75Z6tu5-UaBVO7y95gqIm&sz=w1000',
+    image: 'https://drive.google.com/thumbnail?id=1_Ob8nVE13ni75Z6tu5-UaBVO7y95gqIm&sz=w800',
     services: []
   }
 ];
@@ -340,9 +302,10 @@ const CategoryHeaderCarousel = ({ images }: { images: string[] }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
-          src={`https://drive.google.com/thumbnail?id=${images[currentIndex]}&sz=w1600`}
+          src={`https://drive.google.com/thumbnail?id=${images[currentIndex]}&sz=w900`}
           className="w-full h-full object-cover object-[center_15%] absolute inset-0"
-          alt=""
+          referrerPolicy="no-referrer"
+          alt="Penteados e maquiagem Studio Elaine Valerio em Araruama"
         />
       </AnimatePresence>
     </div>
@@ -467,21 +430,27 @@ export default function App() {
     <div className="min-h-[100dvh] bg-[#F9F6F1] text-[#333333] font-sans flex flex-col selection:bg-[#C5A059]/20 relative overflow-x-hidden pb-24">
       <AnimatePresence mode="wait">
         {view === 'cronograma' && (
-          <ScheduleCatalog 
-            cart={cart} 
-            toggleCartItem={toggleCartItem} 
-            onClose={() => setView('catalogue')} 
-          />
+          <Suspense fallback={null}>
+            <ScheduleCatalog 
+              cart={cart} 
+              toggleCartItem={toggleCartItem} 
+              onClose={() => setView('catalogue')} 
+            />
+          </Suspense>
         )}
         {selectedCategory?.id === 'mechas' && (
-          <MechasPresentation 
-            cart={cart}
-            toggleCartItem={toggleCartItem}
-            onClose={() => setSelectedCategory(null)} 
-          />
+          <Suspense fallback={null}>
+            <MechasPresentation 
+              cart={cart}
+              toggleCartItem={toggleCartItem}
+              onClose={() => setSelectedCategory(null)} 
+            />
+          </Suspense>
         )}
         {selectedCategory?.id === 'inspire-se' && (
-          <InspirationGallery onClose={() => setSelectedCategory(null)} />
+          <Suspense fallback={null}>
+            <InspirationGallery onClose={() => setSelectedCategory(null)} />
+          </Suspense>
         )}
         {isCartOpen && (
           <>
@@ -503,18 +472,18 @@ export default function App() {
             >
               <div className="flex justify-between items-center mb-8">
                 <div>
-                  <h2 className="font-serif text-3xl text-[#C5A059]">Seu Carrinho</h2>
-                  <p className="text-[10px] uppercase tracking-widest text-[#333333]/50 font-medium">{cart.length} itens selecionados</p>
+                  <h2 className="font-serif text-3xl text-[#9A7735]">Seu Carrinho</h2>
+                  <p className="text-[10px] uppercase tracking-widest text-[#333333]/75 font-medium">{cart.length} itens selecionados</p>
                 </div>
-                <button onClick={() => setIsCartOpen(false)} className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#333333]">
+                <button onClick={() => setIsCartOpen(false)} aria-label="Fechar carrinho" className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#333333]">
                   <X size={20} />
                 </button>
               </div>
 
               {cart.length === 0 ? (
                 <div className="py-12 text-center">
-                  <ShoppingBag size={48} weight="light" className="mx-auto text-[#C5A059]/30 mb-4" />
-                  <p className="text-sm text-[#333333]/40 uppercase tracking-widest">Nenhum serviço selecionado</p>
+                  <ShoppingBag size={48} weight="light" className="mx-auto text-[#C5A059]/50 mb-4" />
+                  <p className="text-sm text-[#333333]/70 uppercase tracking-widest">Nenhum serviço selecionado</p>
                 </div>
               ) : (
                 <div className="space-y-4 mb-8">
@@ -537,7 +506,7 @@ export default function App() {
                             return typeof item.price === 'number' ? `R$${item.price}` : item.price;
                           })()}
                         </span>
-                        <button onClick={() => toggleCartItem(item, item.category)} className="text-red-400 p-1">
+                        <button onClick={() => toggleCartItem(item, item.category)} aria-label={`Remover ${item.name} do carrinho`} className="text-red-500 p-1">
                           <Trash size={18} />
                         </button>
                       </div>
@@ -577,6 +546,7 @@ export default function App() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setIsCartOpen(true)}
+            aria-label={`Abrir carrinho com ${cart.length} serviços selecionados`}
             className="fixed bottom-24 right-6 w-16 h-16 rounded-full bg-[#C5A059] text-white shadow-2xl z-[150] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
           >
             <div className="relative">
@@ -600,17 +570,19 @@ export default function App() {
               className="w-full"
             >
               <div className="flex flex-col items-center justify-center pt-12 pb-8 text-center w-full max-w-sm mx-auto px-4">
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
+                <div 
                   className="relative w-44 h-60 mb-10 group"
                 >
                   <div className="absolute inset-0 border border-[#C5A059]/30 rounded-[100px] transform translate-x-3 translate-y-3 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
                   <div className="w-full h-full rounded-[100px] overflow-hidden border-2 border-white shadow-2xl relative">
                     <img 
-                      src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w1000" 
+                      src="https://drive.google.com/thumbnail?id=1CxoQ3ZIxsnMPrO0fAvKKK-Ik1QjKRcWE&sz=w480" 
                       alt="Elaine Valerio Studio de Beleza - Salão de Beleza em Coqueiral, Araruama, RJ" 
+                      width={176}
+                      height={240}
+                      fetchPriority="high"
+                      loading="eager"
+                      decoding="sync"
                       className="w-full h-full object-cover scale-110 object-[center_30%] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
@@ -619,10 +591,10 @@ export default function App() {
                   <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border border-[#C5A059]/20">
                     <FlowerLotus className="w-6 h-6 text-[#C5A059]" weight="light" />
                   </div>
-                </motion.div>
+                </div>
 
-                <span className="font-serif italic text-5xl md:text-7xl leading-none text-[#C5A059]">ELAINE VALERIO</span>
-                <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#333333]/60 mt-2 font-medium">STUDIO DE BELEZA</span>
+                <span className="font-serif italic text-5xl md:text-7xl leading-none text-[#9A7735]">ELAINE VALERIO</span>
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#333333]/75 mt-2 font-medium">STUDIO DE BELEZA</span>
                 
                 <div className="flex items-center gap-2 my-6 opacity-60">
                    <div className="w-12 h-px bg-[#C5A059]"></div>
@@ -630,7 +602,7 @@ export default function App() {
                    <div className="w-12 h-px bg-[#C5A059]"></div>
                 </div>
                 
-                <h1 className="font-serif text-3xl tracking-widest text-[#C5A059] uppercase">
+                <h1 className="font-serif text-3xl tracking-widest text-[#9A7735] uppercase">
                    Menu de Serviços
                 </h1>
 
@@ -658,7 +630,7 @@ export default function App() {
                   >
                     <div className="w-12 h-12 flex items-center justify-center text-[#C5A059] overflow-hidden">
                       {typeof cat.icon === 'string' ? (
-                        <img src={cat.icon} alt={cat.title} className="w-10 h-10 object-contain" />
+                        <img src={cat.icon} alt={cat.title} width={40} height={40} loading="eager" decoding="async" referrerPolicy="no-referrer" className="w-10 h-10 object-contain" />
                       ) : (
                         (() => {
                           const Icon = cat.icon as React.ComponentType<{ className?: string, weight?: string }>;
@@ -711,6 +683,7 @@ export default function App() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-6">
                   <button 
                      onClick={() => setSelectedCategory(null)}
+                     aria-label="Voltar para o menu de serviços"
                      className="fixed top-10 left-6 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(197,160,89,0.3)] border-2 border-[#C5A059] flex items-center justify-center transition-all hover:scale-110 active:scale-95 group z-50 text-[#C5A059]"
                    >
                      <CaretLeft className="w-7 h-7 group-hover:-translate-x-1 transition-transform" weight="bold" />
@@ -754,8 +727,8 @@ export default function App() {
                    </div>
                  ) : (
                    <>
-                     <h3 className="font-serif text-[36px] text-[#C5A059] tracking-tight leading-tight">Tabela de Valores</h3>
-                     <p className="text-[11px] uppercase font-sans font-medium tracking-[0.5em] text-[#333333]/40 mt-1">CATÁLOGO 2026</p>
+                     <h2 className="font-serif text-[36px] text-[#9A7735] tracking-tight leading-tight">Tabela de Valores</h2>
+                     <p className="text-[11px] uppercase font-sans font-medium tracking-[0.5em] text-[#333333]/70 mt-1">CATÁLOGO 2026</p>
                    </>
                  )}
                  
@@ -821,6 +794,13 @@ export default function App() {
                         <div className="flex items-center gap-3 w-full">
                           <button 
                             onClick={() => toggleCartItem(svc, selectedCategory.title)}
+                            aria-label={`Selecionar ${svc.name}`}
+                            aria-pressed={Boolean(cart.find(item => {
+                              if (svc.id && item.id) {
+                                return item.id === svc.id;
+                              }
+                              return item.name === svc.name && item.category === selectedCategory.title;
+                            }))}
                             className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
                               cart.find(item => {
                                 if (svc.id && item.id) {
@@ -851,7 +831,7 @@ export default function App() {
                       <div className="flex flex-col items-end flex-shrink-0">
                         {!(selectedCategory.id === 'penteados') && !['esmalteria', 'sobrancelha', 'cilios', 'limpeza-pele', 'corporal'].includes(selectedCategory.id) && 
                          svc.price !== 'SOB AVALIAÇÃO' && !svc.hidePrefix && (
-                          <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#C5A059]/60 leading-none mb-0.5">A PARTIR DE</span>
+                          <span className="text-[9px] uppercase font-sans font-medium tracking-tighter text-[#8C6D2E] leading-none mb-0.5">A PARTIR DE</span>
                         )}
                         <div className={`${svc.price === 'SOB AVALIAÇÃO' ? 'text-[12px]' : 'text-[18px]'} font-sans font-bold text-[#C5A059] leading-none`}>
                           { svc.price === 'SOB AVALIAÇÃO' 
@@ -874,14 +854,14 @@ export default function App() {
                       <Sparkle className="w-7 h-7 text-[#C5A059]" weight="light" />
                       <p className="text-[10px] text-[#333333] leading-relaxed font-semibold uppercase tracking-[0.1em]">
                          Valores sujeitos a alteração. <br/> 
-                         <span className="opacity-40 font-normal">Consulte condições na recepção.</span>
+                         <span className="text-[#333333]/75 font-normal">Consulte condições na recepção.</span>
                       </p>
                    </div>
                    <div className="flex-1 flex flex-col items-center text-center gap-4 px-4">
                       <Heart className="w-7 h-7 text-[#C5A059]" weight="light" />
                       <p className="text-[10px] text-[#333333] leading-relaxed font-semibold uppercase tracking-[0.1em]">
                          Atendimento com <br/>
-                         <span className="opacity-40 font-normal">excelência e carinho</span>
+                         <span className="text-[#333333]/75 font-normal">excelência e carinho</span>
                       </p>
                    </div>
                 </div>
@@ -937,7 +917,7 @@ export default function App() {
                href="https://www.instagram.com/valerioelaine?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
                target="_blank" 
                rel="noopener noreferrer"
-               className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity px-6 cursor-pointer"
+               className="flex flex-col items-center gap-1 opacity-75 hover:opacity-100 transition-opacity px-6 cursor-pointer"
              >
                 <InstagramLogo className="w-5 h-5 text-[#333333]" weight="light" />
                 <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">Instagram</span>
@@ -952,14 +932,14 @@ export default function App() {
                 <div className="w-16 h-16 rounded-full bg-white border border-[#C5A059]/30 shadow-[0_8px_30px_rgba(197,160,89,0.15)] flex items-center justify-center text-[#C5A059] group-hover:bg-[#C5A059] group-hover:text-white transition-all duration-300">
                    <MapPin className="w-8 h-8" weight="light" />
                 </div>
-                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#C5A059] mt-3">Localização</span>
+                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#8C6D2E] mt-3">Localização</span>
              </a>
  
              <a 
                href="https://wa.me/5522988335171" 
                target="_blank" 
                rel="noopener noreferrer"
-               className="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity px-6 cursor-pointer"
+               className="flex flex-col items-center gap-1 opacity-75 hover:opacity-100 transition-opacity px-6 cursor-pointer"
              >
                 <WhatsappLogo className="w-5 h-5 text-[#333333]" weight="light" />
                 <span className="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#333333]">WhatsApp</span>

@@ -26,14 +26,14 @@ export default function ScheduleCatalog({
       type: 'hero',
       title: 'CRONOGRAMA',
       subtitle: '2026',
-      image: 'https://drive.google.com/thumbnail?id=1X-mAClSsAFRdN_ZaL0oYzOhiZZbzlVIR&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1X-mAClSsAFRdN_ZaL0oYzOhiZZbzlVIR&sz=w800',
       description: 'A excelência em tratamentos capilares personalizados.'
     },
     {
       id: 'tecnologia',
       type: 'content',
       title: 'NO METAL',
-      image: 'https://drive.google.com/thumbnail?id=1KMCd1uNowV-3u7lN7TYByOccwLti9m6d&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1KMCd1uNowV-3u7lN7TYByOccwLti9m6d&sz=w800',
       description: 'Protocolo exclusivo com produtos premium que associado ao vapor de ozônio, neutralizam e removem metais pesados acumulados na fibra capilar.',
       icon: <Sparkle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -41,7 +41,7 @@ export default function ScheduleCatalog({
       id: 'anamnese',
       type: 'content',
       title: 'Anamnese Personalizada',
-      image: 'https://drive.google.com/thumbnail?id=1lgq49DzibvfWksYVR1ZGOZcwgpq9tFL1&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1lgq49DzibvfWksYVR1ZGOZcwgpq9tFL1&sz=w800',
       description: 'Cada diagnóstico é único. Realizamos análise profunda para identificar as reais necessidades do seu fio.',
       icon: <CheckCircle className="w-12 h-12 text-[#C5A059]" weight="light" />
     },
@@ -50,7 +50,7 @@ export default function ScheduleCatalog({
       type: 'price',
       brand: 'Truss Infusion',
       title: 'CRONOGRAMA TRUSS',
-      image: 'https://drive.google.com/thumbnail?id=1sUVOtt5CNMVgxLwzoxffl7KerLCFU97T&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1sUVOtt5CNMVgxLwzoxffl7KerLCFU97T&sz=w800',
       scheduleLabel: 'CRONOGRAMA TRUSS',
       schedulePrice: '748',
       singleLabel: 'AVULSO',
@@ -64,7 +64,7 @@ export default function ScheduleCatalog({
       type: 'price',
       brand: 'Wella Professionals',
       title: 'CRONOGRAMA WELLA',
-      image: 'https://drive.google.com/thumbnail?id=11KJa31i89js-8iN4LeAk7UHeInJuVQpZ&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=11KJa31i89js-8iN4LeAk7UHeInJuVQpZ&sz=w800',
       scheduleLabel: 'CRONOGRAMA WELLA',
       schedulePrice: '660',
       singleLabel: 'AVULSO',
@@ -78,7 +78,7 @@ export default function ScheduleCatalog({
       type: 'price',
       brand: 'Alfaparf Milano',
       title: 'CRONOGRAMA ALFAPARF',
-      image: 'https://drive.google.com/thumbnail?id=1J5FdaKQhhURl5iCgVu7psfVsxBoXRKM_&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1J5FdaKQhhURl5iCgVu7psfVsxBoXRKM_&sz=w800',
       scheduleLabel: 'CRONOGRAMA ALFAPARF',
       schedulePrice: '638',
       singleLabel: 'AVULSO',
@@ -92,7 +92,7 @@ export default function ScheduleCatalog({
       type: 'price',
       brand: 'Aneethun',
       title: 'CRONOGRAMA ANETHUN',
-      image: 'https://drive.google.com/thumbnail?id=1khESMmmezgAZzyj-dVM6EU7a1hUtE71q&sz=w1000',
+      image: 'https://drive.google.com/thumbnail?id=1khESMmmezgAZzyj-dVM6EU7a1hUtE71q&sz=w800',
       scheduleLabel: 'CRONOGRAMA ANETHUN',
       schedulePrice: '528',
       singleLabel: 'AVULSO',
@@ -113,6 +113,7 @@ export default function ScheduleCatalog({
       {/* Global Back Button */}
       <button 
         onClick={onClose}
+        aria-label="Voltar para o menu de serviços"
         className="fixed top-8 left-8 z-[110] w-12 h-12 rounded-full bg-white border-2 border-[#C5A059] text-[#C5A059] shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group flex items-center justify-center"
       >
         <CaretLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" weight="bold" />
@@ -203,6 +204,8 @@ export default function ScheduleCatalog({
                      <img 
                        src={slide.image} 
                        alt={slide.title} 
+                       loading="lazy"
+                       decoding="async"
                        referrerPolicy="no-referrer"
                        className={`w-full h-full object-center ${
                          slide.id === 'anamnese' ? 'object-cover scale-110' : 
@@ -219,6 +222,8 @@ export default function ScheduleCatalog({
                       <img 
                         src={slide.image} 
                         alt={slide.title} 
+                        loading="lazy"
+                        decoding="async"
                         referrerPolicy="no-referrer"
                         className={`w-full h-full object-center ${
                           slide.id === 'anamnese' ? 'object-cover scale-110' : 
@@ -253,6 +258,8 @@ export default function ScheduleCatalog({
                     <img 
                       src={slide.image} 
                       alt={slide.brand} 
+                      loading="lazy"
+                      decoding="async"
                       referrerPolicy="no-referrer"
                       className={`w-full h-full object-center ${
                         slide.id === 'aneethun' || slide.id === 'alfaparf' ? 'object-cover scale-110' :
@@ -270,6 +277,8 @@ export default function ScheduleCatalog({
                           <div className="flex items-center gap-3">
                             <button 
                               onClick={() => toggleCartItem({ name: `${slide.title} (4 sessões)`, price: slide.schedulePrice }, 'Cronograma')}
+                              aria-label={`Selecionar ${slide.title} (4 sessões)`}
+                              aria-pressed={Boolean(cart.find(item => item.name === `${slide.title} (4 sessões)`))}
                               className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
                                 cart.find(item => item.name === `${slide.title} (4 sessões)`)
                                   ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'
@@ -297,6 +306,8 @@ export default function ScheduleCatalog({
                           <div className="flex items-center gap-3">
                             <button 
                               onClick={() => toggleCartItem({ name: `Sessão Avulsa ${slide.title}`, price: (slide as any).singlePrice }, 'Cronograma')}
+                              aria-label={`Selecionar Sessão Avulsa ${slide.title}`}
+                              aria-pressed={Boolean(cart.find(item => item.name === `Sessão Avulsa ${slide.title}`))}
                               className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all duration-300 ${
                                 cart.find(item => item.name === `Sessão Avulsa ${slide.title}`)
                                   ? 'bg-[#C5A059] border-[#C5A059] text-white shadow-[0_2px_10px_rgba(197,160,89,0.3)]'

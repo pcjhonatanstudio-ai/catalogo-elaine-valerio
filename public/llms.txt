@@ -1,0 +1,20 @@
+# Elaine Valerio Studio de Beleza
+
+> Salão de beleza referência em Coqueiral, Araruama - RJ (Região dos Lagos). Especialistas em mechas, loiros, morena iluminada, cortes femininos, escovas, cronograma capilar 2026, coloração, esmalteria, unhas em gel, design de sobrancelhas, brow lamination, extensão de cílios, lash lifting, penteados, maquiagem para noivas e debutantes, limpeza de pele Adcos e massagem relaxante.
+
+Localizado na Rua Capitão Vergara, 43, Coqueiral, Araruama - RJ, CEP 28982-335. Atendimento com hora marcada pelo WhatsApp +55 22 98833-5171 para clientes de Araruama, Iguaba Grande, Saquarema, Praia Seca e toda a Região dos Lagos.
+
+## Catálogo e Agendamento
+
+- [Catálogo Digital de Serviços](https://elainevalerio.com.br/): Lista completa de procedimentos, cronograma capilar 2026 e valores em reais (BRL) com seleção direta para agendamento.
+- [Agendamento via WhatsApp](https://wa.me/5522988335171): Atendimento direto para agendamentos, dúvidas sobre avaliação capilar e disponibilidade de horários.
+- [Localização no Google Maps](https://www.google.com/maps/search/?api=1&query=R.+Cap.+Vergara,+43+-+Coqueiral,+Araruama+-+RJ,+28982-335): Endereço completo em Coqueiral, Araruama - RJ.
+- [Instagram Oficial @valerioelaine](https://www.instagram.com/valerioelaine): Portfólio de transformações, mechas, penteados, maquiagens e bastidores do studio.
+
+## Serviços Especializados em Araruama
+
+- [Mechas e Loiros](https://elainevalerio.com.br/#mechas): Técnicas Iluminar, Contraste, Camuflar, Super Blond e Blond Iluminar com produtos Wella, Alfaparf e Truss.
+- [Cronograma Capilar 2026](https://elainevalerio.com.br/#cronograma): Protocolos personalizados com anamnese, vapor de ozônio, LED terapia e linhas Truss, Wella, Alfaparf e Aneethun.
+- [Cortes, Escovas e Coloração](https://elainevalerio.com.br/#cortes): Corte feminino na tesoura, corte London, tratamento antifrizz, escovas, retoque de raiz e coloração completa.
+- [Esmalteria, Cílios, Sobrancelhas e Estética](https://elainevalerio.com.br/#esmalteria): Manicure, pedicure, banho de gel, blindagem, plástica dos pés, design de sobrancelhas, brow lamination, cílios fio a fio, volume brasileiro, lash lifting, penteados e maquiagem social/noivas, limpeza de pele Adcos, hidra gloss e massagem relaxante.
+- [Catálogo Estruturado ARD (JSON)](https://elainevalerio.com.br/.well-known/ard.json): Metadados legíveis por máquina para descoberta de recursos do estúdio.

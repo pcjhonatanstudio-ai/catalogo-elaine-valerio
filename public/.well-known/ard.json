@@ -1,0 +1,36 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "identifier": "elainevalerio.com.br",
+    "displayName": "Elaine Valerio Studio de Beleza"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:elainevalerio.com.br:docs:llms",
+      "displayName": "Guia de Serviços e Localização (llms.txt)",
+      "type": "text/markdown",
+      "url": "https://elainevalerio.com.br/llms.txt"
+    },
+    {
+      "identifier": "urn:air:elainevalerio.com.br:catalog:beauty-services",
+      "displayName": "Catálogo de Serviços - Salão de Beleza em Araruama, RJ",
+      "type": "application/ld+json",
+      "data": {
+        "@context": "https://schema.org",
+        "@type": ["BeautySalon", "HairSalon"],
+        "name": "Elaine Valerio Studio de Beleza",
+        "telephone": "+55-22-98833-5171",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Cap. Vergara, 43 - Coqueiral",
+          "addressLocality": "Araruama",
+          "addressRegion": "RJ",
+          "postalCode": "28982-335",
+          "addressCountry": "BR"
+        },
+        "areaServed": ["Araruama", "Coqueiral", "Iguaba Grande", "Saquarema", "Região dos Lagos"],
+        "url": "https://elainevalerio.com.br/"
+      }
+    }
+  ]
+}

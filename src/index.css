@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,400..900&family=Monsieur+La+Doulaise&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Anton&display=swap');
 
 @theme {
   --font-serif: "Playfair Display", serif;
@@ -11,13 +10,6 @@
 
 body {
   @apply bg-[#FDFBF7] text-[#2D1B14] font-sans antialiased;
-}
-
-/* Subtle Film Grain Texture */
-.grain::after {
-  content: "";
-  @apply fixed inset-0 pointer-events-none z-[100] opacity-[0.03];
-  background-image: url('https://grain-y.com/images/grain.png');
 }
 
 .text-stroke-gold {

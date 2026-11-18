@@ -38,6 +38,7 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
       {/* Back Button */}
       <button 
         onClick={onClose}
+        aria-label="Voltar para o menu de serviços"
         className="fixed top-8 left-8 z-[110] w-12 h-12 rounded-full bg-white border-2 border-[#C5A059] text-[#C5A059] shadow-[0_4px_20px_rgba(197,160,89,0.4)] hover:scale-110 active:scale-95 transition-all group flex items-center justify-center"
       >
         <CaretLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" weight="bold" />
@@ -86,8 +87,11 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
           {/* Background Blur Image */}
           <div className="absolute inset-0 z-0">
              <img 
-               src={`https://drive.google.com/thumbnail?id=${id}&sz=w1000`} 
+               src={`https://drive.google.com/thumbnail?id=${id}&sz=w300`} 
                alt="" 
+               loading="lazy"
+               decoding="async"
+               referrerPolicy="no-referrer"
                className="w-full h-full object-cover blur-2xl opacity-20"
              />
              <div className="absolute inset-0 bg-black/40"></div>
@@ -104,8 +108,10 @@ export default function InspirationGallery({ onClose }: { onClose: () => void })
               
               <div className="w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/20">
                 <img 
-                  src={`https://drive.google.com/thumbnail?id=${id}&sz=w1000`} 
-                  alt={`Inspiração ${index + 1}`}
+                  src={`https://drive.google.com/thumbnail?id=${id}&sz=w900`} 
+                  alt={`Inspiração de cabelo e beleza ${index + 1} - Studio Elaine Valerio em Araruama`}
+                  loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-all duration-700"
                 />
